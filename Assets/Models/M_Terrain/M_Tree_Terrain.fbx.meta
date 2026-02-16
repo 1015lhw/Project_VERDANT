@@ -3,7 +3,12 @@ guid: 959e801235c1e2f4495b4c7a1919b374
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree_Material_Eevee
+    second: {fileID: 2100000, guid: 5a6165e230f7ad24faab5032a992e9d5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -71,7 +76,7 @@ ModelImporter:
     useFileScale: 1
     strictVertexDataChecks: 0
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 0
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
