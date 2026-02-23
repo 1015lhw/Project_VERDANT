@@ -1,6 +1,8 @@
-using UnityEngine;
-using TMPro;
+using Ink.Parsed;
 using Ink.Runtime;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -9,8 +11,10 @@ public class DialogueManager : MonoBehaviour
     [Header("UI")]
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
+    public Transform choicesContainer;
+    public GameObject choiceButtonPrefab;
 
-    private Story story;
+    private Ink.Runtime.Story story;
     private bool isOpen;
 
     void Awake()
@@ -22,8 +26,11 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isOpen) return;
 
-       
-        if (Input.GetKeyDown(KeyCode.Space)) // Press "Space" to continue
+        // if there are choices, don't continue the dialogue by space
+        if (story != null && story.currentChoices != null && story.currentChoices.Count > 0)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ContinueStory();
         }
@@ -37,7 +44,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        story = new Story(inkJSON.text);
+        story = new Ink.Runtime.Story(inkJSON.text);
         isOpen = true;
 
         dialoguePanel.SetActive(true);
@@ -51,20 +58,67 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
+
     void ContinueStory()
     {
         if (story == null) return;
+        Debug.Log("Choices count = " + story.currentChoices.Count);
+
+        //Clear the old choices
+        ClearChoices();
 
         if (story.canContinue)
         {
             string line = story.Continue().Trim();
             dialogueText.text = line;
+
+            //Check if there are new choices
+            DisplayChoices();
         }
         else
         {
-            EndDialogue();
+            //if no follow up text, end the dialogue or wait for player choose sth. seriously I really HATE this...
+            if (story.currentChoices != null && story.currentChoices.Count > 0)
+            {
+                DisplayChoices();
+            }
+            else
+            {
+                EndDialogue();
+            }
         }
     }
 
-    public bool IsOpen => isOpen;
+    void ClearChoices()
+{
+    if (choicesContainer == null) return;
+    for (int i = choicesContainer.childCount - 1; i >= 0; i--)
+        Destroy(choicesContainer.GetChild(i).gameObject);
+}
+
+void DisplayChoices()
+{
+    ClearChoices();
+    if (story == null || choicesContainer == null || choiceButtonPrefab == null) return;
+        Debug.Log("CHOICES COUNT: " + story.currentChoices.Count);
+
+        foreach (var choice in story.currentChoices)
+    {
+        GameObject btnObj = Instantiate(choiceButtonPrefab, choicesContainer);
+
+        var tmp = btnObj.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (tmp != null) tmp.text = choice.text;
+
+        var btn = btnObj.GetComponent<Button>();
+        int idx = choice.index;
+        btn.onClick.AddListener(() => OnChoiceSelected(idx));
+    }
+}
+
+void OnChoiceSelected(int idx)
+{
+    story.ChooseChoiceIndex(idx);
+    ContinueStory();
+}
+public bool IsOpen => isOpen;
 }
