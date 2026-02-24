@@ -14,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject choiceButtonPrefab;
 
     [Header("Debug / UI Safety")]
-    public float choiceButtonMinHeight = 60f; // botton height
+    public float choiceButtonMinHeight = 60f; // botton height locked
     public bool forceShowPanelWhenDialogueStarts = true;
 
     private Story story;
@@ -125,8 +125,6 @@ public class DialogueManager : MonoBehaviour
         foreach (var choice in story.currentChoices)
         {
             GameObject btnObj = Instantiate(choiceButtonPrefab, choicesContainer);
-
-            // 1) ∏¸Œ»£∫Button/TMP ”√ InChildren
             var btn = btnObj.GetComponentInChildren<Button>(true);
             var tmp = btnObj.GetComponentInChildren<TextMeshProUGUI>(true);
 
@@ -139,14 +137,12 @@ public class DialogueManager : MonoBehaviour
                 continue;
             }
 
-            //avoid the layout stuff make it 0
             var rt = btn.GetComponent<RectTransform>();
             if (rt != null)
             {
                 if (rt.sizeDelta.y < choiceButtonMinHeight)
                     rt.sizeDelta = new Vector2(rt.sizeDelta.x, choiceButtonMinHeight);
 
-                //protect the button from the scale stuff
                 rt.localScale = Vector3.one;
 
                 Debug.Log($"Spawned choice '{choice.text}' rt.anchoredPos={rt.anchoredPosition} sizeDelta={rt.sizeDelta}");
