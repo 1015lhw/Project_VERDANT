@@ -1,3 +1,4 @@
+using Ink.Parsed;
 using Ink.Runtime;
 using TMPro;
 using UnityEngine;
@@ -10,19 +11,14 @@ public class DialogueManager : MonoBehaviour
     [Header("UI")]
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
-    public RectTransform choicesContainer;
+    public Transform choicesContainer;
     public GameObject choiceButtonPrefab;
 
-    [Header("Debug / UI Safety")]
-    public float choiceButtonMinHeight = 60f; // botton height
-    public bool forceShowPanelWhenDialogueStarts = true;
-
-    private Story story;
+    private Ink.Runtime.Story story;
     private bool isOpen;
 
     void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
     }
 
@@ -30,12 +26,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isOpen) return;
 
-        //if there are choices, banned sapce wait for the player to click
+        // if there are choices, don't continue the dialogue by space
         if (story != null && story.currentChoices != null && story.currentChoices.Count > 0)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             ContinueStory();
+        }
     }
 
     public void StartDialogue(TextAsset inkJSON)
@@ -46,126 +44,94 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (forceShowPanelWhenDialogueStarts && dialoguePanel != null)
-            dialoguePanel.SetActive(true);
-
-        story = new Story(inkJSON.text);
+        story = new Ink.Runtime.Story(inkJSON.text);
         isOpen = true;
 
-        Debug.Log($"StartDialogue: panel activeInHierarchy = {dialoguePanel?.activeInHierarchy}");
-
+        dialoguePanel.SetActive(true);
         ContinueStory();
     }
 
     public void EndDialogue()
     {
-        Debug.Log("EndDialogue called.");
         isOpen = false;
         story = null;
-
-        ClearChoices();
-
-        if (dialoguePanel != null)
-            dialoguePanel.SetActive(false);
+        dialoguePanel.SetActive(false);
     }
 
-    public void ContinueStory()
+
+    void ContinueStory()
     {
         if (story == null) return;
+        Debug.Log("Choices count = " + story.currentChoices.Count);
 
-        Debug.Log("Choices count (before Continue) = " + story.currentChoices.Count);
-
+        //Clear the old choices
         ClearChoices();
 
         if (story.canContinue)
         {
             string line = story.Continue().Trim();
-            if (dialogueText != null) dialogueText.text = line;
+            dialogueText.text = line;
 
-            DisplayChoices(); //Continue->Choices
+            //Check if there are new choices
+            DisplayChoices();
         }
         else
         {
+            //if no follow up text, end the dialogue or wait for player choose sth. seriously I really HATE this...
             if (story.currentChoices != null && story.currentChoices.Count > 0)
+            {
                 DisplayChoices();
+            }
             else
+            {
                 EndDialogue();
+            }
         }
     }
 
     void ClearChoices()
     {
         if (choicesContainer == null) return;
-
         for (int i = choicesContainer.childCount - 1; i >= 0; i--)
             Destroy(choicesContainer.GetChild(i).gameObject);
     }
 
     void DisplayChoices()
     {
-        if (story == null)
-        {
-            Debug.LogError("DisplayChoices: story is null");
-            return;
-        }
-        if (choicesContainer == null)
-        {
-            Debug.LogError("DisplayChoices: choicesContainer is null");
-            return;
-        }
-        if (choiceButtonPrefab == null)
-        {
-            Debug.LogError("DisplayChoices: choiceButtonPrefab is null");
-            return;
-        }
-
-        Debug.Log("CHOICES COUNT (DisplayChoices): " + story.currentChoices.Count);
-        Debug.Log($"choicesContainer rect = {choicesContainer.rect}, childCount(before)={choicesContainer.childCount}");
+        ClearChoices();
+        if (story == null || choicesContainer == null || choiceButtonPrefab == null) return;
 
         foreach (var choice in story.currentChoices)
         {
             GameObject btnObj = Instantiate(choiceButtonPrefab, choicesContainer);
 
-            // 1) ∏¸Œ»£∫Button/TMP ”√ InChildren
-            var btn = btnObj.GetComponentInChildren<Button>(true);
+            if (!btnObj.activeSelf) btnObj.SetActive(true);
+
+            var img = btnObj.GetComponent<Image>();
+            if (img != null) img.enabled = true;
+
+            var btn = btnObj.GetComponent<Button>();
+            if (btn != null) btn.enabled = true;
+
+            var layout = btnObj.GetComponent<LayoutElement>();
+            if (layout != null) layout.enabled = true;
+
             var tmp = btnObj.GetComponentInChildren<TextMeshProUGUI>(true);
-
             if (tmp != null) tmp.text = choice.text;
-            else Debug.LogWarning("Choice prefab has no TextMeshProUGUI in children.");
 
-            if (btn == null)
+            if (btn != null)
             {
-                Debug.LogWarning("Choice prefab has no Button in children.");
-                continue;
+                int idx = choice.index;
+                btn.onClick.RemoveAllListeners(); 
+                btn.onClick.AddListener(() => OnChoiceSelected(idx));
             }
-
-            //avoid the layout stuff make it 0
-            var rt = btn.GetComponent<RectTransform>();
-            if (rt != null)
-            {
-                if (rt.sizeDelta.y < choiceButtonMinHeight)
-                    rt.sizeDelta = new Vector2(rt.sizeDelta.x, choiceButtonMinHeight);
-
-                //protect the button from the scale stuff
-                rt.localScale = Vector3.one;
-
-                Debug.Log($"Spawned choice '{choice.text}' rt.anchoredPos={rt.anchoredPosition} sizeDelta={rt.sizeDelta}");
-            }
-
-            int idx = choice.index;
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => OnChoiceSelected(idx));
         }
-
-        Debug.Log($"childCount(after)={choicesContainer.childCount}");
     }
 
     void OnChoiceSelected(int idx)
     {
-        if (story == null) return;
         story.ChooseChoiceIndex(idx);
         ContinueStory();
     }
-
     public bool IsOpen => isOpen;
 }
