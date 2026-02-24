@@ -19,15 +19,13 @@ public class TaskWindowSlide : MonoBehaviour
         if (taskWindow != null)
             centerPos = taskWindow.anchoredPosition;
 
-        // 设置到屏幕下方足够远的地方
-        hiddenPos = new Vector2(0, -Screen.height * 1.5f);
+        hiddenPos = new Vector2(0, -1500f);
     }
 
     void OnEnable()
     {
         if (taskWindow == null) return;
 
-        // 激活时先隐藏在屏幕外
         taskWindow.gameObject.SetActive(true);
         taskWindow.anchoredPosition = hiddenPos;
     }
@@ -51,12 +49,10 @@ public class TaskWindowSlide : MonoBehaviour
         while (time < slideDuration)
         {
             float t = time / slideDuration;
-            // 三次方易入易出
             t = 1 - Mathf.Pow(1 - t, 3);
 
             taskWindow.anchoredPosition = Vector2.Lerp(from, to, t);
 
-            // Time.timeScale 为 0 时也能运动
             time += Time.unscaledDeltaTime;
             yield return null;
         }

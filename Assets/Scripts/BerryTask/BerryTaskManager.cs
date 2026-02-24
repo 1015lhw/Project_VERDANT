@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections; // 必须引用这个才能使用协程
+using System.Collections;
 
 public class BerryTaskManager : MonoBehaviour
 {
-    [Header("UI Slots (手动拖拽)")]
-    public TMP_Text counterText;     // 显示 0/5 的数字
-    public TMP_Text instructionText; // 显示 "Tap on berries..." 的文字
+    [Header("UI Slots")]
+    public TMP_Text counterText;     
+    public TMP_Text instructionText; 
     public Button closeButton;
 
     [Header("Settings")]
-    public float closeDelay = 0.5f;  // 控制任务完成后延迟关闭的速度
+    public float closeDelay = 0.5f;  
 
     [Header("Task State")]
     public bool taskCompleted = false;
@@ -72,15 +72,12 @@ public class BerryTaskManager : MonoBehaviour
         if (clickedCount >= total)
         {
             taskCompleted = true;
-            // 启动延迟关闭的协程
             StartCoroutine(DelayedClose());
         }
     }
 
-    // 协程：等待指定时间后再执行滑出动画
     IEnumerator DelayedClose()
     {
-        // 即使游戏暂停(Time.scale=0)，WaitForSecondsRealtime 依然有效
         yield return new WaitForSecondsRealtime(closeDelay);
         SlideAndClose();
     }
