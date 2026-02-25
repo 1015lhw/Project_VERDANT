@@ -25,17 +25,45 @@ public class DynamicInventoryUI : MonoBehaviour
     [Header("Item Data Library (配置 ID 对应的图片)")]
     public List<ItemAsset> itemLibrary = new List<ItemAsset>();
 
+    private InventorySystem subscribedInventory;
+
     private void OnEnable()
     {
+        TrySubscribeInventoryEvents();
         Refresh();
-        if (InventorySystem.Instance != null)
-            InventorySystem.Instance.OnInventoryChanged += Refresh;
+    }
+
+    private void Update()
+    {
+        // 处理执行顺序问题：如果本脚本先于 InventorySystem 启动，后续补订阅
+        if (subscribedInventory == null)
+        {
+            TrySubscribeInventoryEvents();
+        }
     }
 
     private void OnDisable()
     {
-        if (InventorySystem.Instance != null)
-            InventorySystem.Instance.OnInventoryChanged -= Refresh;
+        UnsubscribeInventoryEvents();
+    }
+
+    private void TrySubscribeInventoryEvents()
+    {
+        if (subscribedInventory != null || InventorySystem.Instance == null)
+            return;
+
+        subscribedInventory = InventorySystem.Instance;
+        subscribedInventory.OnInventoryChanged += Refresh;
+        Refresh();
+    }
+
+    private void UnsubscribeInventoryEvents()
+    {
+        if (subscribedInventory == null)
+            return;
+
+        subscribedInventory.OnInventoryChanged -= Refresh;
+        subscribedInventory = null;
     }
 
     public void Refresh()
