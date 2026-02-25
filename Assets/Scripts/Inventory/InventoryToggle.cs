@@ -26,6 +26,13 @@ public class InventoryToggle : MonoBehaviour
 
     void Update()
     {
+        // Self-heal: if state says Inventory but panel is already closed,
+        // unlock other interactions (Press E / tasks / dialogue).
+        if (!isOpen && GameStateManager.CurrentState == GameState.Inventory)
+        {
+            GameStateManager.ResetToNormal();
+        }
+
         if (Input.GetKeyDown(KeyCode.B))
         {
             if (CanToggleInventory())
@@ -85,5 +92,11 @@ public class InventoryToggle : MonoBehaviour
 
         if (targetAlpha == 0f)
             dimCanvasGroup.gameObject.SetActive(false);
+    }
+
+    void OnDisable()
+    {
+        if (GameStateManager.CurrentState == GameState.Inventory)
+            GameStateManager.ResetToNormal();
     }
 }

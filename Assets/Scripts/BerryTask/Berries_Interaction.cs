@@ -22,6 +22,14 @@ public class Berries_Interaction : MonoBehaviour
 
     void Update()
     {
+        // Self-heal: if task UI got closed by animation/state changes,
+        // bring game state back so Press E can be used again.
+        if (GameStateManager.CurrentState == GameState.Task
+            && (berryTaskUI == null || !berryTaskUI.activeInHierarchy))
+        {
+            GameStateManager.ResetToNormal();
+        }
+
         RefreshPrompt();
 
         if (!playerInRange) return;
