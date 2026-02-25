@@ -15,6 +15,7 @@ public class PressE_Interact : MonoBehaviour
     void Update()
     {
         if (!playerInRange) return;
+        if (!GameStateManager.IsNormal) return;
 
         // If the dialogue is opne, don't open it again
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return;
@@ -27,14 +28,26 @@ public class PressE_Interact : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        if (pressEUI == null) return;
+
+        bool shouldShow = playerInRange
+            && GameStateManager.IsNormal
+            && (DialogueManager.Instance == null || !DialogueManager.Instance.IsOpen);
+
+        if (pressEUI.activeSelf != shouldShow)
+            pressEUI.SetActive(shouldShow);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
 
         playerInRange = true;
 
-        // If the dialogue is closed,don't show Press E
-        if (DialogueManager.Instance == null || !DialogueManager.Instance.IsOpen)
+        // If the dialogue is closed and global state allows interaction, show Press E
+        if (GameStateManager.IsNormal && (DialogueManager.Instance == null || !DialogueManager.Instance.IsOpen))
             if (pressEUI != null) pressEUI.SetActive(true);
     }
 

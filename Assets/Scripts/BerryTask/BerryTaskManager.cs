@@ -110,8 +110,16 @@ public class BerryTaskManager : MonoBehaviour
                 Time.timeScale = 1f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                GameStateManager.ResetToNormal();
             });
+            return;
         }
+
+        gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameStateManager.ResetToNormal();
     }
 
     void UpdateUI()

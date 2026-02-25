@@ -39,6 +39,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameStateManager.IsNormal)
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
+
         // 固定相机 → 用世界坐标
         Vector3 move = new Vector3(-moveInput.x, 0f, -moveInput.y);
 
