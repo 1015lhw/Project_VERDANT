@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Transform choicesContainer;
     public GameObject choiceButtonPrefab;
+    public Image portraitImage;
 
     private Ink.Runtime.Story story;
     private bool isOpen;
@@ -36,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(TextAsset inkJSON)
+    public void StartDialogue(TextAsset inkJSON, Sprite portraitSprite)
     {
         if (inkJSON == null)
         {
@@ -48,6 +49,7 @@ public class DialogueManager : MonoBehaviour
         isOpen = true;
 
         dialoguePanel.SetActive(true);
+        portraitImage.sprite = portraitSprite;//set portrait
         ContinueStory();
     }
 

@@ -4,6 +4,7 @@ public class PressE_Interact : MonoBehaviour
 {
     public GameObject pressEUI;
     public TextAsset inkJSON;
+    public Sprite portrait;
 
     private bool playerInRange;
 
@@ -24,7 +25,7 @@ public class PressE_Interact : MonoBehaviour
         {
             if (pressEUI != null) pressEUI.SetActive(false);
 
-            DialogueManager.Instance.StartDialogue(inkJSON);
+            DialogueManager.Instance.StartDialogue(inkJSON, portrait);
         }
     }
 
