@@ -7,6 +7,7 @@ public class Berries_Interaction : MonoBehaviour
 
     private bool playerInRange = false;
     private BerryTaskManager taskManager;
+    private BerryShrubSwitcher shrubSwitcher;
 
     void Start()
     {
@@ -19,6 +20,13 @@ public class Berries_Interaction : MonoBehaviour
 
         if (berryTaskUI != null)
             taskManager = berryTaskUI.GetComponent<BerryTaskManager>();
+
+        shrubSwitcher = GetComponent<BerryShrubSwitcher>();
+        if (shrubSwitcher == null)
+            shrubSwitcher = GetComponentInParent<BerryShrubSwitcher>();
+
+        if (taskManager != null && shrubSwitcher != null)
+            taskManager.SetShrubSwitcher(shrubSwitcher);
     }
 
     void Update()
@@ -56,7 +64,13 @@ public class Berries_Interaction : MonoBehaviour
         GameStateManager.SetState(GameState.Task);
         berryTaskUI.SetActive(true);
 
-        if (taskManager != null) taskManager.PrepareTask();
+        if (taskManager != null)
+        {
+            if (shrubSwitcher != null)
+                taskManager.SetShrubSwitcher(shrubSwitcher);
+
+            taskManager.PrepareTask();
+        }
 
         var slide = berryTaskUI.GetComponent<TaskWindowSlide>();
         if (slide != null) slide.PlaySlideIn();

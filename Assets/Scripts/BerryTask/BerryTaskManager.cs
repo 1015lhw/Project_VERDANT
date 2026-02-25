@@ -16,6 +16,9 @@ public class BerryTaskManager : MonoBehaviour
     [Header("Task State")]
     public bool taskCompleted = false;
 
+    [Header("Scene Links")]
+    public BerryShrubSwitcher shrubSwitcher;
+
     [Header("Reward")]
     public int rewardBerries = 5; // ✅ 完成任务奖励多少个树莓（你可以改成1或5）
 
@@ -27,6 +30,7 @@ public class BerryTaskManager : MonoBehaviour
     void Awake()
     {
         slide = GetComponent<TaskWindowSlide>();
+
         InitBerries();
 
         if (counterText == null) counterText = transform.Find("TaskWindow/CounterText")?.GetComponent<TMP_Text>();
@@ -38,6 +42,8 @@ public class BerryTaskManager : MonoBehaviour
     {
         if (closeButton != null)
             closeButton.onClick.AddListener(CloseTask);
+
+        ApplyShrubState();
 
         UpdateUI();
     }
@@ -55,6 +61,14 @@ public class BerryTaskManager : MonoBehaviour
                 berries[i].onClick.AddListener(() => OnBerryClicked(berries[index]));
             }
         }
+    }
+
+    public void SetShrubSwitcher(BerryShrubSwitcher switcher)
+    {
+        if (switcher == null) return;
+
+        shrubSwitcher = switcher;
+        ApplyShrubState();
     }
 
     public void PrepareTask()
@@ -77,6 +91,8 @@ public class BerryTaskManager : MonoBehaviour
         if (clickedCount >= total)
         {
             taskCompleted = true;
+
+            ApplyShrubState();
 
             // ✅ 任务完成：加入背包（跨场景保存）
             if (InventorySystem.Instance != null)
@@ -127,5 +143,15 @@ public class BerryTaskManager : MonoBehaviour
 
         if (counterText != null)
             counterText.text = $"{clickedCount}/{total}";
+    }
+
+    private void ApplyShrubState()
+    {
+        if (shrubSwitcher == null) return;
+
+        if (taskCompleted)
+            shrubSwitcher.SwitchToEmpty();
+        else
+            shrubSwitcher.SwitchToWithFruit();
     }
 }
