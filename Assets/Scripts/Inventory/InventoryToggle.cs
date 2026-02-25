@@ -57,6 +57,12 @@ public class InventoryToggle : MonoBehaviour
             if (panel != null) panel.gameObject.SetActive(true);
 
             GameStateManager.SetState(GameState.Inventory);
+
+            // 每次打开背包都主动刷新一次，避免错过事件导致显示空白
+            foreach (var ui in panel.GetComponentsInChildren<DynamicInventoryUI>(true))
+            {
+                ui.Refresh();
+            }
             
             if (dimCanvasGroup != null)
             {

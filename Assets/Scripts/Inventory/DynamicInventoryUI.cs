@@ -25,33 +25,42 @@ public class DynamicInventoryUI : MonoBehaviour
     [Header("Item Data Library (配置 ID 对应的图片)")]
     public List<ItemAsset> itemLibrary = new List<ItemAsset>();
 
+    private InventorySystem inventory;
+
     private void OnEnable()
     {
+        TryBindInventory();
         Refresh();
-        if (InventorySystem.Instance != null)
-            InventorySystem.Instance.OnInventoryChanged += Refresh;
     }
 
     private void OnDisable()
     {
-        if (InventorySystem.Instance != null)
-            InventorySystem.Instance.OnInventoryChanged -= Refresh;
+        if (inventory != null)
+            inventory.OnInventoryChanged -= Refresh;
+
+        inventory = null;
+    }
+
+    private void TryBindInventory()
+    {
+        if (inventory == InventorySystem.Instance) return;
+
+        if (inventory != null)
+            inventory.OnInventoryChanged -= Refresh;
+
+        inventory = InventorySystem.Instance;
+
+        if (inventory != null)
+            inventory.OnInventoryChanged += Refresh;
     }
 
     public void Refresh()
     {
-        if (InventorySystem.Instance == null) return;
+        TryBindInventory();
+        if (inventory == null) return;
 
-        // 1. 获取当前所有有数量的物品 ID
-        // 注意：InventorySystem 需要提供获取所有 key 的方法，或者我们遍历 Library
-        List<string> ownedItems = new List<string>();
-        foreach (var asset in itemLibrary)
-        {
-            if (InventorySystem.Instance.GetCount(asset.id) > 0)
-            {
-                ownedItems.Add(asset.id);
-            }
-        }
+        // 1. 按实际获取顺序拿到“背包里真正拥有”的物品
+        List<string> ownedItems = inventory.GetOwnedItemsInOrder();
 
         // 2. 清空并根据顺序填充格子
         for (int i = 0; i < uiSlots.Count; i++)
@@ -83,7 +92,7 @@ public class DynamicInventoryUI : MonoBehaviour
 
         if (slot.countText != null)
         {
-            slot.countText.text = count > 1 ? count.ToString() : "";
+            slot.countText.text = count.ToString();
         }
     }
 
