@@ -30,8 +30,6 @@ public class BerryTaskManager : MonoBehaviour
     void Awake()
     {
         slide = GetComponent<TaskWindowSlide>();
-        if (shrubSwitcher == null)
-            shrubSwitcher = GetComponentInParent<BerryShrubSwitcher>();
 
         InitBerries();
 
@@ -63,6 +61,14 @@ public class BerryTaskManager : MonoBehaviour
                 berries[i].onClick.AddListener(() => OnBerryClicked(berries[index]));
             }
         }
+    }
+
+    public void SetShrubSwitcher(BerryShrubSwitcher switcher)
+    {
+        if (switcher == null) return;
+
+        shrubSwitcher = switcher;
+        ApplyShrubState();
     }
 
     public void PrepareTask()

@@ -8,9 +8,26 @@ public class BerryShrubSwitcher : MonoBehaviour
 
     void Awake()
     {
+        ResolveReferences();
+
         // 初始状态：有果子
         if (withFruitObj != null) withFruitObj.SetActive(true);
         if (emptyObj != null) emptyObj.SetActive(false);
+    }
+
+    private void ResolveReferences()
+    {
+        if (withFruitObj == null)
+        {
+            Transform t = transform.Find("WithFruit");
+            if (t != null) withFruitObj = t.gameObject;
+        }
+
+        if (emptyObj == null)
+        {
+            Transform t = transform.Find("Empty");
+            if (t != null) emptyObj = t.gameObject;
+        }
     }
 
     public void SwitchToEmpty()
