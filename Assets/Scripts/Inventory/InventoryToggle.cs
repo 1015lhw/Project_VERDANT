@@ -56,7 +56,7 @@ public class InventoryToggle : MonoBehaviour
             // 确保面板物体在 Inspector 里被激活，解决“必须手动勾选”的问题
             if (panel != null) panel.gameObject.SetActive(true);
 
-            GameStateManager.SetState(GameState.Task); // 根据你之前的逻辑切换状态
+            GameStateManager.SetState(GameState.Inventory);
             
             if (dimCanvasGroup != null)
             {
