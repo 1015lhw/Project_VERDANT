@@ -22,8 +22,11 @@ public class Berries_Interaction : MonoBehaviour
 
     void Update()
     {
+        RefreshPrompt();
+
         if (!playerInRange) return;
-        
+        if (!GameStateManager.IsNormal) return;
+
         if (taskManager != null && taskManager.taskCompleted)
         {
             if (pressEUI != null && pressEUI.activeSelf) pressEUI.SetActive(false);
@@ -39,7 +42,9 @@ public class Berries_Interaction : MonoBehaviour
     void OpenTask()
     {
         if (berryTaskUI == null) return;
+        if (!GameStateManager.IsNormal) return;
 
+        GameStateManager.SetState(GameState.Task);
         berryTaskUI.SetActive(true);
 
         if (taskManager != null) taskManager.PrepareTask();
@@ -58,17 +63,25 @@ public class Berries_Interaction : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = true;
-
-        if (taskManager != null && !taskManager.taskCompleted)
-        {
-            if (pressEUI != null) pressEUI.SetActive(true);
-        }
+        RefreshPrompt();
     }
 
     void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = false;
-        if (pressEUI != null) pressEUI.SetActive(false);
+        RefreshPrompt();
+    }
+
+    private void RefreshPrompt()
+    {
+        if (pressEUI == null) return;
+
+        bool showPrompt = playerInRange
+            && GameStateManager.IsNormal
+            && (taskManager == null || !taskManager.taskCompleted);
+
+        if (pressEUI.activeSelf != showPrompt)
+            pressEUI.SetActive(showPrompt);
     }
 }

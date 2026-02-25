@@ -28,7 +28,8 @@ public class InventoryToggle : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            Toggle();
+            if (CanToggleInventory())
+                Toggle();
         }
 
         AnimatePanel();
@@ -40,13 +41,21 @@ public class InventoryToggle : MonoBehaviour
 
         if (isOpen)
         {
+            GameStateManager.SetState(GameState.Inventory);
             dimCanvasGroup.gameObject.SetActive(true);
             StartCoroutine(FadeDim(1f));
         }
         else
         {
+            GameStateManager.ResetToNormal();
             StartCoroutine(FadeDim(0f));
         }
+    }
+
+    bool CanToggleInventory()
+    {
+        return GameStateManager.CurrentState == GameState.Normal
+            || (GameStateManager.CurrentState == GameState.Inventory && isOpen);
     }
 
     void AnimatePanel()
