@@ -6,15 +6,18 @@ using System.Collections;
 public class BerryTaskManager : MonoBehaviour
 {
     [Header("UI Slots")]
-    public TMP_Text counterText;     
-    public TMP_Text instructionText; 
+    public TMP_Text counterText;
+    public TMP_Text instructionText;
     public Button closeButton;
 
     [Header("Settings")]
-    public float closeDelay = 0.5f;  
+    public float closeDelay = 0.5f;
 
     [Header("Task State")]
     public bool taskCompleted = false;
+
+    [Header("Reward")]
+    public int rewardBerries = 5; // ✅ 完成任务奖励多少个树莓（你可以改成1或5）
 
     private Button[] berries;
     private TaskWindowSlide slide;
@@ -35,7 +38,7 @@ public class BerryTaskManager : MonoBehaviour
     {
         if (closeButton != null)
             closeButton.onClick.AddListener(CloseTask);
-        
+
         UpdateUI();
     }
 
@@ -45,10 +48,10 @@ public class BerryTaskManager : MonoBehaviour
         for (int i = 0; i < total; i++)
         {
             Transform t = transform.Find($"TaskWindow/Berry{i + 1}");
-            if (t != null) 
+            if (t != null)
             {
                 berries[i] = t.GetComponent<Button>();
-                int index = i; 
+                int index = i;
                 berries[i].onClick.AddListener(() => OnBerryClicked(berries[index]));
             }
         }
@@ -57,6 +60,7 @@ public class BerryTaskManager : MonoBehaviour
     public void PrepareTask()
     {
         if (taskCompleted) return;
+
         clickedCount = 0;
         foreach (var b in berries) if (b != null) b.gameObject.SetActive(true);
         UpdateUI();
@@ -65,6 +69,7 @@ public class BerryTaskManager : MonoBehaviour
     void OnBerryClicked(Button berry)
     {
         if (taskCompleted) return;
+
         berry.gameObject.SetActive(false);
         clickedCount++;
         UpdateUI();
@@ -72,6 +77,17 @@ public class BerryTaskManager : MonoBehaviour
         if (clickedCount >= total)
         {
             taskCompleted = true;
+
+            // ✅ 任务完成：加入背包（跨场景保存）
+            if (InventorySystem.Instance != null)
+            {
+                InventorySystem.Instance.Add("Berry", rewardBerries);
+            }
+            else
+            {
+                Debug.LogWarning("[BerryTaskManager] InventorySystem.Instance is null. Please place InventorySystem in scene.");
+            }
+
             StartCoroutine(DelayedClose());
         }
     }
@@ -100,10 +116,10 @@ public class BerryTaskManager : MonoBehaviour
 
     void UpdateUI()
     {
-        if (instructionText != null) 
+        if (instructionText != null)
             instructionText.text = "Tap on berries to harvest";
-        
-        if (counterText != null) 
+
+        if (counterText != null)
             counterText.text = $"{clickedCount}/{total}";
     }
 }

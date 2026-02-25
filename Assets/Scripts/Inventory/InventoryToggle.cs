@@ -1,12 +1,13 @@
 using UnityEngine;
+using System.Collections;
 
 public class InventoryToggle : MonoBehaviour
 {
-    public GameObject dim;
     public RectTransform panel;
+    public CanvasGroup dimCanvasGroup;  // 用 CanvasGroup 控制透明度
 
-    public float slideDistance = 1200f;   // 往下滑多远
     public float slideSpeed = 10f;
+    public float dimFadeTime = 0.15f;   // ⭐ dim关闭时间
 
     private bool isOpen = false;
     private Vector2 shownPos;
@@ -14,40 +15,41 @@ public class InventoryToggle : MonoBehaviour
 
     void Start()
     {
-        // 记录你在编辑器里摆好的位置
         shownPos = panel.anchoredPosition;
-
-        // 自动计算隐藏位置
-        hiddenPos = shownPos + Vector2.down * slideDistance;
+        hiddenPos = shownPos + Vector2.down * 1200f;
 
         panel.anchoredPosition = hiddenPos;
-        panel.gameObject.SetActive(false);
-        dim.SetActive(false);
+
+        dimCanvasGroup.alpha = 0f;
+        dimCanvasGroup.gameObject.SetActive(false);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            isOpen = !isOpen;
-
-            if (isOpen)
-            {
-                panel.gameObject.SetActive(true);
-                dim.SetActive(true);
-            }
+            Toggle();
         }
 
-        Animate();
+        AnimatePanel();
+    }
 
-        if (!isOpen && Vector2.Distance(panel.anchoredPosition, hiddenPos) < 1f)
+    void Toggle()
+    {
+        isOpen = !isOpen;
+
+        if (isOpen)
         {
-            panel.gameObject.SetActive(false);
-            dim.SetActive(false);
+            dimCanvasGroup.gameObject.SetActive(true);
+            StartCoroutine(FadeDim(1f));
+        }
+        else
+        {
+            StartCoroutine(FadeDim(0f));
         }
     }
 
-    void Animate()
+    void AnimatePanel()
     {
         Vector2 target = isOpen ? shownPos : hiddenPos;
 
@@ -55,5 +57,24 @@ public class InventoryToggle : MonoBehaviour
             Vector2.Lerp(panel.anchoredPosition,
                 target,
                 Time.deltaTime * slideSpeed);
+    }
+
+    IEnumerator FadeDim(float targetAlpha)
+    {
+        float startAlpha = dimCanvasGroup.alpha;
+        float time = 0f;
+
+        while (time < dimFadeTime)
+        {
+            time += Time.deltaTime;
+            dimCanvasGroup.alpha =
+                Mathf.Lerp(startAlpha, targetAlpha, time / dimFadeTime);
+            yield return null;
+        }
+
+        dimCanvasGroup.alpha = targetAlpha;
+
+        if (targetAlpha == 0f)
+            dimCanvasGroup.gameObject.SetActive(false);
     }
 }
