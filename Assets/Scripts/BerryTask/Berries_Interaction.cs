@@ -54,7 +54,6 @@ public class Berries_Interaction : MonoBehaviour
 
         if (pressEUI != null) pressEUI.SetActive(false);
 
-        Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

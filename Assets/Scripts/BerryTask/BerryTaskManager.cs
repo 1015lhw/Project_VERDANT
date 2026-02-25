@@ -107,7 +107,6 @@ public class BerryTaskManager : MonoBehaviour
             slide.PlaySlideOut(() =>
             {
                 gameObject.SetActive(false);
-                Time.timeScale = 1f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 GameStateManager.ResetToNormal();
@@ -116,7 +115,6 @@ public class BerryTaskManager : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameStateManager.ResetToNormal();
