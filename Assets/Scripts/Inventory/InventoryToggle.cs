@@ -7,7 +7,7 @@ public class InventoryToggle : MonoBehaviour
     public CanvasGroup dimCanvasGroup;  // 用 CanvasGroup 控制透明度
 
     public float slideSpeed = 10f;
-    public float dimFadeTime = 0.15f;   // ⭐ dim关闭时间
+    public float dimFadeTime = 0.15f;   
 
     private bool isOpen = false;
     private Vector2 shownPos;
@@ -15,19 +15,24 @@ public class InventoryToggle : MonoBehaviour
 
     void Start()
     {
+        // 记录当前位置为显示位置，并计算隐藏位置
         shownPos = panel.anchoredPosition;
-        hiddenPos = shownPos + Vector2.down * 1200f;
+        hiddenPos = shownPos + Vector2.down * 1500f; 
 
+        // 初始化：将面板移到屏幕下方
         panel.anchoredPosition = hiddenPos;
 
-        dimCanvasGroup.alpha = 0f;
-        dimCanvasGroup.gameObject.SetActive(false);
+        if (dimCanvasGroup != null)
+        {
+            dimCanvasGroup.alpha = 0f;
+            dimCanvasGroup.gameObject.SetActive(false);
+        }
     }
 
     void Update()
     {
-        // Self-heal: if state says Inventory but panel is already closed,
-        // unlock other interactions (Press E / tasks / dialogue).
+        // 自愈逻辑：如果状态记录为 Inventory 但面板实际上关了，重置状态
+        // 修复点：移除了 .Instance 直接访问类成员
         if (!isOpen && GameStateManager.CurrentState == GameState.Inventory)
         {
             GameStateManager.ResetToNormal();
@@ -48,43 +53,58 @@ public class InventoryToggle : MonoBehaviour
 
         if (isOpen)
         {
-            GameStateManager.SetState(GameState.Inventory);
-            dimCanvasGroup.gameObject.SetActive(true);
-            StartCoroutine(FadeDim(1f));
+            // 确保面板物体在 Inspector 里被激活，解决“必须手动勾选”的问题
+            if (panel != null) panel.gameObject.SetActive(true);
+
+            GameStateManager.SetState(GameState.Task); // 根据你之前的逻辑切换状态
+            
+            if (dimCanvasGroup != null)
+            {
+                dimCanvasGroup.gameObject.SetActive(true);
+                StartCoroutine(FadeDim(1f));
+            }
         }
         else
         {
             GameStateManager.ResetToNormal();
-            StartCoroutine(FadeDim(0f));
+            if (dimCanvasGroup != null)
+            {
+                StartCoroutine(FadeDim(0f));
+            }
         }
     }
 
     bool CanToggleInventory()
     {
-        return GameStateManager.CurrentState == GameState.Normal
-            || (GameStateManager.CurrentState == GameState.Inventory && isOpen);
+        // 允许在 Normal 状态打开，或者在 Inventory 状态且已经打开时关闭
+        return GameStateManager.IsNormal || (GameStateManager.CurrentState == GameState.Inventory && isOpen);
     }
 
     void AnimatePanel()
     {
+        if (panel == null) return;
+
         Vector2 target = isOpen ? shownPos : hiddenPos;
 
-        panel.anchoredPosition =
-            Vector2.Lerp(panel.anchoredPosition,
-                target,
-                Time.deltaTime * slideSpeed);
+        // 平滑插值移动
+        panel.anchoredPosition = Vector2.Lerp(
+            panel.anchoredPosition,
+            target,
+            Time.deltaTime * slideSpeed
+        );
     }
 
     IEnumerator FadeDim(float targetAlpha)
     {
+        if (dimCanvasGroup == null) yield break;
+
         float startAlpha = dimCanvasGroup.alpha;
         float time = 0f;
 
         while (time < dimFadeTime)
         {
             time += Time.deltaTime;
-            dimCanvasGroup.alpha =
-                Mathf.Lerp(startAlpha, targetAlpha, time / dimFadeTime);
+            dimCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, time / dimFadeTime);
             yield return null;
         }
 
@@ -96,6 +116,7 @@ public class InventoryToggle : MonoBehaviour
 
     void OnDisable()
     {
+        // 脚本禁用时清理状态，防止逻辑锁死
         if (GameStateManager.CurrentState == GameState.Inventory)
             GameStateManager.ResetToNormal();
     }
