@@ -1,29 +1,45 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class MapTaskManager : MonoBehaviour
 {
     [Header("UI")]
-    public TMP_Text counterText;
+    [SerializeField] private TMP_Text counterText;
 
     [Header("Settings")]
-    public int totalRocks = 5;
-    public string rewardItemID = "Map";
+    [SerializeField] private int totalRocks = 5;
+    [SerializeField] private string rewardItemID = "Map";
 
-    private int clearedCount = 0;
-    private bool isCompleted = false;
+    private int clearedCount;
+    private bool isCompleted;
 
-    void Start()
+    private void Awake()
     {
+        if (counterText == null)
+        {
+            counterText = transform.Find("TaskWindow/CounterText")?.GetComponent<TMP_Text>();
+        }
+    }
+
+    private void Start()
+    {
+        if (InventorySystem.Instance != null && InventorySystem.Instance.Has(rewardItemID))
+        {
+            isCompleted = true;
+            clearedCount = totalRocks;
+        }
+
         UpdateCounter();
     }
 
-    // 被石头调用
     public void NotifyRockCleared()
     {
-        if (isCompleted) return;
+        if (isCompleted)
+        {
+            return;
+        }
 
-        clearedCount++;
+        clearedCount = Mathf.Min(clearedCount + 1, totalRocks);
 
         if (clearedCount >= totalRocks)
         {
@@ -31,31 +47,41 @@ public class MapTaskManager : MonoBehaviour
         }
     }
 
-    void CompleteTask()
-    {
-        isCompleted = true;
-
-        if (counterText != null)
-            counterText.text = "1 / 1";
-
-        if (InventorySystem.Instance != null)
-        {
-            InventorySystem.Instance.AddItem(rewardItemID);
-        }
-        else
-        {
-            Debug.LogError("InventorySystem Instance is NULL!");
-        }
-    }
-
-    void UpdateCounter()
-    {
-        if (counterText != null)
-            counterText.text = "0 / 1";
-    }
-
     public bool IsCompleted()
     {
         return isCompleted;
+    }
+
+    private void CompleteTask()
+    {
+        if (isCompleted)
+        {
+            return;
+        }
+
+        isCompleted = true;
+        UpdateCounter();
+
+        if (InventorySystem.Instance != null)
+        {
+            if (!InventorySystem.Instance.Has(rewardItemID))
+            {
+                InventorySystem.Instance.AddItem(rewardItemID);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[MapTaskManager] InventorySystem.Instance is null. Map reward was not granted.");
+        }
+    }
+
+    private void UpdateCounter()
+    {
+        if (counterText == null)
+        {
+            return;
+        }
+
+        counterText.text = isCompleted ? "1 / 1" : "0 / 1";
     }
 }
