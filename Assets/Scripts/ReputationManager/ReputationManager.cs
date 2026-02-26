@@ -3,8 +3,8 @@ using UnityEngine;
 
 public enum NpcId
 {
-    A,   //Marcus
-    B    //Sierra
+    Mar,   //Marcus=A
+    Sie    //Sierra=B
 }
 
 public class ReputationManager : MonoBehaviour
@@ -36,8 +36,8 @@ public class ReputationManager : MonoBehaviour
     {
         return npc switch
         {
-            NpcId.A => affectionA,
-            NpcId.B => affectionB,
+            NpcId.Mar => affectionA,
+            NpcId.Sie => affectionB,
             _ => 0
         };
     }
@@ -68,8 +68,8 @@ public class ReputationManager : MonoBehaviour
     {
         switch (npc)
         {
-            case NpcId.A: affectionA = newValue; break;
-            case NpcId.B: affectionB = newValue; break;
+            case NpcId.Mar: affectionA = newValue; break;
+            case NpcId.Sie: affectionB = newValue; break;
         }
     }
 
@@ -100,7 +100,7 @@ public class ReputationManager : MonoBehaviour
         minAffection = s.minAffection;
         maxAffection = s.maxAffection;
 
-        SetAffection(NpcId.A, s.affectionA, "LoadSnapshot");
-        SetAffection(NpcId.B, s.affectionB, "LoadSnapshot");
+        SetAffection(NpcId.Mar, s.affectionA, "LoadSnapshot");
+        SetAffection(NpcId.Sie, s.affectionB, "LoadSnapshot");
     }
 }
