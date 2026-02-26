@@ -82,6 +82,13 @@ public class InventorySystem : MonoBehaviour
         return itemOrder;
     }
 
+    // ===== 兼容方法：按拥有顺序获取物品 =====
+    // DynamicInventoryUI 依赖该方法名，返回现有顺序列表即可。
+    public List<string> GetOwnedItemsInOrder()
+    {
+        return itemOrder;
+    }
+
     // ==========================================================
     // 🔥 新增兼容方法（不会影响任何旧逻辑）
     // ==========================================================
