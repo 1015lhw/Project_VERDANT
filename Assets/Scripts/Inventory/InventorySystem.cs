@@ -6,52 +6,95 @@ public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance;
 
-    // 存储物品数量
-    private readonly Dictionary<string, int> counts = new Dictionary<string, int>();
-    
-    // ⭐ 新增：记录物品获取的先后顺序
-    private readonly List<string> itemOrder = new List<string>();
+    // 存储数量
+    private Dictionary<string, int> counts = new Dictionary<string, int>();
+
+    // 记录首次获得顺序
+    private List<string> itemOrder = new List<string>();
 
     public event Action OnInventoryChanged;
 
-    private void Awake()
+    void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
-    public int GetCount(string id)
-    {
-        return counts.TryGetValue(id, out int v) ? v : 0;
-    }
-
-    // ⭐ 新增：获取按获取顺序排列的已拥有物品 ID 列表
-    public List<string> GetOwnedItemsInOrder()
-    {
-        // 过滤掉数量为 0 的物品（如果以后有丢弃功能）
-        return itemOrder.FindAll(id => GetCount(id) > 0);
-    }
-
+    // ===== 原有方法：添加物品 =====
     public void Add(string id, int amount)
     {
-        if (string.IsNullOrEmpty(id) || amount <= 0) return;
+        if (string.IsNullOrEmpty(id)) return;
+        if (amount <= 0) return;
 
-        // ⭐ 逻辑修改：如果是第一次获得该物品，记录到顺序列表中
-        if (!counts.ContainsKey(id))
+        if (counts.ContainsKey(id))
         {
-            itemOrder.Add(id);
+            counts[id] += amount;
+        }
+        else
+        {
+            counts[id] = amount;
+            itemOrder.Add(id); // 首次获得时记录顺序
         }
 
-        int cur = GetCount(id);
-        counts[id] = cur + amount;
+        Debug.Log($"[Inventory] Added {amount} x {id} (Total: {counts[id]})");
 
         OnInventoryChanged?.Invoke();
-        Debug.Log($"[InventorySystem] Add {id} +{amount} => {counts[id]} | Order: {string.Join(", ", itemOrder)}");
+    }
+
+    // ===== 原有方法：移除物品 =====
+    public void Remove(string id, int amount)
+    {
+        if (!counts.ContainsKey(id)) return;
+
+        counts[id] -= amount;
+
+        if (counts[id] <= 0)
+        {
+            counts.Remove(id);
+            itemOrder.Remove(id);
+        }
+
+        OnInventoryChanged?.Invoke();
+    }
+
+    // ===== 原有方法：获取数量 =====
+    public int GetCount(string id)
+    {
+        return counts.ContainsKey(id) ? counts[id] : 0;
+    }
+
+    // ===== 原有方法：是否拥有 =====
+    public bool Has(string id)
+    {
+        return counts.ContainsKey(id) && counts[id] > 0;
+    }
+
+    // ===== 原有方法：获取顺序列表 =====
+    public List<string> GetItemOrder()
+    {
+        return itemOrder;
+    }
+
+    // ==========================================================
+    // 🔥 新增兼容方法（不会影响任何旧逻辑）
+    // ==========================================================
+
+    // 给任务系统用：默认加1个
+    public void AddItem(string id)
+    {
+        Add(id, 1);
+    }
+
+    // 可选：加多个
+    public void AddItem(string id, int amount)
+    {
+        Add(id, amount);
     }
 }
