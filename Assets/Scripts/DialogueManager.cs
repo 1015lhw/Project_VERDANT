@@ -17,6 +17,23 @@ public class DialogueManager : MonoBehaviour
     public GameObject choiceButtonPrefab;
     public Image portraitImage;
 
+    [Header("Portrait")]
+    public Image npcPortrait;
+    [Range(0f, 1f)]
+    public float dimBrightness = 0.5f;
+    private void SetPortraitBrightness(float brightness)
+    {
+        if (portraitImage == null)
+        {
+            Debug.Log("[Portrait] portraitImage NULL");
+            return;
+        }
+
+        Debug.Log($"[Portrait] set brightness={brightness}", portraitImage);
+
+        portraitImage.color = new Color(brightness, brightness, brightness, 1f);
+    }
+
     private Ink.Runtime.Story story;
     private bool isOpen;
     private int storyId = 0;
@@ -134,6 +151,8 @@ public class DialogueManager : MonoBehaviour
             string line = story.Continue().Trim();
             Debug.Log("[After Continue] choices=" + story.currentChoices.Count);
             dialogueText.text = line;
+            if (!string.IsNullOrEmpty(line))
+                SetPortraitBrightness(1f);
 
             //Choices check
             if (story.currentChoices != null && story.currentChoices.Count > 0)
@@ -155,10 +174,13 @@ public class DialogueManager : MonoBehaviour
 
     void DisplayChoices()
     {
+        SetPortraitBrightness(dimBrightness);
+
         Debug.Log($"[DisplayChoices] storyChoices={story.currentChoices.Count} container={choicesContainer?.name} childCountBefore={choicesContainer?.childCount}");
         Debug.Log($"[DisplayChoices] NULLCHECK storyNull={(story == null)} containerNull={(choicesContainer == null)} prefabNull={(choiceButtonPrefab == null)}");
         ClearChoices();
         Debug.Log("[DisplayChoices] choices=" + story.currentChoices.Count);
+
         if (story == null || choicesContainer == null || choiceButtonPrefab == null) return;
 
         foreach (var choice in story.currentChoices)
