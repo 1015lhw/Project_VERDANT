@@ -1,4 +1,5 @@
 using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,37 +20,19 @@ public class MapTaskManager : MonoBehaviour
     private int clearedCount;
     private bool isCompleted;
     private bool isClosing;
+    private bool hasWarnedMissingRocks;
 
     public bool IsCompleted => isCompleted;
 
     private void Awake()
     {
-        slide = GetComponent<TaskWindowSlide>();
-
-        if (counterText == null)
-        {
-            counterText = transform.Find("TaskWindow_Stone/CounterText_Stone")?.GetComponent<TMP_Text>();
-        }
-
-        if (instructionText == null)
-        {
-            instructionText = transform.Find("TaskWindow_Stone/InstructionText_Stone")?.GetComponent<TMP_Text>();
-        }
-
-        if (closeButton == null)
-        {
-            closeButton = transform.Find("TaskWindow_Stone/CloseButton_Stone")?.GetComponent<Button>();
-        }
-
-        rocks = GetComponentsInChildren<UIDragRock>(true);
-        foreach (UIDragRock rock in rocks)
-        {
-            rock.BindManager(this);
-        }
+        CacheReferences();
     }
 
     private void Start()
     {
+        CacheReferences();
+
         if (closeButton != null)
         {
             closeButton.onClick.RemoveListener(CloseTask);
@@ -67,6 +50,7 @@ public class MapTaskManager : MonoBehaviour
 
     private void OnEnable()
     {
+        CacheReferences();
         isClosing = false;
 
         if (isCompleted)
@@ -157,26 +141,45 @@ public class MapTaskManager : MonoBehaviour
     {
         clearedCount = 0;
 
-        if (rocks == null)
+        CacheReferences();
+
+        if (rocks == null || rocks.Length == 0)
         {
-            rocks = GetComponentsInChildren<UIDragRock>(true);
+            if (!hasWarnedMissingRocks)
+            {
+                hasWarnedMissingRocks = true;
+                Debug.LogWarning($"[{nameof(MapTaskManager)}] No rocks found under {name}.", this);
+            }
+            return;
         }
 
         foreach (UIDragRock rock in rocks)
         {
+            if (rock == null)
+            {
+                continue;
+            }
+
             rock.ResetRock();
         }
     }
 
     private void HideAllRocks()
     {
-        if (rocks == null)
+        CacheReferences();
+
+        if (rocks == null || rocks.Length == 0)
         {
-            rocks = GetComponentsInChildren<UIDragRock>(true);
+            return;
         }
 
         foreach (UIDragRock rock in rocks)
         {
+            if (rock == null)
+            {
+                continue;
+            }
+
             rock.MarkRemoved();
         }
     }
@@ -192,5 +195,54 @@ public class MapTaskManager : MonoBehaviour
         {
             counterText.text = $"{clearedCount} / {totalRocks}";
         }
+    }
+
+    private void CacheReferences()
+    {
+        if (slide == null)
+        {
+            slide = GetComponent<TaskWindowSlide>();
+        }
+
+        if (counterText == null)
+        {
+            counterText = transform.Find("TaskWindow_Stone/CounterText_Stone")?.GetComponent<TMP_Text>();
+        }
+
+        if (instructionText == null)
+        {
+            instructionText = transform.Find("TaskWindow_Stone/InstructionText_Stone")?.GetComponent<TMP_Text>();
+        }
+
+        if (closeButton == null)
+        {
+            closeButton = transform.Find("TaskWindow_Stone/CloseButton_Stone")?.GetComponent<Button>();
+        }
+
+        RebuildRockCache();
+    }
+
+    private void RebuildRockCache()
+    {
+        UIDragRock[] discoveredRocks = GetComponentsInChildren<UIDragRock>(true);
+        if (discoveredRocks == null || discoveredRocks.Length == 0)
+        {
+            rocks = discoveredRocks;
+            return;
+        }
+
+        List<UIDragRock> validRocks = new List<UIDragRock>(discoveredRocks.Length);
+        foreach (UIDragRock rock in discoveredRocks)
+        {
+            if (rock == null)
+            {
+                continue;
+            }
+
+            rock.BindManager(this);
+            validRocks.Add(rock);
+        }
+
+        rocks = validRocks.ToArray();
     }
 }

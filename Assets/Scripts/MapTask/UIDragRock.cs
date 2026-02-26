@@ -13,20 +13,16 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private Canvas parentCanvas;
     private Vector2 initialAnchoredPosition;
     private bool isRemoved;
+    private bool isInitialized;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        parentCanvas = GetComponentInParent<Canvas>();
-        initialAnchoredPosition = rectTransform.anchoredPosition;
+        CacheReferences();
+    }
 
-        if (mapTaskManager == null)
-        {
-            mapTaskManager = GetComponentInParent<MapTaskManager>();
-        }
-
-        Image rockImage = GetComponent<Image>();
-        rockImage.raycastTarget = true;
+    private void OnEnable()
+    {
+        CacheReferences();
     }
 
     public void BindManager(MapTaskManager manager)
@@ -35,10 +31,17 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             mapTaskManager = manager;
         }
+
+        CacheReferences();
     }
 
     public void ResetRock()
     {
+        if (!CacheReferences())
+        {
+            return;
+        }
+
         isRemoved = false;
         gameObject.SetActive(true);
         rectTransform.anchoredPosition = initialAnchoredPosition;
@@ -46,6 +49,11 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void MarkRemoved()
     {
+        if (!CacheReferences())
+        {
+            return;
+        }
+
         isRemoved = true;
         gameObject.SetActive(false);
         rectTransform.anchoredPosition = initialAnchoredPosition;
@@ -61,7 +69,7 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted))
+        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted) || !CacheReferences())
         {
             return;
         }
@@ -72,7 +80,7 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted))
+        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted) || !CacheReferences())
         {
             return;
         }
@@ -92,5 +100,43 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
 
         rectTransform.anchoredPosition = initialAnchoredPosition;
+    }
+
+    private bool CacheReferences()
+    {
+        if (rectTransform == null)
+        {
+            rectTransform = GetComponent<RectTransform>();
+        }
+
+        if (parentCanvas == null)
+        {
+            parentCanvas = GetComponentInParent<Canvas>();
+        }
+
+        if (mapTaskManager == null)
+        {
+            mapTaskManager = GetComponentInParent<MapTaskManager>();
+        }
+
+        Image rockImage = GetComponent<Image>();
+        if (rockImage != null)
+        {
+            rockImage.raycastTarget = true;
+        }
+
+        if (rectTransform == null)
+        {
+            Debug.LogWarning($"[{nameof(UIDragRock)}] Missing RectTransform on {name}.", this);
+            return false;
+        }
+
+        if (!isInitialized)
+        {
+            initialAnchoredPosition = rectTransform.anchoredPosition;
+            isInitialized = true;
+        }
+
+        return true;
     }
 }
