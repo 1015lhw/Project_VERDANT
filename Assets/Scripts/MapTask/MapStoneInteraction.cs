@@ -8,6 +8,7 @@ public class MapStoneInteraction : MonoBehaviour
     [SerializeField] private bool playerInRange;
 
     private GameObject mapTaskUI;
+    private bool wasMapTaskUIOpen;
 
     private void Start()
     {
@@ -25,21 +26,30 @@ public class MapStoneInteraction : MonoBehaviour
         {
             mapTaskUI.SetActive(false);
         }
+
+        wasMapTaskUIOpen = mapTaskUI != null && mapTaskUI.activeInHierarchy;
     }
 
     private void Update()
     {
-        bool isTaskUIOpen = mapTaskUI != null && mapTaskUI.activeInHierarchy;
+        bool isMapTaskUIOpen = mapTaskUI != null && mapTaskUI.activeInHierarchy;
 
-        if (GameStateManager.CurrentState == GameState.Task && (mapTaskUI == null || !mapTaskUI.activeInHierarchy))
+        // 状态自愈（限定到本任务）：
+        // 只有“自己之前打开过且现在关闭”的时候，才重置 Task -> Normal。
+        // 避免在其他任务 UI 打开时误把全局 Task 状态重置掉。
+        if (wasMapTaskUIOpen
+            && !isMapTaskUIOpen
+            && GameStateManager.CurrentState == GameState.Task)
         {
             GameStateManager.ResetToNormal();
         }
 
+        wasMapTaskUIOpen = isMapTaskUIOpen;
+
         RefreshPrompt();
 
         // Keep E interaction one-shot while task window is already open.
-        if (isTaskUIOpen)
+        if (isMapTaskUIOpen)
         {
             return;
         }
