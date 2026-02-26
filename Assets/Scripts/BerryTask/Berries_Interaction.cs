@@ -6,6 +6,7 @@ public class Berries_Interaction : MonoBehaviour
     public GameObject berryTaskUI;
 
     private bool playerInRange = false;
+    private bool wasBerryTaskUIOpen = false;
     private BerryTaskManager taskManager;
     private BerryShrubSwitcher shrubSwitcher;
 
@@ -27,16 +28,25 @@ public class Berries_Interaction : MonoBehaviour
 
         if (taskManager != null && shrubSwitcher != null)
             taskManager.SetShrubSwitcher(shrubSwitcher);
+
+        wasBerryTaskUIOpen = berryTaskUI != null && berryTaskUI.activeInHierarchy;
     }
 
     void Update()
     {
-        // 状态自愈：如果任务 UI 意外关闭，重置游戏状态
-        if (GameStateManager.CurrentState == GameState.Task
-            && (berryTaskUI == null || !berryTaskUI.activeInHierarchy))
+        bool isBerryTaskUIOpen = berryTaskUI != null && berryTaskUI.activeInHierarchy;
+
+        // 状态自愈（限定到本任务）：
+        // 只有“自己之前是打开的”且“现在关闭了”时，才把 Task 重置回 Normal。
+        // 避免误伤其他任务（例如 MapTask）导致 Task 状态被提前恢复。
+        if (wasBerryTaskUIOpen
+            && !isBerryTaskUIOpen
+            && GameStateManager.CurrentState == GameState.Task)
         {
             GameStateManager.ResetToNormal();
         }
+
+        wasBerryTaskUIOpen = isBerryTaskUIOpen;
 
         // 刷新 E 提示显示
         RefreshPrompt();
@@ -100,9 +110,9 @@ public class Berries_Interaction : MonoBehaviour
         // 核心修改：简化判断，确保 UI 能够正常激活
         // 只要玩家在范围内，且游戏处于正常状态，且任务未完成（如果没挂载任务脚本则默认未完成）
         bool isTaskDone = (taskManager != null && taskManager.taskCompleted);
-        
-        bool showPrompt = playerInRange 
-            && GameStateManager.IsNormal 
+
+        bool showPrompt = playerInRange
+            && GameStateManager.IsNormal
             && !isTaskDone;
 
         if (pressEUI.activeSelf != showPrompt)
