@@ -29,9 +29,31 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         rockImage.raycastTarget = true;
     }
 
+    public void BindManager(MapTaskManager manager)
+    {
+        if (manager != null)
+        {
+            mapTaskManager = manager;
+        }
+    }
+
+    public void ResetRock()
+    {
+        isRemoved = false;
+        gameObject.SetActive(true);
+        rectTransform.anchoredPosition = initialAnchoredPosition;
+    }
+
+    public void MarkRemoved()
+    {
+        isRemoved = true;
+        gameObject.SetActive(false);
+        rectTransform.anchoredPosition = initialAnchoredPosition;
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted()))
+        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted))
         {
             return;
         }
@@ -39,7 +61,7 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted()))
+        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted))
         {
             return;
         }
@@ -50,7 +72,7 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted()))
+        if (isRemoved || (mapTaskManager != null && mapTaskManager.IsCompleted))
         {
             return;
         }
@@ -59,14 +81,13 @@ public class UIDragRock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         if (distance > removeDistance)
         {
-            isRemoved = true;
+            MarkRemoved();
 
             if (mapTaskManager != null)
             {
                 mapTaskManager.NotifyRockCleared();
             }
 
-            gameObject.SetActive(false);
             return;
         }
 
