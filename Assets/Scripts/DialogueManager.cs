@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
 
     private Ink.Runtime.Story story;
     private bool isOpen;
+    private int storyId = 0;
+    private int storyIdCounter = 0;
     bool ClickedOnChoiceButton()
     {
         if (EventSystem.current == null) return false;
@@ -41,7 +43,17 @@ public class DialogueManager : MonoBehaviour
     }
     void Awake()
     {
+        Debug.Log($"[Awake] DialogueManager on {gameObject.name}");
+
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("[Awake] Duplicate DialogueManager destroyed: " + gameObject.name);
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        Debug.Log("DialogueManager Awake: " + gameObject.name);
     }
 
     void Update()
@@ -64,17 +76,32 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(TextAsset inkJSON, Sprite portraitSprite)
     {
+        Debug.Log("[Start] " + inkJSON.name);
+        Debug.Log($"[StartDialogue] prefabNull={(choiceButtonPrefab == null)} prefab={(choiceButtonPrefab ? choiceButtonPrefab.name : "NULL")}  DM={gameObject.name}");
+        if (isOpen)
+        {
+            EndDialogue();
+        }
+
         if (inkJSON == null)
         {
             Debug.LogError("Ink JSON is null!");
+
             return;
         }
 
         story = new Ink.Runtime.Story(inkJSON.text);
+        storyId = ++storyIdCounter;
+        Debug.Log($"[StartDialogue] storyId={storyId} ink={inkJSON.name}");
+
         isOpen = true;
 
         dialoguePanel.SetActive(true);
-        portraitImage.sprite = portraitSprite;//set portrait
+        portraitImage.sprite = portraitSprite;
+
+        ClearChoices();
+        dialogueText.text = "";
+
         ContinueStory();
     }
 
@@ -82,6 +109,7 @@ public class DialogueManager : MonoBehaviour
     {
         isOpen = false;
         story = null;
+        ClearChoices();
         dialoguePanel.SetActive(false);
     }
 
@@ -104,6 +132,7 @@ public class DialogueManager : MonoBehaviour
         if (story.canContinue)
         {
             string line = story.Continue().Trim();
+            Debug.Log("[After Continue] choices=" + story.currentChoices.Count);
             dialogueText.text = line;
 
             //Choices check
@@ -118,6 +147,7 @@ public class DialogueManager : MonoBehaviour
 
     void ClearChoices()
     {
+        Debug.Log($"[ClearChoices] container={choicesContainer?.name} childCount={choicesContainer?.childCount}");
         if (choicesContainer == null) return;
         for (int i = choicesContainer.childCount - 1; i >= 0; i--)
             Destroy(choicesContainer.GetChild(i).gameObject);
@@ -125,12 +155,17 @@ public class DialogueManager : MonoBehaviour
 
     void DisplayChoices()
     {
+        Debug.Log($"[DisplayChoices] storyChoices={story.currentChoices.Count} container={choicesContainer?.name} childCountBefore={choicesContainer?.childCount}");
+        Debug.Log($"[DisplayChoices] NULLCHECK storyNull={(story == null)} containerNull={(choicesContainer == null)} prefabNull={(choiceButtonPrefab == null)}");
         ClearChoices();
+        Debug.Log("[DisplayChoices] choices=" + story.currentChoices.Count);
         if (story == null || choicesContainer == null || choiceButtonPrefab == null) return;
 
         foreach (var choice in story.currentChoices)
         {
             GameObject btnObj = Instantiate(choiceButtonPrefab, choicesContainer);
+            Debug.Log("[DisplayChoices] SPAWNED: " + choice.text);
+            Debug.Log($"[DisplayChoices] spawned button for: {choice.text}");
 
             if (!btnObj.activeSelf) btnObj.SetActive(true);
 
@@ -143,12 +178,17 @@ public class DialogueManager : MonoBehaviour
             var layout = btnObj.GetComponent<LayoutElement>();
             if (layout != null) layout.enabled = true;
 
-            var label = btnObj.GetComponentInChildren<TMP_Text>(true);
+            var label = btnObj.transform.Find("Text (TMP)")?.GetComponent<TMP_Text>();
             if (label != null)
             {
                 label.gameObject.SetActive(true);
                 label.enabled = true;
+
+                label.enableAutoSizing = false;
+                label.fontSize = 32;
                 label.text = choice.text.Trim();
+
+                label.ForceMeshUpdate();
             }
 
             if (btn != null)
@@ -162,6 +202,7 @@ public class DialogueManager : MonoBehaviour
 
     void OnChoiceSelected(int idx)
     {
+        Debug.Log($"[OnChoiceSelected] prefabNull={(choiceButtonPrefab == null)} prefab={(choiceButtonPrefab ? choiceButtonPrefab.name : "NULL")}  DM={gameObject.name}");
         ClearChoices();
         story.ChooseChoiceIndex(idx);
         ContinueStory();
