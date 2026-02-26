@@ -64,9 +64,16 @@ public class DialogueManager : MonoBehaviour
     void ContinueStory()
     {
         if (story == null) return;
+
         Debug.Log("Choices count = " + story.currentChoices.Count);
 
-        //Clear the old choices
+        //if there are choices, display
+        if (story.currentChoices != null && story.currentChoices.Count > 0)
+        {
+            DisplayChoices();
+            return;
+        }
+
         ClearChoices();
 
         if (story.canContinue)
@@ -74,20 +81,13 @@ public class DialogueManager : MonoBehaviour
             string line = story.Continue().Trim();
             dialogueText.text = line;
 
-            //Check if there are new choices
-            DisplayChoices();
+            //Choices check
+            if (story.currentChoices != null && story.currentChoices.Count > 0)
+                DisplayChoices();
         }
         else
         {
-            //if no follow up text, end the dialogue or wait for player choose sth. seriously I really HATE this...
-            if (story.currentChoices != null && story.currentChoices.Count > 0)
-            {
-                DisplayChoices();
-            }
-            else
-            {
-                EndDialogue();
-            }
+            EndDialogue();
         }
     }
 
@@ -118,13 +118,18 @@ public class DialogueManager : MonoBehaviour
             var layout = btnObj.GetComponent<LayoutElement>();
             if (layout != null) layout.enabled = true;
 
-            var tmp = btnObj.GetComponentInChildren<TextMeshProUGUI>(true);
-            if (tmp != null) tmp.text = choice.text;
+            var label = btnObj.GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
+            {
+                label.gameObject.SetActive(true);
+                label.enabled = true;
+                label.text = choice.text.Trim();
+            }
 
             if (btn != null)
             {
                 int idx = choice.index;
-                btn.onClick.RemoveAllListeners(); 
+                btn.onClick.RemoveAllListeners();
                 btn.onClick.AddListener(() => OnChoiceSelected(idx));
             }
         }
@@ -132,6 +137,7 @@ public class DialogueManager : MonoBehaviour
 
     void OnChoiceSelected(int idx)
     {
+        ClearChoices();
         story.ChooseChoiceIndex(idx);
         ContinueStory();
     }
