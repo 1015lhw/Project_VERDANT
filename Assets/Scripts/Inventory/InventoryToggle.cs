@@ -5,6 +5,7 @@ public class InventoryToggle : MonoBehaviour
 {
     public RectTransform panel;
     public CanvasGroup dimCanvasGroup;  // 用 CanvasGroup 控制透明度
+    public GameObject bagRedDot;        // 背包图标红点
 
     public float slideSpeed = 10f;
     public float dimFadeTime = 0.15f;   
@@ -12,6 +13,13 @@ public class InventoryToggle : MonoBehaviour
     private bool isOpen = false;
     private Vector2 shownPos;
     private Vector2 hiddenPos;
+    private InventorySystem inventory;
+
+    void OnEnable()
+    {
+        TryBindInventory();
+        RefreshRedDot();
+    }
 
     void Start()
     {
@@ -31,6 +39,8 @@ public class InventoryToggle : MonoBehaviour
 
     void Update()
     {
+        TryBindInventory();
+
         // 自愈逻辑：如果状态记录为 Inventory 但面板实际上关了，重置状态
         // 修复点：移除了 .Instance 直接访问类成员
         if (!isOpen && GameStateManager.CurrentState == GameState.Inventory)
@@ -57,6 +67,11 @@ public class InventoryToggle : MonoBehaviour
             if (panel != null) panel.gameObject.SetActive(true);
 
             GameStateManager.SetState(GameState.Inventory);
+
+            if (inventory != null)
+            {
+                inventory.MarkTaskRewardSeen();
+            }
 
             // 每次打开背包都主动刷新一次，避免错过事件导致显示空白
             foreach (var ui in panel.GetComponentsInChildren<DynamicInventoryUI>(true))
@@ -120,8 +135,52 @@ public class InventoryToggle : MonoBehaviour
             dimCanvasGroup.gameObject.SetActive(false);
     }
 
+    private void TryBindInventory()
+    {
+        if (inventory == InventorySystem.Instance)
+        {
+            return;
+        }
+
+        if (inventory != null)
+        {
+            inventory.OnTaskRewardNotificationChanged -= HandleTaskRewardNotificationChanged;
+        }
+
+        inventory = InventorySystem.Instance;
+
+        if (inventory != null)
+        {
+            inventory.OnTaskRewardNotificationChanged += HandleTaskRewardNotificationChanged;
+        }
+    }
+
+    private void HandleTaskRewardNotificationChanged(bool hasUnseenReward)
+    {
+        RefreshRedDot(hasUnseenReward);
+    }
+
+    private void RefreshRedDot()
+    {
+        RefreshRedDot(inventory != null && inventory.HasUnseenTaskReward);
+    }
+
+    private void RefreshRedDot(bool show)
+    {
+        if (bagRedDot != null)
+        {
+            bagRedDot.SetActive(show);
+        }
+    }
+
     void OnDisable()
     {
+        if (inventory != null)
+        {
+            inventory.OnTaskRewardNotificationChanged -= HandleTaskRewardNotificationChanged;
+            inventory = null;
+        }
+
         // 脚本禁用时清理状态，防止逻辑锁死
         if (GameStateManager.CurrentState == GameState.Inventory)
             GameStateManager.ResetToNormal();

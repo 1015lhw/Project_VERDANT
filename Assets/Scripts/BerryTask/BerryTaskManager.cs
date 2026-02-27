@@ -97,7 +97,7 @@ public class BerryTaskManager : MonoBehaviour
             // ✅ 任务完成：加入背包（跨场景保存）
             if (InventorySystem.Instance != null)
             {
-                InventorySystem.Instance.Add("Berry", rewardBerries);
+                InventorySystem.Instance.AddTaskReward("Berry", rewardBerries);
             }
             else
             {
