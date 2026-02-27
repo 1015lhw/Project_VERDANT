@@ -13,6 +13,7 @@ public class MapTaskManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int totalRocks = 5;
     [SerializeField] private string rewardItemID = "Map";
+    [SerializeField] private int rewardAmountFallback = 1;
 
     private TaskWindowSlide slide;
     private UIDragRock[] rocks;
@@ -125,7 +126,7 @@ public class MapTaskManager : MonoBehaviour
 
         if (InventorySystem.Instance != null && !InventorySystem.Instance.Has(rewardItemID))
         {
-            InventorySystem.Instance.AddTaskReward(rewardItemID);
+            InventorySystem.Instance.AddTaskRewardByConfig(rewardItemID, rewardAmountFallback);
         }
 
         CloseTask();
