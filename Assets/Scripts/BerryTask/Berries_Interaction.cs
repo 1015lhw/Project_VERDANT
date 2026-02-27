@@ -12,7 +12,7 @@ public class Berries_Interaction : MonoBehaviour
 
     void Start()
     {
-        if (pressEUI != null) pressEUI.SetActive(false);
+        PressEPromptCoordinator.SetRequest(pressEUI, this, false);
         if (berryTaskUI != null) berryTaskUI.SetActive(false);
 
         // 默认不锁定鼠标
@@ -85,7 +85,7 @@ public class Berries_Interaction : MonoBehaviour
         var slide = berryTaskUI.GetComponent<TaskWindowSlide>();
         if (slide != null) slide.PlaySlideIn();
 
-        if (pressEUI != null) pressEUI.SetActive(false);
+        PressEPromptCoordinator.SetRequest(pressEUI, this, false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -101,12 +101,11 @@ public class Berries_Interaction : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         playerInRange = false;
+        PressEPromptCoordinator.SetRequest(pressEUI, this, false);
     }
 
     private void RefreshPrompt()
     {
-        if (pressEUI == null) return;
-
         // 核心修改：简化判断，确保 UI 能够正常激活
         // 只要玩家在范围内，且游戏处于正常状态，且任务未完成（如果没挂载任务脚本则默认未完成）
         bool isTaskDone = (taskManager != null && taskManager.taskCompleted);
@@ -115,9 +114,11 @@ public class Berries_Interaction : MonoBehaviour
             && GameStateManager.IsNormal
             && !isTaskDone;
 
-        if (pressEUI.activeSelf != showPrompt)
-        {
-            pressEUI.SetActive(showPrompt);
-        }
+        PressEPromptCoordinator.SetRequest(pressEUI, this, showPrompt);
+    }
+
+    private void OnDisable()
+    {
+        PressEPromptCoordinator.ClearRequester(this);
     }
 }
