@@ -125,7 +125,7 @@ public class MapTaskManager : MonoBehaviour
 
         if (InventorySystem.Instance != null && !InventorySystem.Instance.Has(rewardItemID))
         {
-            InventorySystem.Instance.AddItem(rewardItemID);
+            InventorySystem.Instance.AddTaskReward(rewardItemID);
         }
 
         CloseTask();

@@ -13,6 +13,9 @@ public class InventorySystem : MonoBehaviour
     private List<string> itemOrder = new List<string>();
 
     public event Action OnInventoryChanged;
+    public event Action<bool> OnTaskRewardNotificationChanged;
+
+    private bool hasUnseenTaskReward;
 
     void Awake()
     {
@@ -103,5 +106,30 @@ public class InventorySystem : MonoBehaviour
     public void AddItem(string id, int amount)
     {
         Add(id, amount);
+    }
+
+    // 任务奖励入口：添加物品并触发背包红点
+    public void AddTaskReward(string id, int amount = 1)
+    {
+        Add(id, amount);
+        SetTaskRewardNotification(true);
+    }
+
+    public bool HasUnseenTaskReward => hasUnseenTaskReward;
+
+    public void MarkTaskRewardSeen()
+    {
+        SetTaskRewardNotification(false);
+    }
+
+    private void SetTaskRewardNotification(bool value)
+    {
+        if (hasUnseenTaskReward == value)
+        {
+            return;
+        }
+
+        hasUnseenTaskReward = value;
+        OnTaskRewardNotificationChanged?.Invoke(hasUnseenTaskReward);
     }
 }
