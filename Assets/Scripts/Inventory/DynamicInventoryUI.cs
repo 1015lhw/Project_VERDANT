@@ -20,6 +20,9 @@ public class ItemAsset
     public string displayName;
     [TextArea]
     public string description;
+
+    [Min(0)]
+    public int configuredAmount = 0; // 0=未配置，不显示 slot 数字
 }
 
 public class DynamicInventoryUI : MonoBehaviour
@@ -38,6 +41,31 @@ public class DynamicInventoryUI : MonoBehaviour
     [Header("Detail Icon Display Options")]
     public bool detailPreserveAspect = true;
     public bool detailUseNativeSize = false;
+
+    public static int GetConfiguredAmountById(string itemId)
+    {
+        if (string.IsNullOrEmpty(itemId))
+        {
+            return 0;
+        }
+
+        DynamicInventoryUI[] allUis = FindObjectsOfType<DynamicInventoryUI>(true);
+        foreach (DynamicInventoryUI ui in allUis)
+        {
+            if (ui == null || ui.itemLibrary == null)
+            {
+                continue;
+            }
+
+            ItemAsset item = ui.itemLibrary.Find(x => x != null && x.id == itemId);
+            if (item != null)
+            {
+                return Mathf.Max(0, item.configuredAmount);
+            }
+        }
+
+        return 0;
+    }
 
     private InventorySystem inventory;
     private readonly List<string> currentOwnedItems = new List<string>();
@@ -108,8 +136,8 @@ public class DynamicInventoryUI : MonoBehaviour
 
     private void UpdateSlot(ItemUISlot slot, string itemId, int slotIndex)
     {
-        int count = InventorySystem.Instance.GetCount(itemId);
-        Sprite s = itemLibrary.Find(x => x.id == itemId)?.sprite;
+        ItemAsset itemData = itemLibrary.Find(x => x.id == itemId);
+        Sprite s = itemData?.sprite;
 
         if (slot.iconImage != null)
         {
@@ -119,7 +147,8 @@ public class DynamicInventoryUI : MonoBehaviour
 
         if (slot.countText != null)
         {
-            slot.countText.text = count.ToString();
+            int configuredAmount = itemData != null ? Mathf.Max(0, itemData.configuredAmount) : 0;
+            slot.countText.text = configuredAmount > 0 ? configuredAmount.ToString() : string.Empty;
         }
 
         if (slot.clickButton != null)

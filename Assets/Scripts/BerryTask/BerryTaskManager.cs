@@ -21,7 +21,6 @@ public class BerryTaskManager : MonoBehaviour
 
     [Header("Reward")]
     public string rewardItemID = "Berry";
-    [SerializeField] private int rewardBerriesFallback = 5;
 
     private Button[] berries;
     private TaskWindowSlide slide;
@@ -98,7 +97,15 @@ public class BerryTaskManager : MonoBehaviour
             // ✅ 任务完成：加入背包（跨场景保存）
             if (InventorySystem.Instance != null)
             {
-                InventorySystem.Instance.AddTaskRewardByConfig(rewardItemID, rewardBerriesFallback);
+                int configuredAmount = DynamicInventoryUI.GetConfiguredAmountById(rewardItemID);
+                if (configuredAmount > 0)
+                {
+                    InventorySystem.Instance.AddTaskReward(rewardItemID, configuredAmount);
+                }
+                else
+                {
+                    InventorySystem.Instance.AddTaskReward(rewardItemID);
+                }
             }
             else
             {

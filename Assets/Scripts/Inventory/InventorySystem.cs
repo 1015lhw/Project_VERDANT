@@ -2,19 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class InventoryItemConfig
-{
-    public string id;
-    public int taskRewardAmount = 1;
-}
 
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance;
-
-    [Header("Item Data Library (IDL)")]
-    public List<InventoryItemConfig> itemDataLibrary = new List<InventoryItemConfig>();
 
     // 存储数量
     private Dictionary<string, int> counts = new Dictionary<string, int>();
@@ -116,27 +107,6 @@ public class InventorySystem : MonoBehaviour
     public void AddItem(string id, int amount)
     {
         Add(id, amount);
-    }
-
-    public int GetTaskRewardAmount(string id, int fallbackAmount = 1)
-    {
-        if (string.IsNullOrEmpty(id))
-        {
-            return Mathf.Max(1, fallbackAmount);
-        }
-
-        InventoryItemConfig config = itemDataLibrary.Find(x => x != null && x.id == id);
-        if (config == null)
-        {
-            return Mathf.Max(1, fallbackAmount);
-        }
-
-        return Mathf.Max(1, config.taskRewardAmount);
-    }
-
-    public void AddTaskRewardByConfig(string id, int fallbackAmount = 1)
-    {
-        AddTaskReward(id, GetTaskRewardAmount(id, fallbackAmount));
     }
 
     // 任务奖励入口：添加物品并触发背包红点
