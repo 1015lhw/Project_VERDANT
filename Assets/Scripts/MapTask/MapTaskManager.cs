@@ -125,7 +125,15 @@ public class MapTaskManager : MonoBehaviour
 
         if (InventorySystem.Instance != null && !InventorySystem.Instance.Has(rewardItemID))
         {
-            InventorySystem.Instance.AddTaskReward(rewardItemID);
+            int configuredAmount = DynamicInventoryUI.GetConfiguredAmountById(rewardItemID);
+            if (configuredAmount > 0)
+            {
+                InventorySystem.Instance.AddTaskReward(rewardItemID, configuredAmount);
+            }
+            else
+            {
+                InventorySystem.Instance.AddTaskReward(rewardItemID);
+            }
         }
 
         CloseTask();

@@ -20,7 +20,7 @@ public class BerryTaskManager : MonoBehaviour
     public BerryShrubSwitcher shrubSwitcher;
 
     [Header("Reward")]
-    public int rewardBerries = 5; // ✅ 完成任务奖励多少个树莓（你可以改成1或5）
+    public string rewardItemID = "Berry";
 
     private Button[] berries;
     private TaskWindowSlide slide;
@@ -97,7 +97,15 @@ public class BerryTaskManager : MonoBehaviour
             // ✅ 任务完成：加入背包（跨场景保存）
             if (InventorySystem.Instance != null)
             {
-                InventorySystem.Instance.AddTaskReward("Berry", rewardBerries);
+                int configuredAmount = DynamicInventoryUI.GetConfiguredAmountById(rewardItemID);
+                if (configuredAmount > 0)
+                {
+                    InventorySystem.Instance.AddTaskReward(rewardItemID, configuredAmount);
+                }
+                else
+                {
+                    InventorySystem.Instance.AddTaskReward(rewardItemID);
+                }
             }
             else
             {
