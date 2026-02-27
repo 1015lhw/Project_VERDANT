@@ -35,6 +35,10 @@ public class DynamicInventoryUI : MonoBehaviour
     public TMP_Text detailNameText;
     public TMP_Text detailDescriptionText;
 
+    [Header("Detail Icon Display Options")]
+    public bool detailPreserveAspect = true;
+    public bool detailUseNativeSize = false;
+
     private InventorySystem inventory;
     private readonly List<string> currentOwnedItems = new List<string>();
     private int selectedIndex = -1;
@@ -171,6 +175,13 @@ public class DynamicInventoryUI : MonoBehaviour
         if (detailIconImage != null)
         {
             detailIconImage.sprite = detailSprite;
+            detailIconImage.preserveAspect = detailPreserveAspect;
+
+            if (detailSprite != null && detailUseNativeSize)
+            {
+                detailIconImage.SetNativeSize();
+            }
+
             detailIconImage.color = detailSprite != null ? Color.white : new Color(1, 1, 1, 0);
         }
 
