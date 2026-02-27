@@ -19,7 +19,7 @@ public class MapStoneInteraction : MonoBehaviour
 
         if (pressEPrompt != null)
         {
-            pressEPrompt.SetActive(false);
+            PressEPromptCoordinator.SetRequest(pressEPrompt, this, false);
         }
 
         if (mapTaskUI != null)
@@ -106,7 +106,7 @@ public class MapStoneInteraction : MonoBehaviour
 
         if (pressEPrompt != null)
         {
-            pressEPrompt.SetActive(false);
+            PressEPromptCoordinator.SetRequest(pressEPrompt, this, false);
         }
 
         Cursor.lockState = CursorLockMode.None;
@@ -134,26 +134,23 @@ public class MapStoneInteraction : MonoBehaviour
 
         if (pressEPrompt != null)
         {
-            pressEPrompt.SetActive(false);
+            PressEPromptCoordinator.SetRequest(pressEPrompt, this, false);
         }
+    }
+
+    private void OnDisable()
+    {
+        PressEPromptCoordinator.ClearRequester(this);
     }
 
     private void RefreshPrompt()
     {
-        if (pressEPrompt == null)
-        {
-            return;
-        }
-
         bool showPrompt = playerInRange
                           && GameStateManager.IsNormal
                           && mapTaskManager != null
                           && !mapTaskManager.IsCompleted
                           && (mapTaskUI == null || !mapTaskUI.activeInHierarchy);
 
-        if (pressEPrompt.activeSelf != showPrompt)
-        {
-            pressEPrompt.SetActive(showPrompt);
-        }
+        PressEPromptCoordinator.SetRequest(pressEPrompt, this, showPrompt);
     }
 }

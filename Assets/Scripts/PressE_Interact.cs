@@ -10,7 +10,7 @@ public class PressE_Interact : MonoBehaviour
 
     void Start()
     {
-        if (pressEUI != null) pressEUI.SetActive(false);
+        PressEPromptCoordinator.SetRequest(pressEUI, this, false);
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class PressE_Interact : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (pressEUI != null) pressEUI.SetActive(false);
+            PressEPromptCoordinator.SetRequest(pressEUI, this, false);
 
             DialogueManager.Instance.StartDialogue(inkJSON, portrait);
         }
@@ -31,14 +31,11 @@ public class PressE_Interact : MonoBehaviour
 
     void LateUpdate()
     {
-        if (pressEUI == null) return;
-
         bool shouldShow = playerInRange
             && GameStateManager.IsNormal
             && (DialogueManager.Instance == null || !DialogueManager.Instance.IsOpen);
 
-        if (pressEUI.activeSelf != shouldShow)
-            pressEUI.SetActive(shouldShow);
+        PressEPromptCoordinator.SetRequest(pressEUI, this, shouldShow);
     }
 
     void OnTriggerEnter(Collider other)
@@ -49,7 +46,7 @@ public class PressE_Interact : MonoBehaviour
 
         // If the dialogue is closed and global state allows interaction, show Press E
         if (GameStateManager.IsNormal && (DialogueManager.Instance == null || !DialogueManager.Instance.IsOpen))
-            if (pressEUI != null) pressEUI.SetActive(true);
+            PressEPromptCoordinator.SetRequest(pressEUI, this, true);
     }
 
     void OnTriggerExit(Collider other)
@@ -57,6 +54,11 @@ public class PressE_Interact : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         playerInRange = false;
-        if (pressEUI != null) pressEUI.SetActive(false);
+        PressEPromptCoordinator.SetRequest(pressEUI, this, false);
+    }
+
+    void OnDisable()
+    {
+        PressEPromptCoordinator.ClearRequester(this);
     }
 }
