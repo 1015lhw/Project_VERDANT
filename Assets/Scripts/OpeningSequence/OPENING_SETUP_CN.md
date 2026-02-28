@@ -37,6 +37,7 @@
    - `Comic Image` → 你的漫画 Image
    - `Subtitle Text` → 你的 TMP_Text
    - `Audio Source` → 你的 AudioSource
+   - `Opening Canvas Root` → 整个开场 UI 的根节点（例如 `OpeningCanvas`）
    - `Game World Root` → 你的世界根节点（推荐填）
 
 ---
@@ -82,6 +83,8 @@
 2. 把 `gameWorldRoot` 指到你的世界总父物体（推荐）。
 3. Start 按钮 `OnClick` 绑定 `BeginOpening()`。
 
+> 如果你走的是主菜单切场景流程，通常不用再绑第二个按钮，只要保留 `Auto Begin On Scene Load = true`。
+
 ---
 
 ## 七、你这次问的关键：第一幕没配音频能不能自动切？
@@ -115,3 +118,55 @@
 你截图里 `Audio Source`、`ComicImage`、`SubtitleText` 已经有引用，重点再确认第 1、2、5 条。
 
 完成后就能按你要的流程工作。
+
+---
+
+## 九、Slide 6 播完还卡住怎么办？
+
+新版本里，开场结束会执行：
+
+1. 停止语音（如果还在播）
+2. 隐藏 `Opening Canvas Root`
+3. 显示 `gameWorldRoot`（如果配置了）
+4. 解锁 `OpeningLock`
+
+所以请务必把 `Opening Canvas Root` 指到你的开场 UI 根节点，否则可能视觉上还停在最后一页。
+
+---
+
+## 十、`gameWorldRoot` 下面到底要放什么？（最重要）
+
+建议你新建一个空物体：`GameWorldRoot`，把“正式可玩世界”都拖进去：
+
+- `Background`
+- `Env Assets`
+- `Terrain`
+- `Player`
+- `NPC`
+- `BerryShrub`
+- 其他场景内可见模型 / 可交互物体
+
+通常不要放进去：
+
+- `OpeningSequence`（开场 UI 系统）
+- `EventSystem`
+- 常驻管理器（如 `DontDestroyOnLoad`）
+
+这样做不会影响你现有功能：只是把已有对象改父子层级，不改脚本引用逻辑。
+
+---
+
+## 十一、长按 ESC 3 秒跳过（已实现）
+
+`OpeningSequenceManager` 新增：
+
+- `Allow Hold Esc To Skip`（开关）
+- `Skip Hold Duration`（默认 3 秒）
+- `Skip Hint Root`（可选：提示 UI 根节点）
+- `Skip Hint Text`（可选：显示长按进度文本）
+- `Skip Progress Fill`（可选：Image Filled 进度条）
+
+行为：
+
+- 开场时按住 ESC 累计时间；松开会清零。
+- 按满 3 秒立即结束开场，进入正常游戏流程。
