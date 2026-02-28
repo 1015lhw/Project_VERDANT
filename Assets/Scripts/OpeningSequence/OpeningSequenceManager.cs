@@ -23,11 +23,6 @@ public class OpeningSequenceManager : MonoBehaviour
     [Tooltip("开场期间会隐藏这个物体（通常是游戏世界根节点）。如果留空则不会自动隐藏世界。")]
     public GameObject gameWorldRoot;
 
-    [Header("No Voice Fallback")]
-    [Min(0.1f)]
-    [Tooltip("当某页未配置 voice 且该页 durationIfNoVoice <= 0 时，使用这个默认时长（秒）。")]
-    public float defaultNoVoiceDuration = 2f;
-
     [Header("Skip")]
     public bool allowHoldEscToSkip = true;
     [Min(0.5f)]
@@ -136,9 +131,7 @@ public class OpeningSequenceManager : MonoBehaviour
             }
             else
             {
-                float fallbackDuration = slides[i].durationIfNoVoice > 0f
-                    ? slides[i].durationIfNoVoice
-                    : defaultNoVoiceDuration;
+                float fallbackDuration = Mathf.Max(0.1f, slides[i].durationIfNoVoice);
 
                 Debug.LogWarning($"Opening slide {i} has no voice. Use fallback duration: {fallbackDuration:0.00}s");
 
