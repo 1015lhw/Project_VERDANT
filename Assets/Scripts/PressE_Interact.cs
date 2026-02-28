@@ -16,6 +16,7 @@ public class PressE_Interact : MonoBehaviour
     void Update()
     {
         if (!playerInRange) return;
+        if (OpeningLock.IsLocked) return;
         if (!GameStateManager.IsNormal) return;
 
         // If the dialogue is opne, don't open it again
@@ -32,6 +33,7 @@ public class PressE_Interact : MonoBehaviour
     void LateUpdate()
     {
         bool shouldShow = playerInRange
+            && !OpeningLock.IsLocked
             && GameStateManager.IsNormal
             && (DialogueManager.Instance == null || !DialogueManager.Instance.IsOpen);
 
@@ -45,7 +47,7 @@ public class PressE_Interact : MonoBehaviour
         playerInRange = true;
 
         // If the dialogue is closed and global state allows interaction, show Press E
-        if (GameStateManager.IsNormal && (DialogueManager.Instance == null || !DialogueManager.Instance.IsOpen))
+        if (!OpeningLock.IsLocked && GameStateManager.IsNormal && (DialogueManager.Instance == null || !DialogueManager.Instance.IsOpen))
             PressEPromptCoordinator.SetRequest(pressEUI, this, true);
     }
 

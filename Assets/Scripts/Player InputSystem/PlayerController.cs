@@ -39,6 +39,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (OpeningLock.IsLocked)
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
+
         if (!GameStateManager.IsNormal)
         {
             moveInput = Vector2.zero;
