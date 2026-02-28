@@ -31,7 +31,8 @@
 2. 每个 `Element` 都填：
    - `Image`（Sprite）
    - `Subtitle`（字幕）
-   - `Voice`（AudioClip，**必填**）
+   - `Voice`（AudioClip，**可选**）
+   - `Duration If No Voice`（没配语音时这一页停留秒数）
 3. 绑定引用：
    - `Comic Image` → 你的漫画 Image
    - `Subtitle Text` → 你的 TMP_Text
@@ -69,16 +70,26 @@
 ## 五、为什么你会感觉“不会用”——最常见 4 个坑
 
 1. **没把 `BeginOpening()` 绑到按钮** → 点击 Start 没反应。
-2. **某页没配 `Voice`** → 那页会报错并跳到下一页。
-3. **`AudioSource` 没配** → 管理器会报未配置错误，无法开始。
+2. **某页没配 `Voice` 但也没配时长** → 会使用 `defaultNoVoiceDuration` 默认秒数。
+3. **有语音页但 `AudioSource` 没配** → 管理器会报未配置错误，无法开始。
 4. **没配 `gameWorldRoot`** → 开场期间世界不会自动隐藏（但流程仍可跑）。
 
 ---
 
 ## 六、你下一步只要做这 3 件事
 
-1. 给 6 个 slide 全部配 `Voice`。
-2. 把 `gameWorldRoot` 指到你的世界总父物体。
+1. 有语音的页就配 `Voice`；没语音的页就配 `Duration If No Voice`。
+2. 把 `gameWorldRoot` 指到你的世界总父物体（推荐）。
 3. Start 按钮 `OnClick` 绑定 `BeginOpening()`。
+
+---
+
+## 七、你这次问的关键：第一幕没配音频能不能自动切？
+
+可以。现在逻辑是：
+
+- 有 `Voice`：等语音播完再切下一页。
+- 没 `Voice`：按该页 `Duration If No Voice` 秒数自动切页。
+- 如果该页时长写成 `0` 或忘填：使用 `OpeningSequenceManager.defaultNoVoiceDuration`。
 
 完成后就能按你要的流程工作。

@@ -17,6 +17,11 @@ public class OpeningSequenceManager : MonoBehaviour
     [Tooltip("开场期间会隐藏这个物体（通常是游戏世界根节点）。如果留空则不会自动隐藏世界。")]
     public GameObject gameWorldRoot;
 
+    [Header("No Voice Fallback")]
+    [Min(0.1f)]
+    [Tooltip("当某页未配置 voice 且该页 durationIfNoVoice <= 0 时，使用这个默认时长（秒）。")]
+    public float defaultNoVoiceDuration = 2f;
+
     private Coroutine sequenceCoroutine;
 
     public void BeginOpening()
@@ -32,9 +37,15 @@ public class OpeningSequenceManager : MonoBehaviour
             return;
         }
 
-        if (comicImage == null || subtitleText == null || audioSource == null)
+        if (comicImage == null || subtitleText == null)
         {
-            Debug.LogError("OpeningSequenceManager: comicImage / subtitleText / audioSource 有未配置项。");
+            Debug.LogError("OpeningSequenceManager: comicImage / subtitleText 有未配置项。");
+            return;
+        }
+
+        if (HasAnyVoiceClip() && audioSource == null)
+        {
+            Debug.LogError("OpeningSequenceManager: slides 中含有 voice，但 audioSource 未配置。");
             return;
         }
 
@@ -65,16 +76,21 @@ public class OpeningSequenceManager : MonoBehaviour
             comicImage.sprite = slides[i].image;
             subtitleText.text = slides[i].subtitle;
 
-            if (slides[i].voice == null)
+            if (slides[i].voice != null)
             {
-                Debug.LogError($"Opening slide {i} is missing voice AudioClip.");
+                audioSource.clip = slides[i].voice;
+                audioSource.Play();
+
+                yield return new WaitUntil(() => !audioSource.isPlaying);
                 continue;
             }
 
-            audioSource.clip = slides[i].voice;
-            audioSource.Play();
+            float fallbackDuration = slides[i].durationIfNoVoice > 0f
+                ? slides[i].durationIfNoVoice
+                : defaultNoVoiceDuration;
 
-            yield return new WaitUntil(() => !audioSource.isPlaying);
+            Debug.LogWarning($"Opening slide {i} has no voice. Use fallback duration: {fallbackDuration:0.00}s");
+            yield return new WaitForSeconds(fallbackDuration);
         }
 
         EndOpening();
@@ -91,5 +107,18 @@ public class OpeningSequenceManager : MonoBehaviour
         sequenceCoroutine = null;
 
         // TODO: trigger forced Ink dialogue here.
+    }
+
+    bool HasAnyVoiceClip()
+    {
+        for (int i = 0; i < slides.Length; i++)
+        {
+            if (slides[i] != null && slides[i].voice != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
