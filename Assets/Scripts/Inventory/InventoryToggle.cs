@@ -97,6 +97,11 @@ public class InventoryToggle : MonoBehaviour
 
     bool CanToggleInventory()
     {
+        if (OpeningLock.IsLocked)
+        {
+            return false;
+        }
+
         // 允许在 Normal 状态打开，或者在 Inventory 状态且已经打开时关闭
         return GameStateManager.IsNormal || (GameStateManager.CurrentState == GameState.Inventory && isOpen);
     }

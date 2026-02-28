@@ -10,58 +10,60 @@ public class OpeningSequenceManager : MonoBehaviour
     public Image comicImage;
     public TMP_Text subtitleText;
     public AudioSource audioSource;
-    public CanvasGroup canvasGroup;
 
-    public float fadeDuration = 0.5f;
+    public GameObject gameWorldRoot;
 
-    void Start()
+    private Coroutine sequenceCoroutine;
+
+    public void BeginOpening()
     {
-        StartCoroutine(PlaySequence());
+        if (sequenceCoroutine != null)
+        {
+            return;
+        }
+
+        OpeningLock.IsLocked = true;
+
+        if (gameWorldRoot != null)
+        {
+            gameWorldRoot.SetActive(false);
+        }
+
+        sequenceCoroutine = StartCoroutine(PlaySequence());
     }
 
     IEnumerator PlaySequence()
     {
-        yield return FadeIn();
-
         for (int i = 0; i < slides.Length; i++)
         {
             comicImage.sprite = slides[i].image;
             subtitleText.text = slides[i].subtitle;
 
-            if (slides[i].voice != null)
+            if (slides[i].voice == null)
             {
-                audioSource.clip = slides[i].voice;
-                audioSource.Play();
-                yield return new WaitForSeconds(slides[i].voice.length);
+                Debug.LogError($"Opening slide {i} is missing voice AudioClip.");
+                continue;
             }
-            else
-            {
-                yield return new WaitForSeconds(slides[i].durationIfNoVoice);
-            }
+
+            audioSource.clip = slides[i].voice;
+            audioSource.Play();
+
+            yield return new WaitUntil(() => !audioSource.isPlaying);
         }
 
-        yield return FadeOut();
+        EndOpening();
     }
 
-    IEnumerator FadeIn()
+    void EndOpening()
     {
-        float t = 0;
-        while (t < fadeDuration)
+        if (gameWorldRoot != null)
         {
-            t += Time.deltaTime;
-            canvasGroup.alpha = t / fadeDuration;
-            yield return null;
+            gameWorldRoot.SetActive(true);
         }
-    }
 
-    IEnumerator FadeOut()
-    {
-        float t = 0;
-        while (t < fadeDuration)
-        {
-            t += Time.deltaTime;
-            canvasGroup.alpha = 1 - (t / fadeDuration);
-            yield return null;
-        }
+        OpeningLock.IsLocked = false;
+        sequenceCoroutine = null;
+
+        // TODO: trigger forced Ink dialogue here.
     }
 }

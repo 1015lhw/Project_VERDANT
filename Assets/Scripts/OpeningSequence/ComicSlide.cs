@@ -9,6 +9,4 @@ public class ComicSlide
     public string subtitle;
 
     public AudioClip voice;
-
-    public float durationIfNoVoice = 3f;
 }

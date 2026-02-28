@@ -93,6 +93,11 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(TextAsset inkJSON, Sprite portraitSprite)
     {
+        if (OpeningLock.IsLocked)
+        {
+            return;
+        }
+
         Debug.Log("[Start] " + inkJSON.name);
         Debug.Log($"[StartDialogue] prefabNull={(choiceButtonPrefab == null)} prefab={(choiceButtonPrefab ? choiceButtonPrefab.name : "NULL")}  DM={gameObject.name}");
         if (isOpen)
