@@ -92,4 +92,26 @@
 - 没 `Voice`：按该页 `Duration If No Voice` 秒数自动切页。
 - 如果该页时长写成 `0` 或忘填：使用 `OpeningSequenceManager.defaultNoVoiceDuration`。
 
+---
+
+## 八、你现在这个问题：点 StartGame 切场景后没反应，怎么配？
+
+你是「主菜单按钮 -> LoadScene(Playtest Scene)」这条链路，所以通常**不会再点一次 BeginOpening 按钮**。
+
+现在脚本已支持自动触发：
+
+1. 选中 `OpeningManager`
+2. 勾选 `Auto Begin On Scene Load`（默认就是开）
+3. 运行后从主菜单点 StartGame，进入 Playtest Scene 就会自动播
+
+如果还没反应，按这个顺序查：
+
+1. `OpeningManager` 物体是否是 Active（Hierarchy 左侧勾选）
+2. `OpeningSequenceManager` 组件是否 enabled
+3. `Slides` 数组长度是否 > 0
+4. `Comic Image` / `Subtitle Text` 是否都拖了引用
+5. Console 是否有红字：`OpeningSequenceManager:` 开头报错
+
+你截图里 `Audio Source`、`ComicImage`、`SubtitleText` 已经有引用，重点再确认第 1、2、5 条。
+
 完成后就能按你要的流程工作。

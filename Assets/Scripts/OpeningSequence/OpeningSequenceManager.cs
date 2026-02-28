@@ -5,6 +5,10 @@ using System.Collections;
 
 public class OpeningSequenceManager : MonoBehaviour
 {
+    [Header("Trigger")]
+    [Tooltip("切换到本场景后自动播放开场（适合主菜单 StartGame 直接切场景的流程）。")]
+    public bool autoBeginOnSceneLoad = true;
+
     [Header("Slides")]
     public ComicSlide[] slides;
 
@@ -23,6 +27,14 @@ public class OpeningSequenceManager : MonoBehaviour
     public float defaultNoVoiceDuration = 2f;
 
     private Coroutine sequenceCoroutine;
+
+    void Start()
+    {
+        if (autoBeginOnSceneLoad)
+        {
+            BeginOpening();
+        }
+    }
 
     public void BeginOpening()
     {
