@@ -1,13 +1,13 @@
-你好，这是测试对话。
+Hi there, this is a test dialogue
 
-* 别在意我，我只是一个测试选项。
-        （示例文本）
+* Don't mind me, I'm just a test option
+        (Sample text)
     -> END
 
-* 我也是，哈哈，直接无视我就好。
-        （示例文本）
+* Same here, just ignore me lol
+        (Sample text)
     -> END
 
-* 无论你选什么其实都没区别。
-        看来你把所有选项都试了一遍，对吧？我都说了，这些选择没什么实际影响。
+* Whatever you choose don't really mean anything
+        I guess you tried every option, don't you? I've already told you, it doesn't mean anything
     -> END

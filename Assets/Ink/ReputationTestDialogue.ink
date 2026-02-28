@@ -4,31 +4,31 @@ VAR repSie = 0
 -> start
 
 === start ===
-你好，这是一个声望测试。
+Hello, this is a reputation test.
 
-+ [夸奖马库斯]
++ [Compliment Marcus]
     ~ repMar += 5
-    马库斯看起来更开心了。
-    马库斯 = {repMar}
-    西耶拉 = {repSie}
+    Marcus seems happier.
+    Mar = {repMar}
+    Sie = {repSie}
     -> END
 
-+ [对马库斯无礼]
++ [Be rude to Marcus]
     ~ repMar -= 5
-    马库斯看起来很恼火。
-    马库斯 = {repMar}
-    西耶拉 = {repSie}
+    Marcus looks annoyed.
+    Mar = {repMar}
+    Sie = {repSie}
     -> END
 
-+ [离开]
++ [Leave]
     -> END
     
 
 
 === check ===
-当前声望：
-马库斯 = {repMar}
-西耶拉 = {repSie}
+Current rep:
+Mar = {repMar}
+Sie = {repSie}
 
-+ [返回]
++ [Back]
     -> start
