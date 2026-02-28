@@ -226,7 +226,7 @@ public class OpeningSequenceManager : MonoBehaviour
         if (skipHintText != null)
         {
             float holdSeconds = progress * skipHoldDuration;
-            skipHintText.text = $"Hold ESC to skip ({holdSeconds:0.0}/{skipHoldDuration:0.0}s)";
+            skipHintText.text = "Hold ESC to skip";
         }
     }
 
