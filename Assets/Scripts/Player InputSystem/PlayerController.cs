@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 6f;
     public float rotationSpeed = 15f;
+    [Min(1f)] public float fallGravityMultiplier = 3f;
 
     private Rigidbody rb;
     private Vector2 moveInput;
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        ApplyExtraFallGravity();
+
         if (OpeningLock.IsLocked)
         {
             moveInput = Vector2.zero;
@@ -60,6 +63,20 @@ public class PlayerController : MonoBehaviour
 
             Quaternion targetRotation = Quaternion.LookRotation(move);
             rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    void ApplyExtraFallGravity()
+    {
+        if (fallGravityMultiplier <= 1f)
+        {
+            return;
+        }
+
+        if (rb.velocity.y < 0f)
+        {
+            Vector3 extraGravity = Physics.gravity * (fallGravityMultiplier - 1f);
+            rb.AddForce(extraGravity, ForceMode.Acceleration);
         }
     }
 }
