@@ -5,12 +5,16 @@ using System.Collections;
 
 public class OpeningSequenceManager : MonoBehaviour
 {
+    [Header("Slides")]
     public ComicSlide[] slides;
 
+    [Header("UI")]
     public Image comicImage;
     public TMP_Text subtitleText;
     public AudioSource audioSource;
 
+    [Header("Scene Control")]
+    [Tooltip("开场期间会隐藏这个物体（通常是游戏世界根节点）。如果留空则不会自动隐藏世界。")]
     public GameObject gameWorldRoot;
 
     private Coroutine sequenceCoroutine;
@@ -22,6 +26,18 @@ public class OpeningSequenceManager : MonoBehaviour
             return;
         }
 
+        if (slides == null || slides.Length == 0)
+        {
+            Debug.LogError("OpeningSequenceManager: slides 未配置，无法播放开场。");
+            return;
+        }
+
+        if (comicImage == null || subtitleText == null || audioSource == null)
+        {
+            Debug.LogError("OpeningSequenceManager: comicImage / subtitleText / audioSource 有未配置项。");
+            return;
+        }
+
         OpeningLock.IsLocked = true;
 
         if (gameWorldRoot != null)
@@ -30,6 +46,16 @@ public class OpeningSequenceManager : MonoBehaviour
         }
 
         sequenceCoroutine = StartCoroutine(PlaySequence());
+    }
+
+    void OnDisable()
+    {
+        if (sequenceCoroutine != null)
+        {
+            StopCoroutine(sequenceCoroutine);
+            sequenceCoroutine = null;
+            OpeningLock.IsLocked = false;
+        }
     }
 
     IEnumerator PlaySequence()
