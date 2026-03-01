@@ -5,10 +5,6 @@ public class SubComicCue
 {
     public Sprite image;
 
-    [Min(0)]
-    [Tooltip("要使用的子漫画槽位索引（预放对象模式下生效）。")]
-    public int targetSlotIndex = 0;
-
     [Min(0f)]
     [Tooltip("子漫画在当前幕开始后多久出现（秒）")]
     public float appearDelay = 0f;
@@ -17,16 +13,16 @@ public class SubComicCue
     [Tooltip("子漫画淡入时长（秒）")]
     public float fadeInDuration = 0.3f;
 
-    [Tooltip("锚点最小值（仅运行时创建子漫画模式生效）。")]
+    [Tooltip("锚点最小值。左上角可用 (0,1)，右下角可用 (1,0)。")]
     public Vector2 anchorMin = new Vector2(0f, 1f);
 
-    [Tooltip("锚点最大值（仅运行时创建子漫画模式生效）。")]
+    [Tooltip("锚点最大值。与 anchorMin 相同表示固定锚点。")]
     public Vector2 anchorMax = new Vector2(0f, 1f);
 
-    [Tooltip("相对锚点的偏移（仅运行时创建子漫画模式生效）。")]
+    [Tooltip("相对锚点的偏移。")]
     public Vector2 anchoredPosition = new Vector2(20f, -20f);
 
-    [Tooltip("子漫画尺寸（像素，仅运行时创建子漫画模式生效）。")]
+    [Tooltip("子漫画尺寸（像素）。")]
     public Vector2 sizeDelta = new Vector2(320f, 180f);
 }
 

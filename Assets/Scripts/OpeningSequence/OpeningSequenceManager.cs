@@ -26,10 +26,6 @@ public class OpeningSequenceManager : MonoBehaviour
     public AudioSource audioSource;
     [Tooltip("建议指向包含大漫画与子漫画的 UI 根节点。用于统一淡入淡出。")]
     public CanvasGroup comicVisualGroup;
-    [Tooltip("启用后使用预放的子漫画对象（推荐），不再运行时创建子漫画对象。")]
-    public bool usePreplacedSubComics = true;
-    [Tooltip("预放的子漫画槽位（例如 subComic 1 / subComic 2）。索引由 slide.subComics[*].targetSlotIndex 指定。")]
-    public Image[] preplacedSubComicSlots;
     [Tooltip("子漫画挂载点。留空时自动使用大漫画所在 RectTransform。")]
     public RectTransform subComicContainer;
     [Tooltip("开场 UI 根节点。结束时会自动隐藏，避免卡在最后一页。")]
@@ -53,7 +49,6 @@ public class OpeningSequenceManager : MonoBehaviour
     private Coroutine sequenceCoroutine;
     private float skipHoldTimer;
     private readonly List<Image> activeSubComicImages = new List<Image>();
-    private readonly List<Image> runtimeCreatedSubComicImages = new List<Image>();
 
     void Start()
     {
@@ -101,13 +96,6 @@ public class OpeningSequenceManager : MonoBehaviour
         {
             subComicContainer = comicImage.rectTransform;
         }
-
-        if (usePreplacedSubComics && (preplacedSubComicSlots == null || preplacedSubComicSlots.Length == 0))
-        {
-            Debug.LogWarning("OpeningSequenceManager: usePreplacedSubComics 已启用，但 preplacedSubComicSlots 为空。将不会显示子漫画。\n如需运行时创建，请关闭 usePreplacedSubComics。\n");
-        }
-
-        ResetPreplacedSubComicSlots();
 
         skipHoldTimer = 0f;
         UpdateSkipUI(0f);
@@ -302,12 +290,7 @@ public class OpeningSequenceManager : MonoBehaviour
                 yield return new WaitForSeconds(waitTime);
             }
 
-            Image subComicImage = AcquireSubComicImage(cue, i);
-            if (subComicImage == null)
-            {
-                continue;
-            }
-
+            Image subComicImage = CreateSubComicImage(cue, i);
             activeSubComicImages.Add(subComicImage);
 
             float fadeDuration = Mathf.Max(0f, cue.fadeInDuration);
@@ -328,35 +311,6 @@ public class OpeningSequenceManager : MonoBehaviour
 
             SetImageAlpha(subComicImage, 1f);
         }
-    }
-
-    Image AcquireSubComicImage(SubComicCue cue, int cueIndex)
-    {
-        if (usePreplacedSubComics)
-        {
-            if (preplacedSubComicSlots == null || preplacedSubComicSlots.Length == 0)
-            {
-                return null;
-            }
-
-            int slotIndex = Mathf.Clamp(cue.targetSlotIndex, 0, preplacedSubComicSlots.Length - 1);
-            Image slotImage = preplacedSubComicSlots[slotIndex];
-            if (slotImage == null)
-            {
-                Debug.LogWarning($"OpeningSequenceManager: preplacedSubComicSlots[{slotIndex}] 为空，无法显示子漫画 cue {cueIndex}。\n");
-                return null;
-            }
-
-            slotImage.gameObject.SetActive(true);
-            slotImage.sprite = cue.image;
-            slotImage.preserveAspect = true;
-            SetImageAlpha(slotImage, 0f);
-            return slotImage;
-        }
-
-        Image runtimeImage = CreateSubComicImage(cue, cueIndex);
-        runtimeCreatedSubComicImages.Add(runtimeImage);
-        return runtimeImage;
     }
 
     Image CreateSubComicImage(SubComicCue cue, int index)
@@ -392,42 +346,15 @@ public class OpeningSequenceManager : MonoBehaviour
 
     void ClearSubComics()
     {
-        if (usePreplacedSubComics)
+        for (int i = 0; i < activeSubComicImages.Count; i++)
         {
-            ResetPreplacedSubComicSlots();
-        }
-
-        for (int i = 0; i < runtimeCreatedSubComicImages.Count; i++)
-        {
-            if (runtimeCreatedSubComicImages[i] != null)
+            if (activeSubComicImages[i] != null)
             {
-                Destroy(runtimeCreatedSubComicImages[i].gameObject);
+                Destroy(activeSubComicImages[i].gameObject);
             }
         }
 
-        runtimeCreatedSubComicImages.Clear();
         activeSubComicImages.Clear();
-    }
-
-    void ResetPreplacedSubComicSlots()
-    {
-        if (preplacedSubComicSlots == null)
-        {
-            return;
-        }
-
-        for (int i = 0; i < preplacedSubComicSlots.Length; i++)
-        {
-            Image slotImage = preplacedSubComicSlots[i];
-            if (slotImage == null)
-            {
-                continue;
-            }
-
-            SetImageAlpha(slotImage, 0f);
-            slotImage.sprite = null;
-            slotImage.gameObject.SetActive(false);
-        }
     }
 
     float GetFadeInDuration(ComicSlide slide)
