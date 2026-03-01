@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class DialogueManager : MonoBehaviour
 
     private Ink.Runtime.Story story;
     private bool isOpen;
+    private bool isForcedDialogue;
+    private bool allowEscSkipForcedDialogue;
+    private Action onDialogueClosed;
     private int storyId = 0;
     private int storyIdCounter = 0;
     bool ClickedOnChoiceButton()
@@ -77,6 +81,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isOpen) return;
 
+        if (isForcedDialogue && allowEscSkipForcedDialogue && Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndDialogue();
+            return;
+        }
+
         //if there are choices, dont continue
         if (story != null && story.currentChoices != null && story.currentChoices.Count > 0)
             return;
@@ -98,6 +108,17 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        StartDialogueInternal(inkJSON, portraitSprite, false, false, null);
+    }
+
+    public void StartForcedDialogue(TextAsset inkJSON, Sprite portraitSprite, bool allowEscSkip, Action onClosed = null)
+    {
+        StartDialogueInternal(inkJSON, portraitSprite, true, allowEscSkip, onClosed);
+    }
+
+    void StartDialogueInternal(TextAsset inkJSON, Sprite portraitSprite, bool forced, bool allowEscSkip, Action onClosed)
+    {
+
         Debug.Log("[Start] " + inkJSON.name);
         Debug.Log($"[StartDialogue] prefabNull={(choiceButtonPrefab == null)} prefab={(choiceButtonPrefab ? choiceButtonPrefab.name : "NULL")}  DM={gameObject.name}");
         if (isOpen)
@@ -117,6 +138,9 @@ public class DialogueManager : MonoBehaviour
         Debug.Log($"[StartDialogue] storyId={storyId} ink={inkJSON.name}");
 
         isOpen = true;
+        isForcedDialogue = forced;
+        allowEscSkipForcedDialogue = forced && allowEscSkip;
+        onDialogueClosed = onClosed;
 
         dialoguePanel.SetActive(true);
         portraitImage.sprite = portraitSprite;
@@ -129,10 +153,17 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        Action closedCallback = onDialogueClosed;
+
         isOpen = false;
+        isForcedDialogue = false;
+        allowEscSkipForcedDialogue = false;
+        onDialogueClosed = null;
         story = null;
         ClearChoices();
         dialoguePanel.SetActive(false);
+
+        closedCallback?.Invoke();
     }
 
 
