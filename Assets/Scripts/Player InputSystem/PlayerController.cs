@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (rb.velocity.y < 0f)
+        if (rb.linearVelocity.y < 0f)
         {
             Vector3 extraGravity = Physics.gravity * (fallGravityMultiplier - 1f);
             rb.AddForce(extraGravity, ForceMode.Acceleration);
