@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using System.Collections.Generic;
 using System;
 
@@ -18,12 +19,11 @@ public class DialogueManager : MonoBehaviour
     public GameObject choiceButtonPrefab;
 
     [Header("Portrait")]
-    [Tooltip("左侧 NPC 立绘。兼容旧配置：若为空会回退到 portraitImage。")]
+    [FormerlySerializedAs("portraitImage")]
+    [Tooltip("左侧 NPC 立绘。老场景中的 portraitImage 引用会自动迁移到这里。")]
     public Image npcPortrait;
     [Tooltip("右侧主角立绘（固定）。")]
     public Image playerPortrait;
-    [Tooltip("兼容旧场景的单立绘引用，会作为 NPC 立绘回退使用。")]
-    public Image portraitImage;
     [Tooltip("右侧主角固定立绘。")]
     public Sprite playerPortraitSprite;
     [Range(0f, 1f)]
@@ -37,7 +37,6 @@ public class DialogueManager : MonoBehaviour
     private int storyId = 0;
     private int storyIdCounter = 0;
 
-    Image ActiveNpcPortrait => npcPortrait != null ? npcPortrait : portraitImage;
 
     bool ClickedOnChoiceButton()
     {
@@ -141,10 +140,9 @@ public class DialogueManager : MonoBehaviour
 
         dialoguePanel.SetActive(true);
 
-        Image activeNpcPortrait = ActiveNpcPortrait;
-        if (activeNpcPortrait != null)
+        if (npcPortrait != null)
         {
-            activeNpcPortrait.sprite = portraitSprite;
+            npcPortrait.sprite = portraitSprite;
         }
 
         if (playerPortrait != null)
@@ -222,8 +220,7 @@ public class DialogueManager : MonoBehaviour
         float npcBrightness = isPlayerSpeaking ? dimBrightness : 1f;
         float playerBrightness = isPlayerSpeaking ? 1f : dimBrightness;
 
-        Image activeNpcPortrait = ActiveNpcPortrait;
-        SetPortraitBrightness(activeNpcPortrait, npcBrightness);
+        SetPortraitBrightness(npcPortrait, npcBrightness);
         SetPortraitBrightness(playerPortrait, playerBrightness);
     }
 
