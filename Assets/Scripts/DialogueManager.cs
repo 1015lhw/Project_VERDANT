@@ -159,7 +159,7 @@ public class DialogueManager : MonoBehaviour
             playerPortrait.gameObject.SetActive(playerPortrait.sprite != null);
         }
 
-        ApplySpeakerStateV2(Speaker.Npc);
+        ApplySpeakerState(Speaker.Npc);
 
         ClearChoices();
         dialogueText.text = "";
@@ -205,9 +205,9 @@ public class DialogueManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(line))
         {
-            Speaker speaker = ResolveSpeakerFromCurrentTagsV2();
-            TrySwapNpcPortraitFromCurrentTagsV2();
-            ApplySpeakerStateV2(speaker);
+            Speaker speaker = ResolveSpeakerFromCurrentTags();
+            TrySwapNpcPortraitFromCurrentTags();
+            ApplySpeakerState(speaker);
         }
 
         if (story.currentChoices != null && story.currentChoices.Count > 0)
@@ -216,12 +216,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // V2-suffixed helpers intentionally avoid CS0111 clashes with older cherry-picked blocks.
-    Speaker ResolveSpeakerFromCurrentTagsV2()
+    string TryGetSpeakerIdFromCurrentTags()
     {
         if (story == null || story.currentTags == null)
         {
-            return Speaker.Npc;
+            return null;
         }
 
         for (int i = 0; i < story.currentTags.Count; i++)
@@ -233,170 +232,44 @@ public class DialogueManager : MonoBehaviour
             }
 
             string normalizedTag = tag.Trim().ToLowerInvariant();
-            if (!normalizedTag.StartsWith("speaker:"))
+            if (normalizedTag.StartsWith("#"))
             {
-                continue;
+                normalizedTag = normalizedTag.Substring(1).Trim();
             }
 
-            string id = normalizedTag.Substring("speaker:".Length).Trim();
-            if (id == "player" || id == "you")
+            string[] separators = new[] {":", "："};
+            for (int s = 0; s < separators.Length; s++)
             {
-                return Speaker.Player;
-            }
-
-            if (id == "narration" || id == "narrator" || id == "旁白")
-            {
-                return Speaker.Narration;
-            }
-
-            return Speaker.Npc;
-        }
-
-        return Speaker.Npc;
-    }
-
-    void TrySwapNpcPortraitFromCurrentTagsV2()
-    {
-        if (npcPortrait == null || story == null || story.currentTags == null || npcSpeakerPortraits == null)
-        {
-            return;
-        }
-
-        for (int i = 0; i < story.currentTags.Count; i++)
-        {
-            string tag = story.currentTags[i];
-            if (string.IsNullOrWhiteSpace(tag))
-            {
-                continue;
-            }
-
-            string normalizedTag = tag.Trim().ToLowerInvariant();
-            if (!normalizedTag.StartsWith("speaker:"))
-            {
-                continue;
-            }
-
-            string id = normalizedTag.Substring("speaker:".Length).Trim();
-            if (id == "player" || id == "you" || id == "narration" || id == "narrator" || id == "旁白")
-            {
-                return;
-            }
-
-            for (int j = 0; j < npcSpeakerPortraits.Count; j++)
-            {
-                SpeakerPortraitBinding binding = npcSpeakerPortraits[j];
-                if (binding == null || binding.portrait == null || string.IsNullOrWhiteSpace(binding.speakerId))
+                string sep = separators[s];
+                string prefix = "speaker" + sep;
+                if (!normalizedTag.StartsWith(prefix))
                 {
                     continue;
                 }
 
-                if (binding.speakerId.Trim().ToLowerInvariant() == id)
-                {
-                    npcPortrait.sprite = binding.portrait;
-                    npcPortrait.gameObject.SetActive(true);
-                    return;
-                }
+                string id = normalizedTag.Substring(prefix.Length).Trim();
+                return string.IsNullOrEmpty(id) ? null : id;
             }
-
-            return;
-        }
-    }
-
-    void ApplySpeakerStateV2(Speaker speaker)
-    {
-        float npcBrightness = dimBrightness;
-        float playerBrightness = dimBrightness;
-
-        switch (speaker)
-        {
-            case Speaker.Player:
-                playerBrightness = 1f;
-                break;
-            case Speaker.Npc:
-                npcBrightness = 1f;
-                break;
-            case Speaker.Narration:
-                break;
         }
 
-        SetPortraitBrightnessV2(npcPortrait, npcBrightness);
-        SetPortraitBrightnessV2(playerPortrait, playerBrightness);
-    }
-
-    void SetPortraitBrightnessV2(Image portrait, float brightness)
-    {
-        if (portrait == null)
-        {
-            return;
-        }
-
-        portrait.color = new Color(brightness, brightness, brightness, 1f);
-    }
-
-    void ApplySpeakerState(Speaker speaker)
-    {
-        float npcBrightness = dimBrightness;
-        float playerBrightness = dimBrightness;
-
-        switch (speaker)
-        {
-            case Speaker.Player:
-                playerBrightness = 1f;
-                break;
-            case Speaker.Npc:
-                npcBrightness = 1f;
-                break;
-            case Speaker.Narration:
-                break;
-        }
-
-        SetPortraitBrightness(npcPortrait, npcBrightness);
-        SetPortraitBrightness(playerPortrait, playerBrightness);
-    }
-
-    void SetPortraitBrightness(Image portrait, float brightness)
-    {
-        if (portrait == null)
-        {
-            return;
-        }
-
-        portrait.color = new Color(brightness, brightness, brightness, 1f);
+        return null;
     }
 
     Speaker ResolveSpeakerFromCurrentTags()
     {
-        if (story == null || story.currentTags == null)
+        string id = TryGetSpeakerIdFromCurrentTags();
+        if (string.IsNullOrEmpty(id))
         {
             return Speaker.Npc;
         }
 
-        for (int i = 0; i < story.currentTags.Count; i++)
+        if (id == "player" || id == "you")
         {
-            string tag = story.currentTags[i];
-            if (string.IsNullOrWhiteSpace(tag))
-            {
-                continue;
-            }
-
-            string normalizedTag = tag.Trim().ToLowerInvariant();
-            if (!normalizedTag.StartsWith("speaker:"))
-            {
-                continue;
-            }
-
-            string id = normalizedTag.Substring("speaker:".Length).Trim();
-            if (id == "player" || id == "you")
-            {
-                return Speaker.Player;
-            }
-
-            if (id == "narration" || id == "narrator" || id == "旁白")
-            {
-                return Speaker.Narration;
-            }
-
-            return Speaker.Npc;
+            return Speaker.Player;
+        }
+        if (id == "narration" || id == "narrator" || id == "旁白")
+        {
+            return Speaker.Narration;
         }
 
         return Speaker.Npc;
@@ -404,48 +277,30 @@ public class DialogueManager : MonoBehaviour
 
     void TrySwapNpcPortraitFromCurrentTags()
     {
-        if (npcPortrait == null || story == null || story.currentTags == null || npcSpeakerPortraits == null)
+        if (npcPortrait == null || npcSpeakerPortraits == null)
         {
             return;
         }
 
-        for (int i = 0; i < story.currentTags.Count; i++)
+        string id = TryGetSpeakerIdFromCurrentTags();
+        if (string.IsNullOrEmpty(id) || id == "player" || id == "you" || id == "narration" || id == "narrator" || id == "旁白")
         {
-            string tag = story.currentTags[i];
-            if (string.IsNullOrWhiteSpace(tag))
+            return;
+        }
+        for (int i = 0; i < npcSpeakerPortraits.Count; i++)
+        {
+            SpeakerPortraitBinding binding = npcSpeakerPortraits[i];
+            if (binding == null || binding.portrait == null || string.IsNullOrWhiteSpace(binding.speakerId))
             {
                 continue;
             }
 
-            string normalizedTag = tag.Trim().ToLowerInvariant();
-            if (!normalizedTag.StartsWith("speaker:"))
+            if (binding.speakerId.Trim().ToLowerInvariant() == id)
             {
-                continue;
-            }
-
-            string id = normalizedTag.Substring("speaker:".Length).Trim();
-            if (id == "player" || id == "you" || id == "narration" || id == "narrator" || id == "旁白")
-            {
+                npcPortrait.sprite = binding.portrait;
+                npcPortrait.gameObject.SetActive(true);
                 return;
             }
-
-            for (int j = 0; j < npcSpeakerPortraits.Count; j++)
-            {
-                SpeakerPortraitBinding binding = npcSpeakerPortraits[j];
-                if (binding == null || binding.portrait == null || string.IsNullOrWhiteSpace(binding.speakerId))
-                {
-                    continue;
-                }
-
-                if (binding.speakerId.Trim().ToLowerInvariant() == id)
-                {
-                    npcPortrait.sprite = binding.portrait;
-                    npcPortrait.gameObject.SetActive(true);
-                    return;
-                }
-            }
-
-            return;
         }
     }
 
@@ -468,77 +323,6 @@ public class DialogueManager : MonoBehaviour
 
         SetPortraitBrightness(npcPortrait, npcBrightness);
         SetPortraitBrightness(playerPortrait, playerBrightness);
-    }
-
-    void SetPortraitBrightness(Image portrait, float brightness)
-    {
-        if (portrait == null)
-        {
-            return;
-        }
-
-        portrait.color = new Color(brightness, brightness, brightness, 1f);
-    }
-
-    void SetSpeakerState(bool isPlayerSpeaking)
-    {
-        ApplySpeakerState(isPlayerSpeaking ? Speaker.Player : Speaker.Npc);
-    }
-
-    void ApplySpeakerState(Speaker speaker)
-    {
-        float npcBrightness = dimBrightness;
-        float playerBrightness = dimBrightness;
-
-        switch (speaker)
-        {
-            case Speaker.Player:
-                playerBrightness = 1f;
-                break;
-            case Speaker.Npc:
-                npcBrightness = 1f;
-                break;
-            case Speaker.Narration:
-                break;
-        }
-
-        SetPortraitBrightness(npcPortrait, npcBrightness);
-        SetPortraitBrightness(playerPortrait, playerBrightness);
-    }
-
-    Speaker ResolveSpeakerFromCurrentTags()
-    {
-        if (story == null || story.currentTags == null)
-        {
-            return Speaker.Npc;
-        }
-
-        for (int i = 0; i < story.currentTags.Count; i++)
-        {
-            string tag = story.currentTags[i];
-            if (string.IsNullOrEmpty(tag))
-            {
-                continue;
-            }
-
-            string normalizedTag = tag.Trim().ToLowerInvariant();
-            if (normalizedTag == "speaker:player" || normalizedTag == "speaker:you")
-            {
-                return Speaker.Player;
-            }
-
-            if (normalizedTag == "speaker:narration" || normalizedTag == "speaker:narrator" || normalizedTag == "speaker:旁白")
-            {
-                return Speaker.Narration;
-            }
-
-            if (normalizedTag == "speaker:npc" || normalizedTag == "speaker:sierra" || normalizedTag == "speaker:marcus")
-            {
-                return Speaker.Npc;
-            }
-        }
-
-        return Speaker.Npc;
     }
 
     void SetPortraitBrightness(Image portrait, float brightness)
@@ -560,7 +344,7 @@ public class DialogueManager : MonoBehaviour
 
     void DisplayChoices()
     {
-        ApplySpeakerStateV2(Speaker.Player);
+        ApplySpeakerState(Speaker.Player);
 
         ClearChoices();
 

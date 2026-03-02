@@ -80,33 +80,11 @@ public class InventorySystem : MonoBehaviour
         return counts.ContainsKey(id) && counts[id] > 0;
     }
 
-    // ===== 原有方法：获取顺序列表 =====
-    public List<string> GetItemOrder()
-    {
-        return itemOrder;
-    }
-
     // ===== 兼容方法：按拥有顺序获取物品 =====
     // DynamicInventoryUI 依赖该方法名，返回现有顺序列表即可。
     public List<string> GetOwnedItemsInOrder()
     {
         return itemOrder;
-    }
-
-    // ==========================================================
-    // 🔥 新增兼容方法（不会影响任何旧逻辑）
-    // ==========================================================
-
-    // 给任务系统用：默认加1个
-    public void AddItem(string id)
-    {
-        Add(id, 1);
-    }
-
-    // 可选：加多个
-    public void AddItem(string id, int amount)
-    {
-        Add(id, amount);
     }
 
     // 任务奖励入口：添加物品并触发背包红点
