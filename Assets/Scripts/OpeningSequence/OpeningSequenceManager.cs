@@ -39,6 +39,16 @@ public class OpeningSequenceManager : MonoBehaviour
     [Tooltip("开场期间会隐藏这个物体（通常是游戏世界根节点）。如果留空则不会自动隐藏世界。")]
     public GameObject gameWorldRoot;
 
+    [Header("Forced Dialogue After Opening")]
+    [Tooltip("开场漫画结束后，是否强制触发一段 Ink 对话。")]
+    public bool playForcedDialogueAfterOpening = true;
+    [Tooltip("强制剧情对话的 Ink JSON。可先留空，后续补剧情内容。")]
+    public TextAsset forcedDialogueInkJSON;
+    [Tooltip("强制剧情对话使用的立绘。")]
+    public Sprite forcedDialoguePortrait;
+    [Tooltip("仅开发调试使用：勾选后允许 ESC 直接结束这段强制剧情对话。")]
+    public bool allowEscToSkipForcedDialogue = false;
+
     [Header("Skip")]
     public bool allowHoldEscToSkip = true;
     [Min(0.5f)]
@@ -475,10 +485,43 @@ public class OpeningSequenceManager : MonoBehaviour
         }
 
         UpdateSkipUI(0f);
-        OpeningLock.IsLocked = false;
         sequenceCoroutine = null;
 
-        // TODO: trigger forced Ink dialogue here.
+        if (TryStartForcedDialogue())
+        {
+            return;
+        }
+
+        OpeningLock.IsLocked = false;
+    }
+
+    bool TryStartForcedDialogue()
+    {
+        if (!playForcedDialogueAfterOpening)
+        {
+            return false;
+        }
+
+        if (forcedDialogueInkJSON == null)
+        {
+            Debug.LogWarning("OpeningSequenceManager: 已启用开场强制对话，但 forcedDialogueInkJSON 未配置。将直接进入可移动状态。");
+            return false;
+        }
+
+        if (DialogueManager.Instance == null)
+        {
+            Debug.LogWarning("OpeningSequenceManager: 无法触发强制对话，DialogueManager.Instance 为空。将直接进入可移动状态。");
+            return false;
+        }
+
+        OpeningLock.IsLocked = true;
+        DialogueManager.Instance.StartForcedDialogue(forcedDialogueInkJSON, forcedDialoguePortrait, allowEscToSkipForcedDialogue, OnForcedDialogueClosed);
+        return true;
+    }
+
+    void OnForcedDialogueClosed()
+    {
+        OpeningLock.IsLocked = false;
     }
 
     bool HandleSkipInput()

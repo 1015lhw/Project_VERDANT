@@ -1,43 +1,56 @@
-using Ink.Parsed;
 using Ink.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using System.Collections.Generic;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
+
+    [Serializable]
+    public class SpeakerPortraitBinding
+    {
+        [Tooltip("说话者 ID（不带前缀），例如 sierra / marcus。会匹配 Ink tag: # speaker:sierra")]
+        public string speakerId;
+        public Sprite portrait;
+    }
+
+    enum Speaker
+    {
+        Npc,
+        Player,
+        Narration
+    }
 
     [Header("UI")]
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
     public Transform choicesContainer;
     public GameObject choiceButtonPrefab;
-    public Image portraitImage;
 
     [Header("Portrait")]
+    [FormerlySerializedAs("portraitImage")]
+    [Tooltip("左侧 NPC 立绘。老场景中的 portraitImage 引用会自动迁移到这里。")]
     public Image npcPortrait;
+    [Tooltip("右侧主角立绘（固定）。")]
+    public Image playerPortrait;
+    [Tooltip("右侧主角固定立绘。")]
+    public Sprite playerPortraitSprite;
+    [Tooltip("可选：按 Ink speaker 标签切换 NPC 立绘。")]
+    public List<SpeakerPortraitBinding> npcSpeakerPortraits = new List<SpeakerPortraitBinding>();
     [Range(0f, 1f)]
     public float dimBrightness = 0.5f;
-    private void SetPortraitBrightness(float brightness)
-    {
-        if (portraitImage == null)
-        {
-            Debug.Log("[Portrait] portraitImage NULL");
-            return;
-        }
 
-        Debug.Log($"[Portrait] set brightness={brightness}", portraitImage);
-
-        portraitImage.color = new Color(brightness, brightness, brightness, 1f);
-    }
-
-    private Ink.Runtime.Story story;
+    private Story story;
     private bool isOpen;
-    private int storyId = 0;
-    private int storyIdCounter = 0;
+    private bool isForcedDialogue;
+    private bool allowEscSkipForcedDialogue;
+    private Action onDialogueClosed;
+
     bool ClickedOnChoiceButton()
     {
         if (EventSystem.current == null) return false;
@@ -58,32 +71,33 @@ public class DialogueManager : MonoBehaviour
 
         return false;
     }
+
     void Awake()
     {
-        Debug.Log($"[Awake] DialogueManager on {gameObject.name}");
-
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("[Awake] Duplicate DialogueManager destroyed: " + gameObject.name);
             Destroy(gameObject);
             return;
         }
 
         Instance = this;
-        Debug.Log("DialogueManager Awake: " + gameObject.name);
     }
 
     void Update()
     {
         if (!isOpen) return;
 
-        //if there are choices, dont continue
+        if (isForcedDialogue && allowEscSkipForcedDialogue && Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndDialogue();
+            return;
+        }
+
         if (story != null && story.currentChoices != null && story.currentChoices.Count > 0)
             return;
 
         if (Input.GetMouseButtonDown(0))
         {
-            //only when you click on choices button, it won't continue. Finally fixed I hate this stupid coding stuff
             if (ClickedOnChoiceButton())
                 return;
 
@@ -98,28 +112,53 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("[Start] " + inkJSON.name);
-        Debug.Log($"[StartDialogue] prefabNull={(choiceButtonPrefab == null)} prefab={(choiceButtonPrefab ? choiceButtonPrefab.name : "NULL")}  DM={gameObject.name}");
+        StartDialogueInternal(inkJSON, portraitSprite, false, false, null);
+    }
+
+    public void StartForcedDialogue(TextAsset inkJSON, Sprite portraitSprite, bool allowEscSkip, Action onClosed = null)
+    {
+        StartDialogueInternal(inkJSON, portraitSprite, true, allowEscSkip, onClosed);
+    }
+
+    void StartDialogueInternal(TextAsset inkJSON, Sprite portraitSprite, bool forced, bool allowEscSkip, Action onClosed)
+    {
+        if (inkJSON == null)
+        {
+            Debug.LogError("Ink JSON is null!");
+            return;
+        }
+
         if (isOpen)
         {
             EndDialogue();
         }
 
-        if (inkJSON == null)
-        {
-            Debug.LogError("Ink JSON is null!");
-
-            return;
-        }
-
-        story = new Ink.Runtime.Story(inkJSON.text);
-        storyId = ++storyIdCounter;
-        Debug.Log($"[StartDialogue] storyId={storyId} ink={inkJSON.name}");
+        story = new Story(inkJSON.text);
 
         isOpen = true;
+        isForcedDialogue = forced;
+        allowEscSkipForcedDialogue = forced && allowEscSkip;
+        onDialogueClosed = onClosed;
 
         dialoguePanel.SetActive(true);
-        portraitImage.sprite = portraitSprite;
+
+        if (npcPortrait != null)
+        {
+            npcPortrait.sprite = portraitSprite;
+            npcPortrait.gameObject.SetActive(npcPortrait.sprite != null);
+        }
+
+        if (playerPortrait != null)
+        {
+            if (playerPortraitSprite != null)
+            {
+                playerPortrait.sprite = playerPortraitSprite;
+            }
+
+            playerPortrait.gameObject.SetActive(playerPortrait.sprite != null);
+        }
+
+        ApplySpeakerState(Speaker.Npc);
 
         ClearChoices();
         dialogueText.text = "";
@@ -129,20 +168,23 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        Action closedCallback = onDialogueClosed;
+
         isOpen = false;
+        isForcedDialogue = false;
+        allowEscSkipForcedDialogue = false;
+        onDialogueClosed = null;
         story = null;
         ClearChoices();
         dialoguePanel.SetActive(false);
-    }
 
+        closedCallback?.Invoke();
+    }
 
     void ContinueStory()
     {
         if (story == null) return;
 
-        Debug.Log("Choices count = " + story.currentChoices.Count);
-
-        //if there are choices, display
         if (story.currentChoices != null && story.currentChoices.Count > 0)
         {
             DisplayChoices();
@@ -151,27 +193,146 @@ public class DialogueManager : MonoBehaviour
 
         ClearChoices();
 
-        if (story.canContinue)
-        {
-            string line = story.Continue().Trim();
-            Debug.Log("[After Continue] choices=" + story.currentChoices.Count);
-            dialogueText.text = line;
-            if (!string.IsNullOrEmpty(line))
-                SetPortraitBrightness(1f);
-
-            //Choices check
-            if (story.currentChoices != null && story.currentChoices.Count > 0)
-                DisplayChoices();
-        }
-        else
+        if (!story.canContinue)
         {
             EndDialogue();
+            return;
         }
+
+        string line = story.Continue().Trim();
+        dialogueText.text = line;
+
+        if (!string.IsNullOrEmpty(line))
+        {
+            Speaker speaker = ResolveSpeakerFromCurrentTags();
+            TrySwapNpcPortraitFromCurrentTags();
+            ApplySpeakerState(speaker);
+        }
+
+        if (story.currentChoices != null && story.currentChoices.Count > 0)
+        {
+            DisplayChoices();
+        }
+    }
+
+    Speaker ResolveSpeakerFromCurrentTags()
+    {
+        if (story == null || story.currentTags == null)
+        {
+            return Speaker.Npc;
+        }
+
+        for (int i = 0; i < story.currentTags.Count; i++)
+        {
+            string tag = story.currentTags[i];
+            if (string.IsNullOrWhiteSpace(tag))
+            {
+                continue;
+            }
+
+            string normalizedTag = tag.Trim().ToLowerInvariant();
+            if (!normalizedTag.StartsWith("speaker:"))
+            {
+                continue;
+            }
+
+            string id = normalizedTag.Substring("speaker:".Length).Trim();
+            if (id == "player" || id == "you")
+            {
+                return Speaker.Player;
+            }
+
+            if (id == "narration" || id == "narrator" || id == "旁白")
+            {
+                return Speaker.Narration;
+            }
+
+            return Speaker.Npc;
+        }
+
+        return Speaker.Npc;
+    }
+
+    void TrySwapNpcPortraitFromCurrentTags()
+    {
+        if (npcPortrait == null || story == null || story.currentTags == null || npcSpeakerPortraits == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < story.currentTags.Count; i++)
+        {
+            string tag = story.currentTags[i];
+            if (string.IsNullOrWhiteSpace(tag))
+            {
+                continue;
+            }
+
+            string normalizedTag = tag.Trim().ToLowerInvariant();
+            if (!normalizedTag.StartsWith("speaker:"))
+            {
+                continue;
+            }
+
+            string id = normalizedTag.Substring("speaker:".Length).Trim();
+            if (id == "player" || id == "you" || id == "narration" || id == "narrator" || id == "旁白")
+            {
+                return;
+            }
+
+            for (int j = 0; j < npcSpeakerPortraits.Count; j++)
+            {
+                SpeakerPortraitBinding binding = npcSpeakerPortraits[j];
+                if (binding == null || binding.portrait == null || string.IsNullOrWhiteSpace(binding.speakerId))
+                {
+                    continue;
+                }
+
+                if (binding.speakerId.Trim().ToLowerInvariant() == id)
+                {
+                    npcPortrait.sprite = binding.portrait;
+                    npcPortrait.gameObject.SetActive(true);
+                    return;
+                }
+            }
+
+            return;
+        }
+    }
+
+    void ApplySpeakerState(Speaker speaker)
+    {
+        float npcBrightness = dimBrightness;
+        float playerBrightness = dimBrightness;
+
+        switch (speaker)
+        {
+            case Speaker.Player:
+                playerBrightness = 1f;
+                break;
+            case Speaker.Npc:
+                npcBrightness = 1f;
+                break;
+            case Speaker.Narration:
+                break;
+        }
+
+        SetPortraitBrightness(npcPortrait, npcBrightness);
+        SetPortraitBrightness(playerPortrait, playerBrightness);
+    }
+
+    void SetPortraitBrightness(Image portrait, float brightness)
+    {
+        if (portrait == null)
+        {
+            return;
+        }
+
+        portrait.color = new Color(brightness, brightness, brightness, 1f);
     }
 
     void ClearChoices()
     {
-        Debug.Log($"[ClearChoices] container={choicesContainer?.name} childCount={choicesContainer?.childCount}");
         if (choicesContainer == null) return;
         for (int i = choicesContainer.childCount - 1; i >= 0; i--)
             Destroy(choicesContainer.GetChild(i).gameObject);
@@ -179,20 +340,15 @@ public class DialogueManager : MonoBehaviour
 
     void DisplayChoices()
     {
-        SetPortraitBrightness(dimBrightness);
+        ApplySpeakerState(Speaker.Player);
 
-        Debug.Log($"[DisplayChoices] storyChoices={story.currentChoices.Count} container={choicesContainer?.name} childCountBefore={choicesContainer?.childCount}");
-        Debug.Log($"[DisplayChoices] NULLCHECK storyNull={(story == null)} containerNull={(choicesContainer == null)} prefabNull={(choiceButtonPrefab == null)}");
         ClearChoices();
-        Debug.Log("[DisplayChoices] choices=" + story.currentChoices.Count);
 
         if (story == null || choicesContainer == null || choiceButtonPrefab == null) return;
 
         foreach (var choice in story.currentChoices)
         {
             GameObject btnObj = Instantiate(choiceButtonPrefab, choicesContainer);
-            Debug.Log("[DisplayChoices] SPAWNED: " + choice.text);
-            Debug.Log($"[DisplayChoices] spawned button for: {choice.text}");
 
             if (!btnObj.activeSelf) btnObj.SetActive(true);
 
@@ -210,11 +366,9 @@ public class DialogueManager : MonoBehaviour
             {
                 label.gameObject.SetActive(true);
                 label.enabled = true;
-
                 label.enableAutoSizing = false;
                 label.fontSize = 32;
                 label.text = choice.text.Trim();
-
                 label.ForceMeshUpdate();
             }
 
@@ -229,10 +383,10 @@ public class DialogueManager : MonoBehaviour
 
     void OnChoiceSelected(int idx)
     {
-        Debug.Log($"[OnChoiceSelected] prefabNull={(choiceButtonPrefab == null)} prefab={(choiceButtonPrefab ? choiceButtonPrefab.name : "NULL")}  DM={gameObject.name}");
         ClearChoices();
         story.ChooseChoiceIndex(idx);
         ContinueStory();
     }
+
     public bool IsOpen => isOpen;
 }
