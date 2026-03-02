@@ -9,6 +9,7 @@ using System;
 
 public class DialogueManager : MonoBehaviour
 {
+    // NOTE: Keep helper method definitions single-source in this file to avoid merge duplicate compile errors (CS0111).
     public static DialogueManager Instance;
 
     [Serializable]
@@ -213,6 +214,122 @@ public class DialogueManager : MonoBehaviour
         {
             DisplayChoices();
         }
+    }
+
+    Speaker ResolveSpeakerFromCurrentTags()
+    {
+        if (story == null || story.currentTags == null)
+        {
+            return Speaker.Npc;
+        }
+
+        for (int i = 0; i < story.currentTags.Count; i++)
+        {
+            string tag = story.currentTags[i];
+            if (string.IsNullOrWhiteSpace(tag))
+            {
+                continue;
+            }
+
+            string normalizedTag = tag.Trim().ToLowerInvariant();
+            if (!normalizedTag.StartsWith("speaker:"))
+            {
+                continue;
+            }
+
+            string id = normalizedTag.Substring("speaker:".Length).Trim();
+            if (id == "player" || id == "you")
+            {
+                return Speaker.Player;
+            }
+
+            if (id == "narration" || id == "narrator" || id == "旁白")
+            {
+                return Speaker.Narration;
+            }
+
+            return Speaker.Npc;
+        }
+
+        return Speaker.Npc;
+    }
+
+    void TrySwapNpcPortraitFromCurrentTags()
+    {
+        if (npcPortrait == null || story == null || story.currentTags == null || npcSpeakerPortraits == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < story.currentTags.Count; i++)
+        {
+            string tag = story.currentTags[i];
+            if (string.IsNullOrWhiteSpace(tag))
+            {
+                continue;
+            }
+
+            string normalizedTag = tag.Trim().ToLowerInvariant();
+            if (!normalizedTag.StartsWith("speaker:"))
+            {
+                continue;
+            }
+
+            string id = normalizedTag.Substring("speaker:".Length).Trim();
+            if (id == "player" || id == "you" || id == "narration" || id == "narrator" || id == "旁白")
+            {
+                return;
+            }
+
+            for (int j = 0; j < npcSpeakerPortraits.Count; j++)
+            {
+                SpeakerPortraitBinding binding = npcSpeakerPortraits[j];
+                if (binding == null || binding.portrait == null || string.IsNullOrWhiteSpace(binding.speakerId))
+                {
+                    continue;
+                }
+
+                if (binding.speakerId.Trim().ToLowerInvariant() == id)
+                {
+                    npcPortrait.sprite = binding.portrait;
+                    npcPortrait.gameObject.SetActive(true);
+                    return;
+                }
+            }
+
+            return;
+        }
+    }
+
+    void ApplySpeakerState(Speaker speaker)
+    {
+        float npcBrightness = dimBrightness;
+        float playerBrightness = dimBrightness;
+
+        switch (speaker)
+        {
+            case Speaker.Player:
+                playerBrightness = 1f;
+                break;
+            case Speaker.Npc:
+                npcBrightness = 1f;
+                break;
+            case Speaker.Narration:
+                break;
+        }
+
+        SetPortraitBrightness(npcPortrait, npcBrightness);
+        SetPortraitBrightness(playerPortrait, playerBrightness);
+    }
+
+    void SetPortraitBrightness(Image portrait, float brightness)
+    {
+        if (portrait == null)
+        {
+            return;
+        }
+
+        portrait.color = new Color(brightness, brightness, brightness, 1f);
     }
 
     Speaker ResolveSpeakerFromCurrentTags()
