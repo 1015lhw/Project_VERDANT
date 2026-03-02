@@ -331,6 +331,77 @@ public class DialogueManager : MonoBehaviour
         portrait.color = new Color(brightness, brightness, brightness, 1f);
     }
 
+    void SetSpeakerState(bool isPlayerSpeaking)
+    {
+        ApplySpeakerState(isPlayerSpeaking ? Speaker.Player : Speaker.Npc);
+    }
+
+    void ApplySpeakerState(Speaker speaker)
+    {
+        float npcBrightness = dimBrightness;
+        float playerBrightness = dimBrightness;
+
+        switch (speaker)
+        {
+            case Speaker.Player:
+                playerBrightness = 1f;
+                break;
+            case Speaker.Npc:
+                npcBrightness = 1f;
+                break;
+            case Speaker.Narration:
+                break;
+        }
+
+        SetPortraitBrightness(npcPortrait, npcBrightness);
+        SetPortraitBrightness(playerPortrait, playerBrightness);
+    }
+
+    Speaker ResolveSpeakerFromCurrentTags()
+    {
+        if (story == null || story.currentTags == null)
+        {
+            return Speaker.Npc;
+        }
+
+        for (int i = 0; i < story.currentTags.Count; i++)
+        {
+            string tag = story.currentTags[i];
+            if (string.IsNullOrEmpty(tag))
+            {
+                continue;
+            }
+
+            string normalizedTag = tag.Trim().ToLowerInvariant();
+            if (normalizedTag == "speaker:player" || normalizedTag == "speaker:you")
+            {
+                return Speaker.Player;
+            }
+
+            if (normalizedTag == "speaker:narration" || normalizedTag == "speaker:narrator" || normalizedTag == "speaker:旁白")
+            {
+                return Speaker.Narration;
+            }
+
+            if (normalizedTag == "speaker:npc" || normalizedTag == "speaker:sierra" || normalizedTag == "speaker:marcus")
+            {
+                return Speaker.Npc;
+            }
+        }
+
+        return Speaker.Npc;
+    }
+
+    void SetPortraitBrightness(Image portrait, float brightness)
+    {
+        if (portrait == null)
+        {
+            return;
+        }
+
+        portrait.color = new Color(brightness, brightness, brightness, 1f);
+    }
+
     void ClearChoices()
     {
         if (choicesContainer == null) return;
