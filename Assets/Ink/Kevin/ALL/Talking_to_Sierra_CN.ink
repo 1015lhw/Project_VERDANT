@@ -1,3 +1,5 @@
+-> start
+
 // Opening forced dialogue test script (linear)
 
 === start ===
