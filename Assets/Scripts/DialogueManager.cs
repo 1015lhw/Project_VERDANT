@@ -159,7 +159,7 @@ public class DialogueManager : MonoBehaviour
             playerPortrait.gameObject.SetActive(playerPortrait.sprite != null);
         }
 
-        ApplySpeakerState(Speaker.Npc);
+        ApplySpeakerStateV2(Speaker.Npc);
 
         ClearChoices();
         dialogueText.text = "";
@@ -205,9 +205,9 @@ public class DialogueManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(line))
         {
-            Speaker speaker = ResolveSpeakerFromCurrentTags();
-            TrySwapNpcPortraitFromCurrentTags();
-            ApplySpeakerState(speaker);
+            Speaker speaker = ResolveSpeakerFromCurrentTagsV2();
+            TrySwapNpcPortraitFromCurrentTagsV2();
+            ApplySpeakerStateV2(speaker);
         }
 
         if (story.currentChoices != null && story.currentChoices.Count > 0)
@@ -216,7 +216,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    Speaker ResolveSpeakerFromCurrentTags()
+    // V2-suffixed helpers intentionally avoid CS0111 clashes with older cherry-picked blocks.
+    Speaker ResolveSpeakerFromCurrentTagsV2()
     {
         if (story == null || story.currentTags == null)
         {
@@ -254,7 +255,7 @@ public class DialogueManager : MonoBehaviour
         return Speaker.Npc;
     }
 
-    void TrySwapNpcPortraitFromCurrentTags()
+    void TrySwapNpcPortraitFromCurrentTagsV2()
     {
         if (npcPortrait == null || story == null || story.currentTags == null || npcSpeakerPortraits == null)
         {
@@ -299,6 +300,37 @@ public class DialogueManager : MonoBehaviour
 
             return;
         }
+    }
+
+    void ApplySpeakerStateV2(Speaker speaker)
+    {
+        float npcBrightness = dimBrightness;
+        float playerBrightness = dimBrightness;
+
+        switch (speaker)
+        {
+            case Speaker.Player:
+                playerBrightness = 1f;
+                break;
+            case Speaker.Npc:
+                npcBrightness = 1f;
+                break;
+            case Speaker.Narration:
+                break;
+        }
+
+        SetPortraitBrightnessV2(npcPortrait, npcBrightness);
+        SetPortraitBrightnessV2(playerPortrait, playerBrightness);
+    }
+
+    void SetPortraitBrightnessV2(Image portrait, float brightness)
+    {
+        if (portrait == null)
+        {
+            return;
+        }
+
+        portrait.color = new Color(brightness, brightness, brightness, 1f);
     }
 
     void ApplySpeakerState(Speaker speaker)
@@ -528,7 +560,7 @@ public class DialogueManager : MonoBehaviour
 
     void DisplayChoices()
     {
-        ApplySpeakerState(Speaker.Player);
+        ApplySpeakerStateV2(Speaker.Player);
 
         ClearChoices();
 
