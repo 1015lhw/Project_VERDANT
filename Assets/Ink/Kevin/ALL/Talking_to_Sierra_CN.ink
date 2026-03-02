@@ -1,121 +1,111 @@
-/* 备注
+-> start
 
- 与 Sierra 对话
+// Opening forced dialogue test script (linear)
 
-26/02/22 21:34 - 不小心删掉这个文件 T-T
+=== start ===
+# speaker:narration
+你从回忆里醒过来。
+# speaker:narration
+空气安静得不像刚才那样疯狂，但问题还在。
 
-蘑菇是 Sierra 和 Tyler 之间潜在的“关系变量”。
+# speaker:narration
+你看了看四周，三个人的装备，大部分都不见了。
+# speaker:narration
+现在能用的，只有 Marcus 身上的背包，和 Sierra 手里的指南针。
 
-如果在给 Marcus 之前就拿给 Sierra 看，
-她会以为你伤害了自己，降低好感。
+# speaker:narration
+Marcus 喘着粗气，紧紧抓着他肿胀的腿。
+# speaker:narration
+Sierra 在逃跑时双手重重摔在地上，现在她连看都不看你一眼。
 
-如果在给 Marcus 之后再告诉她，
-Tyler 可以解释 Marcus 知道它是安全的，
-从而获得一些信任。
+# speaker:narration
+没人吭声。
+# speaker:narration
+但我们都知道，有些地方不对劲。
 
-*/
+# speaker:narration
+你试着开口说点什么……Sierra 却抢先一步开口。
 
-VAR rep = 20
+# speaker:sierra
+“我们会在这儿出事，都是因为你。
+要不是我们，你早就被河水冲走了。
+你总觉得自己什么都行。”
 
-VAR blanket = 1
-VAR mushroom = 0
-VAR wolfrep = 0
+# speaker:you
+“是……不会的。我们还活着，我们要一起逃出去。”
 
-VAR MarcHasMush = 1
-VAR compass = 0
-VAR map = 1
+# speaker:sierra
+“哇，真是鼓舞人心的演讲啊，小耶稣。”
 
+# speaker:you
+“Marcus，你还能撑住吗？”
 
-{
-- rep < 11:
-    "你还回来干嘛？让我们烂在这里不是更省事吗，蠢货。"
+# speaker:narration
+……（Marcus 没有回应你）
 
-- rep < 19:
-    ...
+# speaker:sierra
+“别无视我！”
 
-- rep > 19:
-    * "也许你确实还有点用……"
-        -> Compass
-}
+# speaker:narration
+……（你用沉默回应 Sierra）
 
+# speaker:you
+“Marcus，听着，我会带我们出去的。但我需要你的帮助。
+还有你，Sierra。我看到你的指南针了，我得用它。
+现在你们两个都受伤了，只能靠我。但前提是——你们配合。”
 
-* {map} [把地图交给 Sierra]
-    "你找到这个了……？"
-    "也许……我们还有机会……"
-    ~ rep = rep + 15
+# speaker:narration
+Sierra 一时间说不出话。
+# speaker:narration
+她盯着你，你注意到她攥紧了指南针。
 
+# speaker:narration
+既因为你说的话，也因为那种近乎天真的自信。
 
-* {blanket} [把毯子给她]
-    "谢了……不过当然比不上我那条 Phantagonia 的高级款。"
-    ~ rep = rep + 3
-    
+# speaker:sierra
+“你想拿着我的指南针再自己乱跑一次？
+不如我留着。
+至少等你淹死的时候，不会再损失什么有价值的东西。”
 
-// 如果你有可视化好感条，把好感拆成四段会让对话更有戏剧性。
-* {mushroom} [把蘑菇给 Sierra]
-    ~ rep -= 1
+# speaker:narration
+你感觉喉咙发紧，但你知道她不是完全错。
 
-    "天啊这他妈是什么东西？！"
+# speaker:you
+“老天，Sierra，我是在帮忙……”
 
-    "嗯……我也不太清楚，本来还以为你会有点想法？"
-        ~ rep -= 1
+# speaker:sierra
+“那你一开始就该更小心。”
 
-    "你不知道？？别拿着它了！你会死的你这个白痴！！"
-        ~ rep -= 1
+# speaker:you
+“当着我的面再说一次你这单细胞——”
 
-    "喂，冷静点。"
-        ~ rep -= 1
+# speaker:sierra
+“……等等。
+我的手链……不见了。
+在哪……等等，不……”
 
-    "要死也死远一点。"
+# speaker:narration
+Sierra 的呼吸开始紊乱，恐慌逐渐蔓延。
 
+# speaker:narration
+而你却在心想，现在不是纠结手链的时候，能先从森林逃出去再说吧。
 
-// 在把蘑菇给 Marcus 之后，可以告诉 Sierra Marcus 是个靠谱的采集专家。
-* {MarcHasMush} [告诉她关于 Marcus 的事]
+# speaker:narration
+望着无法抬起的手臂和腿部痛苦的 Marcus，你强迫自己冷静下来。
 
-    "嘿，Sier—"
+# speaker:narration
+忽然。
 
-    "你的手怎么回事？Marcus 人呢？！"
+# speaker:narration
+你回想到，刚才逃跑的时候，好像经过了一个废弃的营地。
 
-    "听我说，Sierra，先闭嘴。"
+# speaker:you
+“Marcus，把背包给我，我去找我们丢的东西。”
 
-    一阵沉默。
+# speaker:narration
+片刻沉默后，Marcus 低声开口。
 
-    "Marcus 没死，我不会做那种事。"
-
-    空气里依旧弥漫着恐慌。
-
-    "我知道你在担心，但情况比你想的安全。"
-    "我刚发现 Marcus 简直就是个微胖版的贝爷，野外求生技能点满。"
-
-    "我的手是红的，是因为我发现了一种……"
-    "叫“血染蘑菇”的东西，会染色。Marcus 一眼就认出来了，他在这方面简直是天才。"
-
-    "你总是带回来最离谱的东西。"
-
-    "至少我在努力……"
-
-    又是一阵压抑的沉默。
-
-        ** 别再慌了，站起来。
-            "行吧。"
-
-        ** 我需要你，我们才能活下去。
-            "我显然不知道自己在干什么。"
-            "所以……帮帮我。"
-            令人煎熬的沉默。
-            ...
-            "好吧。"
-            ~ rep += 4
-
-
-=== Compass ===
-
-    "这是我爸的指南针……剧情反转吧？我现在把它给你。"
-
-    "拜托，别再像个白痴一样乱搞。"
-
-    ~ compass += 1
-
--> DONE
-
+# speaker:marcus
+“……这是我最后的东西了，泰勒。别再出错了。”
 
 -> END
