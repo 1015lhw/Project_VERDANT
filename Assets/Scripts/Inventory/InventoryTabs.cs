@@ -2,13 +2,22 @@ using UnityEngine;
 
 public class InventoryTabs : MonoBehaviour
 {
+    private enum InventoryTab
+    {
+        Bag,
+        Reputation,
+        Objectives
+    }
+
     [Header("Tab Transforms")]
     public RectTransform bagTab;
     public RectTransform repTab;
+    public RectTransform objTab;
 
     [Header("Pages")]
     public GameObject bagPage;
     public GameObject repPage;
+    public GameObject objPage;
 
     [Header("Position Settings")]
     [Tooltip("选中状态下的 Y 轴坐标")]
@@ -16,51 +25,68 @@ public class InventoryTabs : MonoBehaviour
     [Tooltip("未选中状态下的 Y 轴坐标")]
     public float lowY = 0f;
 
-    private bool isBagSelected = false;
+    private InventoryTab selectedTab = InventoryTab.Reputation;
 
     void Start()
     {
-        // 强制初始化：先设为相反状态，确保首次打开时位置刷新
-        isBagSelected = false; 
         SelectBag();
     }
 
     public void SelectBag()
     {
-        if (isBagSelected) return;
-        isBagSelected = true;
-
-        ApplyPositions();
-        
-        // 切换页面显隐
-        if (bagPage != null) bagPage.SetActive(true);
-        if (repPage != null) repPage.SetActive(false);
+        SelectTab(InventoryTab.Bag);
     }
 
     public void SelectRep()
     {
-        if (!isBagSelected) return;
-        isBagSelected = false;
-
-        ApplyPositions();
-
-        // 切换页面显隐
-        if (bagPage != null) bagPage.SetActive(false);
-        if (repPage != null) repPage.SetActive(true);
+        SelectTab(InventoryTab.Reputation);
     }
 
-    private void ApplyPositions()
+    public void SelectObjectives()
     {
-        // 安全检查：确保拖入了引用
+        SelectTab(InventoryTab.Objectives);
+    }
+
+    private void SelectTab(InventoryTab targetTab)
+    {
+        if (selectedTab == targetTab) return;
+
+        selectedTab = targetTab;
+        ApplyTabVisualState();
+        ApplyPageVisibility();
+    }
+
+    private void ApplyTabVisualState()
+    {
         if (bagTab == null || repTab == null)
         {
             Debug.LogError("InventoryTabs: 请在 Inspector 中拖入 BagTab 和 RepTab 的引用！");
             return;
         }
 
-        // 使用绝对坐标赋值，不受原本偏移量干扰
-        // Bag 选中时用 High，Rep 用 Low；反之亦然
-        bagTab.anchoredPosition = new Vector2(bagTab.anchoredPosition.x, isBagSelected ? highY : lowY);
-        repTab.anchoredPosition = new Vector2(repTab.anchoredPosition.x, isBagSelected ? lowY : highY);
+        bagTab.anchoredPosition = new Vector2(
+            bagTab.anchoredPosition.x,
+            selectedTab == InventoryTab.Bag ? highY : lowY
+        );
+
+        repTab.anchoredPosition = new Vector2(
+            repTab.anchoredPosition.x,
+            selectedTab == InventoryTab.Reputation ? highY : lowY
+        );
+
+        if (objTab != null)
+        {
+            objTab.anchoredPosition = new Vector2(
+                objTab.anchoredPosition.x,
+                selectedTab == InventoryTab.Objectives ? highY : lowY
+            );
+        }
+    }
+
+    private void ApplyPageVisibility()
+    {
+        if (bagPage != null) bagPage.SetActive(selectedTab == InventoryTab.Bag);
+        if (repPage != null) repPage.SetActive(selectedTab == InventoryTab.Reputation);
+        if (objPage != null) objPage.SetActive(selectedTab == InventoryTab.Objectives);
     }
 }
