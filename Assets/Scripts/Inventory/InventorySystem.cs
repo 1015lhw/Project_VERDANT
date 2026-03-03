@@ -88,12 +88,18 @@ public class InventorySystem : MonoBehaviour
         return itemOrder;
     }
 
-    // 任务奖励入口：添加物品并触发背包红点
+    // 任务奖励入口：添加物品并发出“奖励到达”事件。
+    // 红点改为在 TaskRewardPopupUI 真正接收到并处理该事件后再触发。
     public void AddTaskReward(string id, int amount = 1)
     {
         Add(id, amount);
-        SetTaskRewardNotification(true);
         OnTaskRewardAdded?.Invoke(id, amount);
+    }
+
+    // 由 TaskRewardPopupUI 在收到奖励弹窗事件时调用，用于点亮背包红点。
+    public void NotifyTaskRewardPopupReceived()
+    {
+        SetTaskRewardNotification(true);
     }
 
     public bool HasUnseenTaskReward => hasUnseenTaskReward;

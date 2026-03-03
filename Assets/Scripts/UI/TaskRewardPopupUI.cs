@@ -108,6 +108,9 @@ public class TaskRewardPopupUI : MonoBehaviour
             return;
         }
 
+        // 仅当 TaskRewardPopupRoot 收到奖励事件时，才点亮背包红点。
+        inventory?.NotifyTaskRewardPopupReceived();
+
         StartCoroutine(ShowPopupWithDelay(itemId, amount));
     }
 

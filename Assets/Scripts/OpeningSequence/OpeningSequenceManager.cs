@@ -49,6 +49,21 @@ public class OpeningSequenceManager : MonoBehaviour
     [Tooltip("仅开发调试使用：勾选后允许 ESC 直接结束这段强制剧情对话。")]
     public bool allowEscToSkipForcedDialogue = false;
 
+    [Header("Post Dialogue UI")]
+    [Tooltip("背包 Icon 根节点。开场与强制对话期间隐藏，强制对话结束后显示。")]
+    public GameObject bagIconRoot;
+    [Tooltip("提示气泡（例如命名为 notice 的 Image）。在强制对话结束后显示并做呼吸闪烁。")]
+    public GameObject noticeRoot;
+    [Min(1)]
+    [Tooltip("提示气泡呼吸闪烁次数。默认 3 次。")]
+    public int noticePulseCount = 3;
+    [Min(0.05f)]
+    [Tooltip("每次呼吸的完整周期时长（秒，淡出+淡入）。")]
+    public float noticePulseDuration = 0.6f;
+    [Range(0f, 1f)]
+    [Tooltip("呼吸时的最低透明度。0=全透明，1=不闪烁。")]
+    public float noticeMinAlpha = 0.35f;
+
     [Header("Skip")]
     public bool allowHoldEscToSkip = true;
     [Min(0.5f)]
@@ -61,6 +76,7 @@ public class OpeningSequenceManager : MonoBehaviour
     public Image skipProgressFill;
 
     private Coroutine sequenceCoroutine;
+    private Coroutine noticeCoroutine;
     private float skipHoldTimer;
     private readonly List<Image> activeSubComicImages = new List<Image>();
     private readonly List<Image> runtimeCreatedSubComicImages = new List<Image>();
@@ -127,6 +143,9 @@ public class OpeningSequenceManager : MonoBehaviour
             openingCanvasRoot.SetActive(true);
         }
 
+        SetBagVisible(false);
+        SetNoticeVisible(false, true);
+
         if (skipHintRoot != null)
         {
             skipHintRoot.SetActive(allowHoldEscToSkip);
@@ -149,6 +168,12 @@ public class OpeningSequenceManager : MonoBehaviour
             StopCoroutine(sequenceCoroutine);
             sequenceCoroutine = null;
             OpeningLock.IsLocked = false;
+        }
+
+        if (noticeCoroutine != null)
+        {
+            StopCoroutine(noticeCoroutine);
+            noticeCoroutine = null;
         }
 
         ClearSubComics();
@@ -493,6 +518,7 @@ public class OpeningSequenceManager : MonoBehaviour
         }
 
         OpeningLock.IsLocked = false;
+        SetBagVisible(true);
     }
 
     bool TryStartForcedDialogue()
@@ -522,6 +548,86 @@ public class OpeningSequenceManager : MonoBehaviour
     void OnForcedDialogueClosed()
     {
         OpeningLock.IsLocked = false;
+        SetBagVisible(true);
+        PlayNoticeAfterDialogue();
+    }
+
+    void SetBagVisible(bool visible)
+    {
+        if (bagIconRoot != null)
+        {
+            bagIconRoot.SetActive(visible);
+        }
+    }
+
+    void SetNoticeVisible(bool visible, bool resetAlpha)
+    {
+        if (noticeRoot == null)
+        {
+            return;
+        }
+
+        CanvasGroup noticeCanvasGroup = noticeRoot.GetComponent<CanvasGroup>();
+        if (noticeCanvasGroup == null)
+        {
+            noticeCanvasGroup = noticeRoot.AddComponent<CanvasGroup>();
+        }
+
+        if (resetAlpha)
+        {
+            noticeCanvasGroup.alpha = 1f;
+        }
+
+        noticeRoot.SetActive(visible);
+    }
+
+    void PlayNoticeAfterDialogue()
+    {
+        if (noticeRoot == null)
+        {
+            return;
+        }
+
+        if (noticeCoroutine != null)
+        {
+            StopCoroutine(noticeCoroutine);
+        }
+
+        noticeCoroutine = StartCoroutine(ShowNoticeRoutine());
+    }
+
+    IEnumerator ShowNoticeRoutine()
+    {
+        SetNoticeVisible(true, true);
+
+        CanvasGroup noticeCanvasGroup = noticeRoot.GetComponent<CanvasGroup>();
+        if (noticeCanvasGroup == null)
+        {
+            noticeCanvasGroup = noticeRoot.AddComponent<CanvasGroup>();
+        }
+
+        int pulseCount = Mathf.Max(1, noticePulseCount);
+        float pulseDuration = Mathf.Max(0.05f, noticePulseDuration);
+        float minAlpha = Mathf.Clamp01(noticeMinAlpha);
+
+        for (int i = 0; i < pulseCount; i++)
+        {
+            float timer = 0f;
+            while (timer < pulseDuration)
+            {
+                timer += Time.deltaTime;
+                float progress = Mathf.Clamp01(timer / pulseDuration);
+                float curve = Mathf.Sin(progress * Mathf.PI);
+                noticeCanvasGroup.alpha = Mathf.Lerp(1f, minAlpha, curve);
+                yield return null;
+            }
+
+            noticeCanvasGroup.alpha = 1f;
+        }
+
+        Destroy(noticeRoot);
+        noticeRoot = null;
+        noticeCoroutine = null;
     }
 
     bool HandleSkipInput()
