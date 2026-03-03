@@ -15,6 +15,7 @@ public class InventorySystem : MonoBehaviour
 
     public event Action OnInventoryChanged;
     public event Action<bool> OnTaskRewardNotificationChanged;
+    public event Action<string, int> OnTaskRewardAdded;
 
     private bool hasUnseenTaskReward;
 
@@ -92,6 +93,7 @@ public class InventorySystem : MonoBehaviour
     {
         Add(id, amount);
         SetTaskRewardNotification(true);
+        OnTaskRewardAdded?.Invoke(id, amount);
     }
 
     public bool HasUnseenTaskReward => hasUnseenTaskReward;
