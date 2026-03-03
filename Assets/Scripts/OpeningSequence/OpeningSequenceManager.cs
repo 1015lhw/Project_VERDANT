@@ -52,14 +52,17 @@ public class OpeningSequenceManager : MonoBehaviour
     [Header("Post Dialogue UI")]
     [Tooltip("背包 Icon 根节点。开场与强制对话期间隐藏，强制对话结束后显示。")]
     public GameObject bagIconRoot;
-    [Tooltip("提示气泡（例如命名为 notice 的 Image）。在强制对话结束后显示，然后自动淡出并隐藏。")]
+    [Tooltip("提示气泡（例如命名为 notice 的 Image）。在强制对话结束后显示并做呼吸闪烁。")]
     public GameObject noticeRoot;
-    [Min(0f)]
-    [Tooltip("提示气泡显示停留时长（秒）。")]
-    public float noticeStayDuration = 2f;
-    [Min(0f)]
-    [Tooltip("提示气泡淡出时长（秒）。")]
-    public float noticeFadeDuration = 0.4f;
+    [Min(1)]
+    [Tooltip("提示气泡呼吸闪烁次数。默认 3 次。")]
+    public int noticePulseCount = 3;
+    [Min(0.05f)]
+    [Tooltip("每次呼吸的完整周期时长（秒，淡出+淡入）。")]
+    public float noticePulseDuration = 0.6f;
+    [Range(0f, 1f)]
+    [Tooltip("呼吸时的最低透明度。0=全透明，1=不闪烁。")]
+    public float noticeMinAlpha = 0.35f;
 
     [Header("Skip")]
     public bool allowHoldEscToSkip = true;
@@ -597,34 +600,33 @@ public class OpeningSequenceManager : MonoBehaviour
     {
         SetNoticeVisible(true, true);
 
-        if (noticeStayDuration > 0f)
-        {
-            yield return new WaitForSeconds(noticeStayDuration);
-        }
-
         CanvasGroup noticeCanvasGroup = noticeRoot.GetComponent<CanvasGroup>();
         if (noticeCanvasGroup == null)
         {
             noticeCanvasGroup = noticeRoot.AddComponent<CanvasGroup>();
         }
 
-        if (noticeFadeDuration > 0f)
+        int pulseCount = Mathf.Max(1, noticePulseCount);
+        float pulseDuration = Mathf.Max(0.05f, noticePulseDuration);
+        float minAlpha = Mathf.Clamp01(noticeMinAlpha);
+
+        for (int i = 0; i < pulseCount; i++)
         {
-            float t = 0f;
-            while (t < noticeFadeDuration)
+            float timer = 0f;
+            while (timer < pulseDuration)
             {
-                t += Time.deltaTime;
-                float progress = Mathf.Clamp01(t / noticeFadeDuration);
-                noticeCanvasGroup.alpha = Mathf.Lerp(1f, 0f, progress);
+                timer += Time.deltaTime;
+                float progress = Mathf.Clamp01(timer / pulseDuration);
+                float curve = Mathf.Sin(progress * Mathf.PI);
+                noticeCanvasGroup.alpha = Mathf.Lerp(1f, minAlpha, curve);
                 yield return null;
             }
-        }
-        else
-        {
-            noticeCanvasGroup.alpha = 0f;
+
+            noticeCanvasGroup.alpha = 1f;
         }
 
-        noticeRoot.SetActive(false);
+        Destroy(noticeRoot);
+        noticeRoot = null;
         noticeCoroutine = null;
     }
 
