@@ -15928,7 +15928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskWindowSlide
   taskWindow: {fileID: 58406103}
-  slideDuration: 0.3
+  slideDuration: 0.5
 --- !u!1 &1660117398
 GameObject:
   m_ObjectHideFlags: 0
