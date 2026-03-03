@@ -49,6 +49,18 @@ public class OpeningSequenceManager : MonoBehaviour
     [Tooltip("仅开发调试使用：勾选后允许 ESC 直接结束这段强制剧情对话。")]
     public bool allowEscToSkipForcedDialogue = false;
 
+    [Header("Post Dialogue UI")]
+    [Tooltip("背包 Icon 根节点。开场与强制对话期间隐藏，强制对话结束后显示。")]
+    public GameObject bagIconRoot;
+    [Tooltip("提示气泡（例如命名为 notice 的 Image）。在强制对话结束后显示，然后自动淡出并隐藏。")]
+    public GameObject noticeRoot;
+    [Min(0f)]
+    [Tooltip("提示气泡显示停留时长（秒）。")]
+    public float noticeStayDuration = 2f;
+    [Min(0f)]
+    [Tooltip("提示气泡淡出时长（秒）。")]
+    public float noticeFadeDuration = 0.4f;
+
     [Header("Skip")]
     public bool allowHoldEscToSkip = true;
     [Min(0.5f)]
@@ -61,6 +73,7 @@ public class OpeningSequenceManager : MonoBehaviour
     public Image skipProgressFill;
 
     private Coroutine sequenceCoroutine;
+    private Coroutine noticeCoroutine;
     private float skipHoldTimer;
     private readonly List<Image> activeSubComicImages = new List<Image>();
     private readonly List<Image> runtimeCreatedSubComicImages = new List<Image>();
@@ -127,6 +140,9 @@ public class OpeningSequenceManager : MonoBehaviour
             openingCanvasRoot.SetActive(true);
         }
 
+        SetBagVisible(false);
+        SetNoticeVisible(false, true);
+
         if (skipHintRoot != null)
         {
             skipHintRoot.SetActive(allowHoldEscToSkip);
@@ -149,6 +165,12 @@ public class OpeningSequenceManager : MonoBehaviour
             StopCoroutine(sequenceCoroutine);
             sequenceCoroutine = null;
             OpeningLock.IsLocked = false;
+        }
+
+        if (noticeCoroutine != null)
+        {
+            StopCoroutine(noticeCoroutine);
+            noticeCoroutine = null;
         }
 
         ClearSubComics();
@@ -493,6 +515,7 @@ public class OpeningSequenceManager : MonoBehaviour
         }
 
         OpeningLock.IsLocked = false;
+        SetBagVisible(true);
     }
 
     bool TryStartForcedDialogue()
@@ -522,6 +545,87 @@ public class OpeningSequenceManager : MonoBehaviour
     void OnForcedDialogueClosed()
     {
         OpeningLock.IsLocked = false;
+        SetBagVisible(true);
+        PlayNoticeAfterDialogue();
+    }
+
+    void SetBagVisible(bool visible)
+    {
+        if (bagIconRoot != null)
+        {
+            bagIconRoot.SetActive(visible);
+        }
+    }
+
+    void SetNoticeVisible(bool visible, bool resetAlpha)
+    {
+        if (noticeRoot == null)
+        {
+            return;
+        }
+
+        CanvasGroup noticeCanvasGroup = noticeRoot.GetComponent<CanvasGroup>();
+        if (noticeCanvasGroup == null)
+        {
+            noticeCanvasGroup = noticeRoot.AddComponent<CanvasGroup>();
+        }
+
+        if (resetAlpha)
+        {
+            noticeCanvasGroup.alpha = 1f;
+        }
+
+        noticeRoot.SetActive(visible);
+    }
+
+    void PlayNoticeAfterDialogue()
+    {
+        if (noticeRoot == null)
+        {
+            return;
+        }
+
+        if (noticeCoroutine != null)
+        {
+            StopCoroutine(noticeCoroutine);
+        }
+
+        noticeCoroutine = StartCoroutine(ShowNoticeRoutine());
+    }
+
+    IEnumerator ShowNoticeRoutine()
+    {
+        SetNoticeVisible(true, true);
+
+        if (noticeStayDuration > 0f)
+        {
+            yield return new WaitForSeconds(noticeStayDuration);
+        }
+
+        CanvasGroup noticeCanvasGroup = noticeRoot.GetComponent<CanvasGroup>();
+        if (noticeCanvasGroup == null)
+        {
+            noticeCanvasGroup = noticeRoot.AddComponent<CanvasGroup>();
+        }
+
+        if (noticeFadeDuration > 0f)
+        {
+            float t = 0f;
+            while (t < noticeFadeDuration)
+            {
+                t += Time.deltaTime;
+                float progress = Mathf.Clamp01(t / noticeFadeDuration);
+                noticeCanvasGroup.alpha = Mathf.Lerp(1f, 0f, progress);
+                yield return null;
+            }
+        }
+        else
+        {
+            noticeCanvasGroup.alpha = 0f;
+        }
+
+        noticeRoot.SetActive(false);
+        noticeCoroutine = null;
     }
 
     bool HandleSkipInput()
