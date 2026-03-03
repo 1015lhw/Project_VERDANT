@@ -106,7 +106,7 @@ public class MapTaskManager : MonoBehaviour
 
         if (slide != null)
         {
-            slide.PlaySlideOut(FinalizeClose);
+            TaskUICommon.CloseTaskWindow(gameObject, slide, null);
             return;
         }
 
@@ -123,26 +123,14 @@ public class MapTaskManager : MonoBehaviour
         isCompleted = true;
         RefreshUI();
 
-        if (InventorySystem.Instance != null && !InventorySystem.Instance.Has(rewardItemID))
-        {
-            int configuredAmount = DynamicInventoryUI.GetConfiguredAmountById(rewardItemID);
-            if (configuredAmount > 0)
-            {
-                InventorySystem.Instance.AddTaskReward(rewardItemID, configuredAmount);
-            }
-            else
-            {
-                InventorySystem.Instance.AddTaskReward(rewardItemID);
-            }
-        }
+        TaskUICommon.GrantReward(rewardItemID);
 
         CloseTask();
     }
 
     private void FinalizeClose()
     {
-        GameStateManager.ResetToNormal();
-        gameObject.SetActive(false);
+        TaskUICommon.CloseTaskWindow(gameObject, null, null);
     }
 
     private void ResetTaskVisuals()

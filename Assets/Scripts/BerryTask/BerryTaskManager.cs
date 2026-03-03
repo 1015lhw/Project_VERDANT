@@ -94,24 +94,7 @@ public class BerryTaskManager : MonoBehaviour
 
             ApplyShrubState();
 
-            // ✅ 任务完成：加入背包（跨场景保存）
-            if (InventorySystem.Instance != null)
-            {
-                int configuredAmount = DynamicInventoryUI.GetConfiguredAmountById(rewardItemID);
-                if (configuredAmount > 0)
-                {
-                    InventorySystem.Instance.AddTaskReward(rewardItemID, configuredAmount);
-                }
-                else
-                {
-                    InventorySystem.Instance.AddTaskReward(rewardItemID);
-                }
-            }
-            else
-            {
-                Debug.LogWarning("[BerryTaskManager] InventorySystem.Instance is null. Please place InventorySystem in scene.");
-            }
-
+            TaskUICommon.GrantReward(rewardItemID);
             StartCoroutine(DelayedClose());
         }
     }
@@ -126,22 +109,11 @@ public class BerryTaskManager : MonoBehaviour
 
     void SlideAndClose()
     {
-        if (slide != null)
+        TaskUICommon.CloseTaskWindow(gameObject, slide, () =>
         {
-            slide.PlaySlideOut(() =>
-            {
-                gameObject.SetActive(false);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                GameStateManager.ResetToNormal();
-            });
-            return;
-        }
-
-        gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        GameStateManager.ResetToNormal();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        });
     }
 
     void UpdateUI()
