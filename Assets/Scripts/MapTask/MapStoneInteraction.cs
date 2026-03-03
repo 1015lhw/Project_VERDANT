@@ -1,20 +1,53 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MapStoneInteraction : TaskInteractionBase
 {
     [Header("Task")]
-    [SerializeField] private MapTaskManager mapTaskManager;
+    [SerializeField] private GameObject mapTaskUI;
 
-    protected override GameObject TaskUI => mapTaskManager != null ? mapTaskManager.gameObject : null;
-    protected override bool IsTaskCompleted => mapTaskManager == null || mapTaskManager.IsCompleted;
+    // Legacy slot to keep old scene references valid when upgrading to unified task UI field.
+    [FormerlySerializedAs("mapTaskManager")]
+    [SerializeField, HideInInspector] private MapTaskManager legacyTaskManager;
+
+    private MapTaskManager taskManager;
+
+    protected override GameObject TaskUI => mapTaskUI;
+    protected override bool IsTaskCompleted => taskManager == null || taskManager.IsCompleted;
+
+    protected override void Start()
+    {
+        ResolveReferences();
+        base.Start();
+    }
 
     protected override void PrepareTask()
     {
-        if (mapTaskManager == null)
+        ResolveReferences();
+
+        if (taskManager == null)
         {
             return;
         }
 
-        mapTaskManager.PrepareTask();
+        taskManager.PrepareTask();
+    }
+
+    private void OnValidate()
+    {
+        ResolveReferences();
+    }
+
+    private void ResolveReferences()
+    {
+        if (mapTaskUI == null && legacyTaskManager != null)
+        {
+            mapTaskUI = legacyTaskManager.gameObject;
+        }
+
+        if (taskManager == null && mapTaskUI != null)
+        {
+            taskManager = mapTaskUI.GetComponent<MapTaskManager>();
+        }
     }
 }

@@ -2,27 +2,39 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
+using System.Collections;
 
 public class MapTaskManager : MonoBehaviour
 {
-    [Header("UI")]
-    [SerializeField] private TMP_Text counterText;
-    [SerializeField] private TMP_Text instructionText;
-    [SerializeField] private Button closeButton;
+    [Header("UI Slots")]
+    [FormerlySerializedAs("counterText")]
+    public TMP_Text counterText;
+    [FormerlySerializedAs("instructionText")]
+    public TMP_Text instructionText;
+    [FormerlySerializedAs("closeButton")]
+    public Button closeButton;
 
     [Header("Settings")]
-    [SerializeField] private int totalRocks = 5;
-    [SerializeField] private string rewardItemID = "Map";
+    [FormerlySerializedAs("totalRocks")]
+    public int totalTargets = 5;
+    public float closeDelay = 0.1f;
+
+    [Header("Task State")]
+    [FormerlySerializedAs("isCompleted")]
+    public bool taskCompleted;
+
+    [Header("Reward")]
+    public string rewardItemID = "Map";
 
     private TaskWindowSlide slide;
     private UIDragRock[] rocks;
 
     private int clearedCount;
-    private bool isCompleted;
     private bool isClosing;
     private bool hasWarnedMissingRocks;
 
-    public bool IsCompleted => isCompleted;
+    public bool IsCompleted => taskCompleted;
 
     private void Awake()
     {
@@ -41,8 +53,8 @@ public class MapTaskManager : MonoBehaviour
 
         if (InventorySystem.Instance != null && InventorySystem.Instance.Has(rewardItemID))
         {
-            isCompleted = true;
-            clearedCount = totalRocks;
+            taskCompleted = true;
+            clearedCount = totalTargets;
         }
 
         RefreshUI();
@@ -53,7 +65,7 @@ public class MapTaskManager : MonoBehaviour
         CacheReferences();
         isClosing = false;
 
-        if (isCompleted)
+        if (taskCompleted)
         {
             HideAllRocks();
         }
@@ -67,7 +79,7 @@ public class MapTaskManager : MonoBehaviour
 
     public void PrepareTask()
     {
-        if (isCompleted)
+        if (taskCompleted)
         {
             RefreshUI();
             return;
@@ -79,14 +91,14 @@ public class MapTaskManager : MonoBehaviour
 
     public void NotifyRockCleared()
     {
-        if (isCompleted)
+        if (taskCompleted)
         {
             return;
         }
 
-        clearedCount = Mathf.Min(clearedCount + 1, totalRocks);
+        clearedCount = Mathf.Min(clearedCount + 1, totalTargets);
 
-        if (clearedCount >= totalRocks)
+        if (clearedCount >= totalTargets)
         {
             CompleteTask();
             return;
@@ -115,15 +127,24 @@ public class MapTaskManager : MonoBehaviour
 
     private void CompleteTask()
     {
-        if (isCompleted)
+        if (taskCompleted)
         {
             return;
         }
 
-        isCompleted = true;
+        taskCompleted = true;
         RefreshUI();
 
         TaskUICommon.GrantReward(rewardItemID);
+        StartCoroutine(DelayedClose());
+    }
+
+    private IEnumerator DelayedClose()
+    {
+        if (closeDelay > 0f)
+        {
+            yield return new WaitForSecondsRealtime(closeDelay);
+        }
 
         CloseTask();
     }
@@ -189,7 +210,7 @@ public class MapTaskManager : MonoBehaviour
 
         if (counterText != null)
         {
-            counterText.text = $"{clearedCount} / {totalRocks}";
+            counterText.text = $"{clearedCount}/{totalTargets}";
         }
     }
 
