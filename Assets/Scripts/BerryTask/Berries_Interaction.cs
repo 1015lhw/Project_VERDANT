@@ -8,6 +8,9 @@ public class Berries_Interaction : TaskInteractionBase
     private BerryTaskManager taskManager;
     private BerryShrubSwitcher shrubSwitcher;
 
+    // Backward-compatible accessor for debug/legacy scripts still reading the old field name.
+    public GameObject pressEUI => pressEPrompt;
+
     protected override GameObject TaskUI => berryTaskUI;
     protected override bool IsTaskCompleted => taskManager != null && taskManager.taskCompleted;
 
