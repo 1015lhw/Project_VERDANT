@@ -1,40 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TaskRewardPopupUI : MonoBehaviour
 {
     [System.Serializable]
-    private class ItemPopupStyle
+    private class ItemPopupConfig
     {
+        [Tooltip("与奖励里使用的 itemId 一致（例如 Berry / Map）。")]
         public string itemId;
+
+        [Tooltip("弹窗显示名称。")]
         public string displayName;
+
+        [Tooltip("弹窗显示图标。")]
         public Sprite icon;
     }
 
     [Header("References")]
-    [Tooltip("弹窗生成的父节点（通常是屏幕中央的 UI 空节点）。")]
+    [Tooltip("弹窗实例生成父节点（通常放在屏幕中央锚点）。")]
     [SerializeField] private RectTransform popupRoot;
-    [Tooltip("弹窗模板（建议默认 inactive，内含 TMP_Text 和可选 Image）。")]
+
+    [Tooltip("弹窗模板（背景图预制体）。模板上需挂 TaskRewardPopupEntry 并绑定 名字/数量/图标 引用。")]
     [SerializeField] private GameObject popupTemplate;
 
     [Header("Animation")]
     [Min(0.01f)]
     [SerializeField] private float moveDistance = 120f;
+
     [Min(0.01f)]
     [SerializeField] private float fadeDuration = 1.1f;
+
     [SerializeField] private AnimationCurve moveCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
     [SerializeField] private AnimationCurve alphaCurve = AnimationCurve.Linear(0f, 1f, 1f, 0f);
-    [SerializeField] private float stackSpacing = 34f;
+
+    [Tooltip("多条弹窗时的垂直间隔。")]
+    [SerializeField] private float stackSpacing = 36f;
+
+    [Header("Trigger Timing")]
+    [Tooltip("奖励事件触发后，延迟多久再开始弹窗（秒）。可用于等任务窗口关闭后再弹出。")]
+    [Min(0f)]
+    [SerializeField] private float popupDelay = 0f;
 
     [Header("Content")]
     [SerializeField] private string amountPrefix = "+";
-    [SerializeField] private List<ItemPopupStyle> itemStyles = new List<ItemPopupStyle>();
+
+    [Tooltip("在这里折叠配置每个 item 的显示名和图标。")]
+    [SerializeField] private List<ItemPopupConfig> itemConfigs = new List<ItemPopupConfig>();
 
     private InventorySystem inventory;
     private readonly List<RectTransform> liveEntries = new List<RectTransform>();
+
+    private void Awake()
+    {
+        if (popupTemplate != null && popupTemplate.activeSelf)
+        {
+            popupTemplate.SetActive(false);
+        }
+    }
 
     private void OnEnable()
     {
@@ -43,24 +66,12 @@ public class TaskRewardPopupUI : MonoBehaviour
 
     private void Start()
     {
-        if (popupTemplate != null && popupTemplate.activeSelf)
-        {
-            popupTemplate.SetActive(false);
-        }
-    }
-
-    private void Update()
-    {
         TryBindInventory();
     }
 
     private void OnDisable()
     {
-        if (inventory != null)
-        {
-            inventory.OnTaskRewardAdded -= HandleTaskRewardAdded;
-            inventory = null;
-        }
+        UnbindInventory();
     }
 
     private void TryBindInventory()
@@ -70,17 +81,24 @@ public class TaskRewardPopupUI : MonoBehaviour
             return;
         }
 
-        if (inventory != null)
-        {
-            inventory.OnTaskRewardAdded -= HandleTaskRewardAdded;
-        }
+        UnbindInventory();
 
         inventory = InventorySystem.Instance;
-
         if (inventory != null)
         {
             inventory.OnTaskRewardAdded += HandleTaskRewardAdded;
         }
+    }
+
+    private void UnbindInventory()
+    {
+        if (inventory == null)
+        {
+            return;
+        }
+
+        inventory.OnTaskRewardAdded -= HandleTaskRewardAdded;
+        inventory = null;
     }
 
     private void HandleTaskRewardAdded(string itemId, int amount)
@@ -88,6 +106,21 @@ public class TaskRewardPopupUI : MonoBehaviour
         if (!isActiveAndEnabled || amount <= 0)
         {
             return;
+        }
+
+        StartCoroutine(ShowPopupWithDelay(itemId, amount));
+    }
+
+    private IEnumerator ShowPopupWithDelay(string itemId, int amount)
+    {
+        if (popupDelay > 0f)
+        {
+            yield return new WaitForSecondsRealtime(popupDelay);
+        }
+
+        if (!isActiveAndEnabled)
+        {
+            yield break;
         }
 
         ShowPopup(itemId, amount);
@@ -108,53 +141,49 @@ public class TaskRewardPopupUI : MonoBehaviour
             return;
         }
 
-        GameObject popupObj = Instantiate(popupTemplate, parent);
-        popupObj.SetActive(true);
+        GameObject popupObject = Instantiate(popupTemplate, parent);
+        popupObject.SetActive(true);
 
-        RectTransform rect = popupObj.GetComponent<RectTransform>();
+        TaskRewardPopupEntry entry = popupObject.GetComponent<TaskRewardPopupEntry>();
+        if (entry == null)
+        {
+            Debug.LogWarning($"[{nameof(TaskRewardPopupUI)}] popupTemplate missing TaskRewardPopupEntry.", popupObject);
+            Destroy(popupObject);
+            return;
+        }
+
+        RectTransform rect = popupObject.GetComponent<RectTransform>();
         if (rect != null)
         {
             liveEntries.Add(rect);
             RepositionLiveEntries();
         }
 
-        CanvasGroup canvasGroup = popupObj.GetComponent<CanvasGroup>();
+        CanvasGroup canvasGroup = popupObject.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
-            canvasGroup = popupObj.AddComponent<CanvasGroup>();
+            canvasGroup = popupObject.AddComponent<CanvasGroup>();
         }
 
-        TMP_Text text = popupObj.GetComponentInChildren<TMP_Text>(true);
-        if (text != null)
+        ItemPopupConfig config = FindItemConfig(itemId);
+        string itemName = config != null && !string.IsNullOrEmpty(config.displayName)
+            ? config.displayName
+            : itemId;
+
+        Sprite itemIcon = config != null ? config.icon : null;
+        if (config == null)
         {
-            text.text = $"{amountPrefix}{amount} {ResolveDisplayName(itemId)}";
+            Debug.LogWarning($"[{nameof(TaskRewardPopupUI)}] Missing item config for reward id '{itemId}'.", this);
         }
 
-        Image iconImage = popupObj.GetComponentInChildren<Image>(true);
-        ItemPopupStyle style = itemStyles.Find(x => x != null && x.itemId == itemId);
-        if (iconImage != null)
-        {
-            if (style != null && style.icon != null)
-            {
-                iconImage.sprite = style.icon;
-                iconImage.color = Color.white;
-            }
-            else
-            {
-                // 没配置图标时隐藏 icon（避免显示错图）
-                if (iconImage.gameObject != popupObj)
-                {
-                    iconImage.color = new Color(1f, 1f, 1f, 0f);
-                }
-            }
-        }
+        entry.SetContent(itemName, amount, itemIcon, amountPrefix);
 
-        StartCoroutine(AnimateAndRecycle(rect, canvasGroup, popupObj));
+        StartCoroutine(AnimateAndDestroy(rect, canvasGroup, popupObject));
     }
 
-    private IEnumerator AnimateAndRecycle(RectTransform rect, CanvasGroup canvasGroup, GameObject popupObj)
+    private IEnumerator AnimateAndDestroy(RectTransform rect, CanvasGroup canvasGroup, GameObject popupObject)
     {
-        Vector2 basePos = rect != null ? rect.anchoredPosition : Vector2.zero;
+        Vector2 basePosition = rect != null ? rect.anchoredPosition : Vector2.zero;
         float timer = 0f;
 
         while (timer < fadeDuration)
@@ -167,7 +196,7 @@ public class TaskRewardPopupUI : MonoBehaviour
 
             if (rect != null)
             {
-                rect.anchoredPosition = basePos + Vector2.up * (moveDistance * moveT);
+                rect.anchoredPosition = basePosition + Vector2.up * (moveDistance * moveT);
             }
 
             if (canvasGroup != null)
@@ -184,9 +213,9 @@ public class TaskRewardPopupUI : MonoBehaviour
             RepositionLiveEntries();
         }
 
-        if (popupObj != null)
+        if (popupObject != null)
         {
-            Destroy(popupObj);
+            Destroy(popupObject);
         }
     }
 
@@ -200,20 +229,35 @@ public class TaskRewardPopupUI : MonoBehaviour
                 continue;
             }
 
-            Vector2 anchored = rect.anchoredPosition;
-            anchored.y = -stackSpacing * i;
-            rect.anchoredPosition = anchored;
+            Vector2 pos = rect.anchoredPosition;
+            pos.y = -stackSpacing * i;
+            rect.anchoredPosition = pos;
         }
     }
 
-    private string ResolveDisplayName(string itemId)
+    private ItemPopupConfig FindItemConfig(string itemId)
     {
-        ItemPopupStyle style = itemStyles.Find(x => x != null && x.itemId == itemId);
-        if (style != null && !string.IsNullOrEmpty(style.displayName))
+        if (string.IsNullOrEmpty(itemId) || itemConfigs == null)
         {
-            return style.displayName;
+            return null;
         }
 
-        return itemId;
+        string normalizedTarget = itemId.Trim();
+
+        for (int i = 0; i < itemConfigs.Count; i++)
+        {
+            ItemPopupConfig config = itemConfigs[i];
+            if (config == null || string.IsNullOrWhiteSpace(config.itemId))
+            {
+                continue;
+            }
+
+            if (string.Equals(config.itemId.Trim(), normalizedTarget, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return config;
+            }
+        }
+
+        return null;
     }
 }
