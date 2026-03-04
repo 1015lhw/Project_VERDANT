@@ -1,0 +1,47 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Mac",
+  "BasePlatform": "Mac",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "1551306167",
+    "Type": "User",
+    "GUID": "{EB97643E-7E49-4895-8084-63C7446E1F96}",
+    "Language": "SFX",
+    "Hash": "{D8750996-F226-66BF-F21B-93D08329AF90}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
+    "ShortName": "UI",
+    "Path": "UI.bnk",
+    "Media": [
+     {
+      "Id": "515158065",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "UI Click-D3EG_02-01.wav",
+      "CachePath": "D1/{D10B2A6E-0654-B805-2CC8-2F1C814AE5E7}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "3486478797",
+      "Name": "Play_UI_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Event",
+      "GUID": "{1C03F633-E673-4B64-9A5C-2E9789D7B614}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.16",
+      "DurationMax": "0.16",
+      "MediaRefs": [
+       {
+        "Id": "515158065"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{B7965531-1F4E-D58B-3E77-3E1099C8BB3A}"
+ }
+}
