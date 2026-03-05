@@ -1,0 +1,31 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "393239870",
+    "Type": "User",
+    "GUID": "{1D52B1FE-D721-4299-8068-732132FF2E66}",
+    "Language": "SFX",
+    "Hash": "{E18CD619-77DB-76D3-4900-4D706CB4D4DC}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX",
+    "ShortName": "SFX",
+    "Path": "SFX.bnk",
+    "Media": [
+     {
+      "Id": "726232021",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "mixkit-walking-through-dry-forest-leaves-1222.wav",
+      "CachePath": "77/{77F068DE-6600-BDFF-6CC6-7FCB3F440A1B}.wem"
+     }
+    ]
+   }
+  ],
+  "FileHash": "{1A588652-ABB1-5A97-F776-2A7247E41AF7}"
+ }
+}

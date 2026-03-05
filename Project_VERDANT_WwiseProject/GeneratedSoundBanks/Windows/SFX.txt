@@ -1,0 +1,3 @@
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	726232021	Footstep	.cache\77\{77F068DE-6600-BDFF-6CC6-7FCB3F440A1B}.wem		\Containers\Default Work Unit\SFX\Footstep		220288
+

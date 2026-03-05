@@ -42,9 +42,59 @@
 										<MediaID ID="515158065"/>
 									</MediaIDList>
 								</AudioFileSource>
+								<AudioFileSource Name="mixkit-walking-through-dry-forest-leaves-1222" ID="{3F2C80FD-A109-4386-BC9E-69A2ADD0A279}">
+									<Language>SFX</Language>
+									<AudioFile>mixkit-walking-through-dry-forest-leaves-1222.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="290184297"/>
+									</MediaIDList>
+								</AudioFileSource>
 							</ChildrenList>
 							<ActiveSourceList>
-								<ActiveSource Name="UI Click-D3EG_02-01" ID="{934CD42C-30F4-49F9-938A-25FF82AC4112}" Platform="Linked"/>
+								<ActiveSource Name="mixkit-walking-through-dry-forest-leaves-1222" ID="{3F2C80FD-A109-4386-BC9E-69A2ADD0A279}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
+				<RandomSequenceContainer Name="SFX" ID="{F53F5BB9-6C82-4411-9316-355FC2431CFD}" ShortID="219666540">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Footstep" ID="{5C4E279C-FB12-4B9E-8577-67DBC21076D6}" ShortID="394000487">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="mixkit-walking-through-dry-forest-leaves-1222" ID="{9B9926D0-BD24-4318-855A-76D33F6D8ED1}">
+									<PropertyList>
+										<Property Name="CrossfadeDuration" Type="Real64" Value="0.05"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="15.8242561443198"/>
+										<Property Name="TrimEnd" Type="Real64" Value="17.1047716641763"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>mixkit-walking-through-dry-forest-leaves-1222.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="726232021"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="mixkit-walking-through-dry-forest-leaves-1222" ID="{9B9926D0-BD24-4318-855A-76D33F6D8ED1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
