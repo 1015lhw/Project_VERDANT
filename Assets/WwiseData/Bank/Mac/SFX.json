@@ -1,0 +1,45 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Mac",
+  "BasePlatform": "Mac",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "393239870",
+    "Type": "User",
+    "GUID": "{1D52B1FE-D721-4299-8068-732132FF2E66}",
+    "Language": "SFX",
+    "Hash": "{6B82FAA7-9AD0-D379-E1F9-273708BB653D}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX",
+    "ShortName": "SFX",
+    "Path": "SFX.bnk",
+    "Media": [
+     {
+      "Id": "726232021",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "mixkit-walking-through-dry-forest-leaves-1222.wav",
+      "CachePath": "75/{752425CA-B5E4-F5C8-CCED-2EB7D7766BC1}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "1927605590",
+      "Name": "Play_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Event",
+      "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "726232021"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{083CD056-D28D-0974-7076-CF33CE30A39C}"
+ }
+}

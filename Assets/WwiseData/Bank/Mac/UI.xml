@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
+	<SoundBanks>
+		<SoundBank Id="1551306167" Type="User" GUID="{EB97643E-7E49-4895-8084-63C7446E1F96}" Language="SFX" Hash="{1A47F40D-2EAF-4C8C-516E-6441DB8F5F69}">
+			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
+			<ShortName>UI</ShortName>
+			<Path>UI.bnk</Path>
+			<Media>
+				<File Id="290184297" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>mixkit-walking-through-dry-forest-leaves-1222.wav</ShortName>
+					<CachePath>5B/{5BA07652-9E7F-932E-1E56-B8FBCA8A29CD}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3486478797" Name="Play_UI_Event" ObjectPath="\Events\Default Work Unit\Play_UI_Event" GUID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" DurationType="OneShot" DurationMin="31.787188" DurationMax="31.787188">
+					<MediaRefs>
+						<MediaRef Id="290184297"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{13D9FBEB-A2AC-B640-67E8-51D4A70D4B95}</FileHash>
+</SoundBanksInfo>
