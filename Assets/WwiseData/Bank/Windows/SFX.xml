@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="393239870" Type="User" GUID="{1D52B1FE-D721-4299-8068-732132FF2E66}" Language="SFX" Hash="{6B82FAA7-9AD0-D379-E1F9-273708BB653D}">
+		<SoundBank Id="393239870" Type="User" GUID="{1D52B1FE-D721-4299-8068-732132FF2E66}" Language="SFX" Hash="{D776B6CA-C968-77AB-DD23-22955F151EC6}">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -17,8 +17,13 @@
 						<MediaRef Id="726232021"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2904546416" Name="Stop_Event" ObjectPath="\Events\Default Work Unit\Stop_Event" GUID="{996BE760-FB2B-4263-8E96-C798B0BA4CCF}" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0">
+					<MediaRefs>
+						<MediaRef Id="726232021"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{115BD4C6-3AFA-BD80-1356-1D77C79A7500}</FileHash>
+	<FileHash>{7873CB1C-D9BA-C8C2-0894-AD5AEF9FA772}</FileHash>
 </SoundBanksInfo>

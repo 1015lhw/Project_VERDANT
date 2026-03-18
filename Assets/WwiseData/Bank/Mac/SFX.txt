@@ -1,5 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
 	1927605590	Play_Event			\Default Work Unit\Play_Event	
+	2904546416	Stop_Event			\Default Work Unit\Stop_Event	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	726232021	Footstep	.cache\75\{752425CA-B5E4-F5C8-CCED-2EB7D7766BC1}.wem		\Containers\Default Work Unit\SFX\Footstep		225976

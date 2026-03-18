@@ -36,6 +36,20 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Stop_Event" ID="{996BE760-FB2B-4263-8E96-C798B0BA4CCF}">
+					<ChildrenList>
+						<Action Name="" ID="{A3F9C4B0-6A0E-4FD5-9A5F-E2D468EB70F5}" ShortID="862752813">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Footstep" ID="{5C4E279C-FB12-4B9E-8577-67DBC21076D6}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

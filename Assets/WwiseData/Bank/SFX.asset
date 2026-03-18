@@ -12,11 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3213ed949058a0d47826c5f3bd819e6d, type: 3}
   m_Name: SFX
   m_EditorClassIdentifier: AK.Wwise.Unity.Addressables::AK.Wwise.Unity.WwiseAddressables.WwiseAddressableSoundBank
-  m_dataPerPlatformList: []
+  m_dataPerPlatformList:
+  - WwisePlatform: Mac
+    LocalizedBankKeys:
+    - SFX
+    LocalizedBanksValues:
+    - m_AssetGUID: 88e15696f2296194d82fccc4cb89a656
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    LocalizedStreamingMediaKeys: []
+    LocalizedStreamingMediaValues:
+      localizedMediaList: []
+  - WwisePlatform: Windows
+    LocalizedBankKeys:
+    - SFX
+    LocalizedBanksValues:
+    - m_AssetGUID: 95d65f02b10221844800b92a490ea30a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    LocalizedStreamingMediaKeys: []
+    LocalizedStreamingMediaValues:
+      localizedMediaList: []
   currentPlatformAssets:
-    WwisePlatform: 
-    LocalizedBankKeys: []
-    LocalizedBanksValues: []
+    WwisePlatform: Windows
+    LocalizedBankKeys:
+    - SFX
+    LocalizedBanksValues:
+    - m_AssetGUID: 95d65f02b10221844800b92a490ea30a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
     LocalizedStreamingMediaKeys: []
     LocalizedStreamingMediaValues:
       localizedMediaList: []

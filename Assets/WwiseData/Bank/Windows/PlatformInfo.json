@@ -23,7 +23,7 @@
    "GenerateContentTxtFile": "true",
    "GenerateMetadataXML": "true",
    "GenerateMetadataJSON": "true",
-   "GenerateAllBanksMetadata": "false",
+   "GenerateAllBanksMetadata": "true",
    "GeneratePerBankMetadata": "true",
    "UseSoundBankNames": "true",
    "AllowExceedingMaxSize": "false",
@@ -33,6 +33,6 @@
    "PrintObjectPath": "true",
    "PrintObjectColor": "true"
   },
-  "FileHash": "{FFC80DCA-B2B8-3A6F-EC5C-9A9445ABC7C4}"
+  "FileHash": "{035D61C7-2CB9-3583-550A-036F3E1CC12D}"
  }
 }

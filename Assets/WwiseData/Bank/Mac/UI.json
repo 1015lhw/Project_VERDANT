@@ -10,18 +10,18 @@
     "Type": "User",
     "GUID": "{EB97643E-7E49-4895-8084-63C7446E1F96}",
     "Language": "SFX",
-    "Hash": "{1A47F40D-2EAF-4C8C-516E-6441DB8F5F69}",
+    "Hash": "{B09A5512-AC6F-D120-54EC-454F9A35C7A5}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
     "Media": [
      {
-      "Id": "290184297",
+      "Id": "515158065",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
-      "ShortName": "mixkit-walking-through-dry-forest-leaves-1222.wav",
-      "CachePath": "5B/{5BA07652-9E7F-932E-1E56-B8FBCA8A29CD}.wem"
+      "ShortName": "UI Click-D3EG_02-01.wav",
+      "CachePath": "90/{90628CAD-C8C6-2FEA-BA9D-DA6B65CDC291}.wem"
      }
     ],
     "Events": [
@@ -31,17 +31,17 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Event",
       "GUID": "{1C03F633-E673-4B64-9A5C-2E9789D7B614}",
       "DurationType": "OneShot",
-      "DurationMin": "31.787188",
-      "DurationMax": "31.787188",
+      "DurationMin": "0.16",
+      "DurationMax": "0.16",
       "MediaRefs": [
        {
-        "Id": "290184297"
+        "Id": "515158065"
        }
       ]
      }
     ]
    }
   ],
-  "FileHash": "{C8DCE093-B6BB-6F5B-AB49-E12ECD406052}"
+  "FileHash": "{47F1BD62-2F66-307E-320E-259D48BC90C3}"
  }
 }

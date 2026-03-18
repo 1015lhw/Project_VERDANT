@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
+	<RootPaths>
+		<ProjectRoot>../../../../Project_VERDANT_WwiseProject</ProjectRoot>
+		<SourceFilesRoot>../../../../Project_VERDANT_WwiseProject/.cache</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>../../../../Project_VERDANT_WwiseProject/GeneratedSoundBanks/Mac</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="393239870" Type="User" GUID="{1D52B1FE-D721-4299-8068-732132FF2E66}" Language="SFX" Hash="{D776B6CA-C968-77AB-DD23-22955F151EC6}">
+			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
+			<ShortName>SFX</ShortName>
+			<Path>SFX.bnk</Path>
+			<Media>
+				<File Id="726232021" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>mixkit-walking-through-dry-forest-leaves-1222.wav</ShortName>
+					<CachePath>75/{752425CA-B5E4-F5C8-CCED-2EB7D7766BC1}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="1927605590" Name="Play_Event" ObjectPath="\Events\Default Work Unit\Play_Event" GUID="{AB37C689-09E7-4140-A9BE-88080288B488}" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="726232021"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2904546416" Name="Stop_Event" ObjectPath="\Events\Default Work Unit\Stop_Event" GUID="{996BE760-FB2B-4263-8E96-C798B0BA4CCF}" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0">
+					<MediaRefs>
+						<MediaRef Id="726232021"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{5A97FE10-F211-A414-AC9C-45BC9BEB84D5}">
+			<ObjectPath>\SoundBanks\Default Work Unit\Amb</ObjectPath>
+			<ShortName>Amb</ShortName>
+			<Path>Amb.bnk</Path>
+			<Media>
+				<File Id="400838026" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav</ShortName>
+					<CachePath>62/{62C0DB44-5EBA-BF70-B981-9A464704200E}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2959533290" Name="Play_Amb" ObjectPath="\Events\Default Work Unit\Play_Amb" GUID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}" DurationType="OneShot" DurationMin="127.74458" DurationMax="127.74458">
+					<MediaRefs>
+						<MediaRef Id="400838026"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="1355168291" Type="User" GUID="{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}" Language="SFX" Hash="{8CBC2CD0-42C0-9F20-AFE8-5201E29BE1BB}">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" ObjectPath="\Devices\Default Work Unit\No_Output" GUID="{CE10463F-D21D-46BF-86B6-C19C2F9356DD}" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" ObjectPath="\Devices\Default Work Unit\System" GUID="{690408DA-68F3-4CDE-8AE7-B98E5ABD5C3C}" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="2246998526" Name="Main Audio Bus" ObjectPath="\Busses\Default Work Unit\Main Audio Bus" GUID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"/>
+			</Busses>
+		</SoundBank>
+		<SoundBank Id="1551306167" Type="User" GUID="{EB97643E-7E49-4895-8084-63C7446E1F96}" Language="SFX" Hash="{B09A5512-AC6F-D120-54EC-454F9A35C7A5}">
+			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
+			<ShortName>UI</ShortName>
+			<Path>UI.bnk</Path>
+			<Media>
+				<File Id="515158065" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>UI Click-D3EG_02-01.wav</ShortName>
+					<CachePath>90/{90628CAD-C8C6-2FEA-BA9D-DA6B65CDC291}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3486478797" Name="Play_UI_Event" ObjectPath="\Events\Default Work Unit\Play_UI_Event" GUID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" DurationType="OneShot" DurationMin="0.16" DurationMax="0.16">
+					<MediaRefs>
+						<MediaRef Id="515158065"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{6318C5FC-5B2A-DE60-7E02-74C876CE3A09}</FileHash>
+</SoundBanksInfo>

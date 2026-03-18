@@ -1,0 +1,178 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "RootPaths": {
+   "ProjectRoot": "../../../../Project_VERDANT_WwiseProject",
+   "SourceFilesRoot": "../../../../Project_VERDANT_WwiseProject/.cache",
+   "SoundBanksRoot": ".",
+   "ExternalSourcesInputFile": "",
+   "ExternalSourcesOutputRoot": "../../../../Project_VERDANT_WwiseProject/GeneratedSoundBanks/Windows"
+  },
+  "DialogueEvents": [],
+  "SoundBanks": [
+   {
+    "Id": "393239870",
+    "Type": "User",
+    "GUID": "{1D52B1FE-D721-4299-8068-732132FF2E66}",
+    "Language": "SFX",
+    "Hash": "{D776B6CA-C968-77AB-DD23-22955F151EC6}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX",
+    "ShortName": "SFX",
+    "Path": "SFX.bnk",
+    "Media": [
+     {
+      "Id": "726232021",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "mixkit-walking-through-dry-forest-leaves-1222.wav",
+      "CachePath": "75/{752425CA-B5E4-F5C8-CCED-2EB7D7766BC1}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "1927605590",
+      "Name": "Play_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Event",
+      "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "726232021"
+       }
+      ]
+     },
+     {
+      "Id": "2904546416",
+      "Name": "Stop_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Event",
+      "GUID": "{996BE760-FB2B-4263-8E96-C798B0BA4CCF}",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "MediaRefs": [
+       {
+        "Id": "726232021"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "Id": "1117531639",
+    "Type": "User",
+    "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
+    "Language": "SFX",
+    "Hash": "{5A97FE10-F211-A414-AC9C-45BC9BEB84D5}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
+    "ShortName": "Amb",
+    "Path": "Amb.bnk",
+    "Media": [
+     {
+      "Id": "400838026",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav",
+      "CachePath": "62/{62C0DB44-5EBA-BF70-B981-9A464704200E}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "2959533290",
+      "Name": "Play_Amb",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Amb",
+      "GUID": "{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}",
+      "DurationType": "OneShot",
+      "DurationMin": "127.74458",
+      "DurationMax": "127.74458",
+      "MediaRefs": [
+       {
+        "Id": "400838026"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "Id": "1355168291",
+    "Type": "User",
+    "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
+    "Language": "SFX",
+    "Hash": "{CDE9AC3D-2B42-1217-02C1-D64576EB9AF6}",
+    "ObjectPath": "Init",
+    "ShortName": "Init",
+    "Path": "Init.bnk",
+    "Plugins": {
+     "AudioDevices": [
+      {
+       "Id": "2317455096",
+       "Name": "No_Output",
+       "ObjectPath": "\\Devices\\Default Work Unit\\No_Output",
+       "GUID": "{CE10463F-D21D-46BF-86B6-C19C2F9356DD}",
+       "LibName": "No Output",
+       "LibId": "11862023"
+      },
+      {
+       "Id": "3859886410",
+       "Name": "System",
+       "ObjectPath": "\\Devices\\Default Work Unit\\System",
+       "GUID": "{690408DA-68F3-4CDE-8AE7-B98E5ABD5C3C}",
+       "LibName": "System",
+       "LibId": "11403271"
+      }
+     ]
+    },
+    "Busses": [
+     {
+      "Id": "2246998526",
+      "Name": "Main Audio Bus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus",
+      "GUID": "{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"
+     }
+    ]
+   },
+   {
+    "Id": "1551306167",
+    "Type": "User",
+    "GUID": "{EB97643E-7E49-4895-8084-63C7446E1F96}",
+    "Language": "SFX",
+    "Hash": "{B09A5512-AC6F-D120-54EC-454F9A35C7A5}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
+    "ShortName": "UI",
+    "Path": "UI.bnk",
+    "Media": [
+     {
+      "Id": "515158065",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "UI Click-D3EG_02-01.wav",
+      "CachePath": "90/{90628CAD-C8C6-2FEA-BA9D-DA6B65CDC291}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "3486478797",
+      "Name": "Play_UI_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Event",
+      "GUID": "{1C03F633-E673-4B64-9A5C-2E9789D7B614}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.16",
+      "DurationMax": "0.16",
+      "MediaRefs": [
+       {
+        "Id": "515158065"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{F96E65B1-DF99-A178-2C8E-F1C1D540297E}"
+ }
+}

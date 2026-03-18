@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{1D52B1FE-D721-4299-8068-732132FF2E66}",
     "Language": "SFX",
-    "Hash": "{6B82FAA7-9AD0-D379-E1F9-273708BB653D}",
+    "Hash": "{D776B6CA-C968-77AB-DD23-22955F151EC6}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX",
     "ShortName": "SFX",
     "Path": "SFX.bnk",
@@ -36,10 +36,25 @@
         "Id": "726232021"
        }
       ]
+     },
+     {
+      "Id": "2904546416",
+      "Name": "Stop_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Event",
+      "GUID": "{996BE760-FB2B-4263-8E96-C798B0BA4CCF}",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "MediaRefs": [
+       {
+        "Id": "726232021"
+       }
+      ]
      }
     ]
    }
   ],
-  "FileHash": "{FF512475-4D26-C6C2-0E43-9FAB40B791AC}"
+  "FileHash": "{4634C1C1-7F24-ABD8-F494-7384F72BAC18}"
  }
 }
