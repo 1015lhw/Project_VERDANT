@@ -77,6 +77,8 @@ public class OpeningSequenceManager : MonoBehaviour
 
     private Coroutine sequenceCoroutine;
     private Coroutine noticeCoroutine;
+    private int currentSlideIndex = -1;
+    private ComicSlide currentSlideRuntime;
     private float skipHoldTimer;
     private readonly List<Image> activeSubComicImages = new List<Image>();
     private readonly List<Image> runtimeCreatedSubComicImages = new List<Image>();
@@ -167,6 +169,8 @@ public class OpeningSequenceManager : MonoBehaviour
         {
             StopCoroutine(sequenceCoroutine);
             sequenceCoroutine = null;
+            currentSlideIndex = -1;
+            currentSlideRuntime = null;
             OpeningLock.IsLocked = false;
         }
 
@@ -186,6 +190,9 @@ public class OpeningSequenceManager : MonoBehaviour
         for (int i = 0; i < slides.Length; i++)
         {
             ComicSlide currentSlide = slides[i];
+            currentSlideIndex = i;
+            currentSlideRuntime = currentSlide;
+
             if (currentSlide == null)
             {
                 continue;
@@ -510,6 +517,8 @@ public class OpeningSequenceManager : MonoBehaviour
         }
 
         UpdateSkipUI(0f);
+        currentSlideIndex = -1;
+        currentSlideRuntime = null;
         sequenceCoroutine = null;
 
         if (TryStartForcedDialogue())
@@ -677,4 +686,9 @@ public class OpeningSequenceManager : MonoBehaviour
 
         return false;
     }
+
+    public int CurrentSlideIndex => currentSlideIndex;
+    public ComicSlide CurrentSlide => currentSlideRuntime;
+    public AudioClip CurrentSlideVoice => currentSlideRuntime != null ? currentSlideRuntime.voice : null;
+    public bool IsSequenceRunning => sequenceCoroutine != null;
 }
