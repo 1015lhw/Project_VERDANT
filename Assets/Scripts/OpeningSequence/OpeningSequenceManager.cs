@@ -677,4 +677,5 @@ public class OpeningSequenceManager : MonoBehaviour
 
         return false;
     }
+
 }
