@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{5A97FE10-F211-A414-AC9C-45BC9BEB84D5}">
+		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{1DC8BE34-5545-5019-58C7-372C2CCA92AC}">
 			<ObjectPath>\SoundBanks\Default Work Unit\Amb</ObjectPath>
 			<ShortName>Amb</ShortName>
 			<Path>Amb.bnk</Path>
 			<Media>
 				<File Id="400838026" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav</ShortName>
-					<CachePath>62/{62C0DB44-5EBA-BF70-B981-9A464704200E}.wem</CachePath>
+					<CachePath>AE/{AE9BD1CE-5782-2FF0-AF87-4EF54CBED44D}.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
-				<Event Id="2959533290" Name="Play_Amb" ObjectPath="\Events\Default Work Unit\Play_Amb" GUID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}" DurationType="OneShot" DurationMin="127.74458" DurationMax="127.74458">
+				<Event Id="2959533290" Name="Play_Amb" ObjectPath="\Events\Default Work Unit\Play_Amb" GUID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="400838026"/>
 					</MediaRefs>
@@ -20,5 +20,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{9E6AF9BE-5169-F021-4A59-C0DF7CBDA475}</FileHash>
+	<FileHash>{A7C4AD24-8AA7-33F7-C7BB-0F6D82C60DB2}</FileHash>
 </SoundBanksInfo>

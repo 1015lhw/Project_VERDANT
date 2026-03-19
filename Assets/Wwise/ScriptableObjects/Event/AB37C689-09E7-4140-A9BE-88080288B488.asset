@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b620b0f6853a458dd298fa43bfdb0, type: 3}
   m_Name: AB37C689-09E7-4140-A9BE-88080288B488
   m_EditorClassIdentifier: AK.Wwise.Unity.API.WwiseTypes::WwiseEventReference
-  objectName: Play_Event
-  id: 1927605590
+  objectName: Play_Footstep_Event
+  id: 2024329721
   guid: AB37C689-09E7-4140-A9BE-88080288B488
-  AutoBank: {fileID: 0}
-  IsInUserDefinedSoundBank: 1
+  AutoBank: {fileID: 11400000, guid: f9fae3cd04e32b742afa1d052959be9c, type: 2}
+  IsInUserDefinedSoundBank: 0

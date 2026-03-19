@@ -14,12 +14,12 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_Event" ID="{AB37C689-09E7-4140-A9BE-88080288B488}">
+				<Event Name="Play_Footstep_Event" ID="{AB37C689-09E7-4140-A9BE-88080288B488}">
 					<ChildrenList>
-						<Action Name="" ID="{D145AB4C-20EB-4AFF-B176-954EC4F555BA}" ShortID="172580024">
+						<Action Name="" ID="{D2E8E079-C2BF-4FCF-AFE6-0DD019E65671}" ShortID="623451051">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Footstep" ID="{5C4E279C-FB12-4B9E-8577-67DBC21076D6}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+									<ObjectRef Name="Random_Footstep" ID="{5F85986C-2E78-425B-A44E-B33230C064D1}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

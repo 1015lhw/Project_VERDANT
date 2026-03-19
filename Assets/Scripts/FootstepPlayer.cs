@@ -12,11 +12,13 @@ public class FootstepPlayer : MonoBehaviour
 
     private float stepTimer = 0f;
     private float stopTimer = 0f;
+    private Rigidbody rb;
     private Vector3 lastPosition;
 
     void Start()
     {
-        lastPosition = transform.position;
+        rb = GetComponent<Rigidbody>();
+        lastPosition = rb.position;
 
         if (sfxBank != null)
         {
@@ -29,15 +31,16 @@ public class FootstepPlayer : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        float distanceMoved = Vector3.Distance(transform.position, lastPosition);
+        float distanceMoved = Vector3.Distance(rb.position, lastPosition);
         bool isMoving = distanceMoved > movementThreshold;
+        Debug.Log($"[Footstep Debug] distance: {distanceMoved:F5} | threshold: {movementThreshold} | isMoving: {isMoving} | stepTimer: {stepTimer:F2}");
 
         if (isMoving)
         {
             stopTimer = 0f;
-            stepTimer += Time.deltaTime;
+            stepTimer += Time.fixedDeltaTime;
 
             if (stepTimer >= stepInterval)
             {
@@ -56,16 +59,17 @@ public class FootstepPlayer : MonoBehaviour
         }
         else
         {
-            stopTimer += Time.deltaTime;
+            stopTimer += Time.fixedDeltaTime;
 
             if (stopTimer >= stopGraceTime)
             {
-                stopfootstepEvent.Post(gameObject);
+                //stopfootstepEvent.Post(gameObject);
                 Debug.Log("Footstep stoped");
                 stepTimer = 0f;
             }
         }
 
-        lastPosition = transform.position;
+        lastPosition = rb.position;
     }
+
 }

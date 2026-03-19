@@ -2,5 +2,5 @@ Event	ID	Name			Wwise Object Path	Notes
 	2959533290	Play_Amb			\Default Work Unit\Play_Amb	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	400838026	BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2	.cache\62\{62C0DB44-5EBA-BF70-B981-9A464704200E}.wem		\Containers\Default Work Unit\Amb\BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2		22534240
+	400838026	BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2	.cache\AE\{AE9BD1CE-5782-2FF0-AF87-4EF54CBED44D}.wem		\Containers\Default Work Unit\Amb\BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2		22534240
 

@@ -18,7 +18,7 @@
     "Type": "User",
     "GUID": "{1D52B1FE-D721-4299-8068-732132FF2E66}",
     "Language": "SFX",
-    "Hash": "{D776B6CA-C968-77AB-DD23-22955F151EC6}",
+    "Hash": "{AC4472E8-44E3-F3DC-A426-ED2B9A922C2A}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX",
     "ShortName": "SFX",
     "Path": "SFX.bnk",
@@ -33,18 +33,6 @@
      }
     ],
     "Events": [
-     {
-      "Id": "1927605590",
-      "Name": "Play_Event",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Event",
-      "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
-      "DurationType": "Infinite",
-      "MediaRefs": [
-       {
-        "Id": "726232021"
-       }
-      ]
-     },
      {
       "Id": "2904546416",
       "Name": "Stop_Event",
@@ -67,7 +55,7 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{5A97FE10-F211-A414-AC9C-45BC9BEB84D5}",
+    "Hash": "{1DC8BE34-5545-5019-58C7-372C2CCA92AC}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
@@ -78,7 +66,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav",
-      "CachePath": "62/{62C0DB44-5EBA-BF70-B981-9A464704200E}.wem"
+      "CachePath": "AE/{AE9BD1CE-5782-2FF0-AF87-4EF54CBED44D}.wem"
      }
     ],
     "Events": [
@@ -87,9 +75,7 @@
       "Name": "Play_Amb",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Amb",
       "GUID": "{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}",
-      "DurationType": "OneShot",
-      "DurationMin": "127.74458",
-      "DurationMax": "127.74458",
+      "DurationType": "Infinite",
       "MediaRefs": [
        {
         "Id": "400838026"
@@ -171,8 +157,81 @@
       ]
      }
     ]
+   },
+   {
+    "Id": "2024329721",
+    "Type": "Event",
+    "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
+    "Language": "SFX",
+    "Hash": "{D24AB4E6-B496-007E-D847-D50E0E787884}",
+    "ObjectPath": "Play_Footstep_Event",
+    "ShortName": "Play_Footstep_Event",
+    "Path": "Event/Play_Footstep_Event.bnk",
+    "Media": [
+     {
+      "Id": "257642921",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 01    [007303].wav",
+      "Path": "Media/257642921.wem",
+      "CachePath": "BF/{BF3E0779-3D70-EBEF-BC16-2A8324F516B4}.wem"
+     },
+     {
+      "Id": "479781397",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 05    [007307].wav",
+      "Path": "Media/479781397.wem",
+      "CachePath": "2E/{2E02538D-1595-88B9-3ECA-49AEB53FC49B}.wem"
+     },
+     {
+      "Id": "532864313",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 03    [007305].wav",
+      "Path": "Media/532864313.wem",
+      "CachePath": "5D/{5D7F7EF1-DC69-93D5-1DC0-21469815A8E0}.wem"
+     },
+     {
+      "Id": "837251483",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 07    [007309].wav",
+      "Path": "Media/837251483.wem",
+      "CachePath": "E0/{E0ECD6E4-9A46-5618-1F38-6DD4F6A17298}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "2024329721",
+      "Name": "Play_Footstep_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Footstep_Event",
+      "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.1651282",
+      "DurationMax": "0.17230769",
+      "MediaRefs": [
+       {
+        "Id": "257642921"
+       },
+       {
+        "Id": "479781397"
+       },
+       {
+        "Id": "532864313"
+       },
+       {
+        "Id": "837251483"
+       }
+      ]
+     }
+    ]
    }
   ],
-  "FileHash": "{F96E65B1-DF99-A178-2C8E-F1C1D540297E}"
+  "FileHash": "{8D637D09-CDA8-8C30-EB8C-29564538613D}"
  }
 }

@@ -15,8 +15,23 @@ MonoBehaviour:
   m_GroupName: WwiseData_Mac
   m_GUID: 3f180d3c81cd40449aab37f0dd9b53ce
   m_SerializeEntries:
+  - m_GUID: 08c421027e24cdc45b89b73f95a3425d
+    m_Address: Assets/WwiseData/Bank/Mac/Media/532864313.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ae3a4c167776b24aa3bf7188fb4371c
+    m_Address: Assets/WwiseData/Bank/Mac/Media/257642921.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 21fda157831a1074f8fcfd718c94aecb
     m_Address: Assets/WwiseData/Bank/Mac/UI.bnk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 283dbd4ebc785c641a2f83e0bafeb377
+    m_Address: Assets/WwiseData/Bank/Mac/Media/837251483.wem
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -25,8 +40,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 920efca7c5abdae41a6a1fde48dd0278
+    m_Address: Assets/WwiseData/Bank/Mac/Event/Play_Footstep_Event.bnk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99fc2aacfeae0c544a35663deb94f706
     m_Address: Assets/WwiseData/Bank/Mac/Amb.bnk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8d6045b70a5ae64a88420a94f467b01
+    m_Address: Assets/WwiseData/Bank/Mac/Media/479781397.wem
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

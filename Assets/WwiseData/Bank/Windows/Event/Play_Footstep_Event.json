@@ -1,0 +1,84 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "2024329721",
+    "Type": "Event",
+    "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
+    "Language": "SFX",
+    "Hash": "{D24AB4E6-B496-007E-D847-D50E0E787884}",
+    "ObjectPath": "Play_Footstep_Event",
+    "ShortName": "Play_Footstep_Event",
+    "Path": "Event/Play_Footstep_Event.bnk",
+    "Media": [
+     {
+      "Id": "257642921",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 01    [007303].wav",
+      "Path": "Media/257642921.wem",
+      "CachePath": "BF/{BF3E0779-3D70-EBEF-BC16-2A8324F516B4}.wem"
+     },
+     {
+      "Id": "479781397",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 05    [007307].wav",
+      "Path": "Media/479781397.wem",
+      "CachePath": "2E/{2E02538D-1595-88B9-3ECA-49AEB53FC49B}.wem"
+     },
+     {
+      "Id": "532864313",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 03    [007305].wav",
+      "Path": "Media/532864313.wem",
+      "CachePath": "5D/{5D7F7EF1-DC69-93D5-1DC0-21469815A8E0}.wem"
+     },
+     {
+      "Id": "837251483",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 07    [007309].wav",
+      "Path": "Media/837251483.wem",
+      "CachePath": "E0/{E0ECD6E4-9A46-5618-1F38-6DD4F6A17298}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "2024329721",
+      "Name": "Play_Footstep_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Footstep_Event",
+      "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.1651282",
+      "DurationMax": "0.17230769",
+      "MediaRefs": [
+       {
+        "Id": "257642921"
+       },
+       {
+        "Id": "479781397"
+       },
+       {
+        "Id": "532864313"
+       },
+       {
+        "Id": "837251483"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{356FA34D-29DA-D554-3A1F-E81427E003D4}"
+ }
+}

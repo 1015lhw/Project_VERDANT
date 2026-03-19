@@ -1,5 +1,4 @@
 Event	ID	Name			Wwise Object Path	Notes
-	1927605590	Play_Event			\Default Work Unit\Play_Event	
 	2904546416	Stop_Event			\Default Work Unit\Stop_Event	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size

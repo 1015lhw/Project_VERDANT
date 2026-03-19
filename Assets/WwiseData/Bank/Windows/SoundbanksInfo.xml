@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Type="User" GUID="{1D52B1FE-D721-4299-8068-732132FF2E66}" Language="SFX" Hash="{D776B6CA-C968-77AB-DD23-22955F151EC6}">
+		<SoundBank Id="393239870" Type="User" GUID="{1D52B1FE-D721-4299-8068-732132FF2E66}" Language="SFX" Hash="{AC4472E8-44E3-F3DC-A426-ED2B9A922C2A}">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -20,11 +20,6 @@
 				</File>
 			</Media>
 			<Events>
-				<Event Id="1927605590" Name="Play_Event" ObjectPath="\Events\Default Work Unit\Play_Event" GUID="{AB37C689-09E7-4140-A9BE-88080288B488}" DurationType="Infinite">
-					<MediaRefs>
-						<MediaRef Id="726232021"/>
-					</MediaRefs>
-				</Event>
 				<Event Id="2904546416" Name="Stop_Event" ObjectPath="\Events\Default Work Unit\Stop_Event" GUID="{996BE760-FB2B-4263-8E96-C798B0BA4CCF}" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0">
 					<MediaRefs>
 						<MediaRef Id="726232021"/>
@@ -32,18 +27,18 @@
 				</Event>
 			</Events>
 		</SoundBank>
-		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{5A97FE10-F211-A414-AC9C-45BC9BEB84D5}">
+		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{1DC8BE34-5545-5019-58C7-372C2CCA92AC}">
 			<ObjectPath>\SoundBanks\Default Work Unit\Amb</ObjectPath>
 			<ShortName>Amb</ShortName>
 			<Path>Amb.bnk</Path>
 			<Media>
 				<File Id="400838026" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav</ShortName>
-					<CachePath>62/{62C0DB44-5EBA-BF70-B981-9A464704200E}.wem</CachePath>
+					<CachePath>AE/{AE9BD1CE-5782-2FF0-AF87-4EF54CBED44D}.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
-				<Event Id="2959533290" Name="Play_Amb" ObjectPath="\Events\Default Work Unit\Play_Amb" GUID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}" DurationType="OneShot" DurationMin="127.74458" DurationMax="127.74458">
+				<Event Id="2959533290" Name="Play_Amb" ObjectPath="\Events\Default Work Unit\Play_Amb" GUID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="400838026"/>
 					</MediaRefs>
@@ -82,6 +77,43 @@
 				</Event>
 			</Events>
 		</SoundBank>
+		<SoundBank Id="2024329721" Type="Event" GUID="{AB37C689-09E7-4140-A9BE-88080288B488}" Language="SFX" Hash="{D24AB4E6-B496-007E-D847-D50E0E787884}">
+			<ObjectPath>Play_Footstep_Event</ObjectPath>
+			<ShortName>Play_Footstep_Event</ShortName>
+			<Path>Event/Play_Footstep_Event.bnk</Path>
+			<Media>
+				<File Id="257642921" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>Single Footstep - Grass Gravel Dirt Medium Impact Thud - 01    [007303].wav</ShortName>
+					<Path>Media/257642921.wem</Path>
+					<CachePath>BF/{BF3E0779-3D70-EBEF-BC16-2A8324F516B4}.wem</CachePath>
+				</File>
+				<File Id="479781397" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>Single Footstep - Grass Gravel Dirt Medium Impact Thud - 05    [007307].wav</ShortName>
+					<Path>Media/479781397.wem</Path>
+					<CachePath>2E/{2E02538D-1595-88B9-3ECA-49AEB53FC49B}.wem</CachePath>
+				</File>
+				<File Id="532864313" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>Single Footstep - Grass Gravel Dirt Medium Impact Thud - 03    [007305].wav</ShortName>
+					<Path>Media/532864313.wem</Path>
+					<CachePath>5D/{5D7F7EF1-DC69-93D5-1DC0-21469815A8E0}.wem</CachePath>
+				</File>
+				<File Id="837251483" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>Single Footstep - Grass Gravel Dirt Medium Impact Thud - 07    [007309].wav</ShortName>
+					<Path>Media/837251483.wem</Path>
+					<CachePath>E0/{E0ECD6E4-9A46-5618-1F38-6DD4F6A17298}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2024329721" Name="Play_Footstep_Event" ObjectPath="\Events\Default Work Unit\Play_Footstep_Event" GUID="{AB37C689-09E7-4140-A9BE-88080288B488}" DurationType="OneShot" DurationMin="0.1651282" DurationMax="0.17230769">
+					<MediaRefs>
+						<MediaRef Id="257642921"/>
+						<MediaRef Id="479781397"/>
+						<MediaRef Id="532864313"/>
+						<MediaRef Id="837251483"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
 	</SoundBanks>
-	<FileHash>{B2CAA729-AF28-4420-1C6A-7C98533C3AE1}</FileHash>
+	<FileHash>{76B43DCD-3288-0156-9752-B8BDA68E3DA0}</FileHash>
 </SoundBanksInfo>

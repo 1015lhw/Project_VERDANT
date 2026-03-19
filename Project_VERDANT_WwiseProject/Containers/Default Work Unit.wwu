@@ -97,6 +97,152 @@
 								<ActiveSource Name="mixkit-walking-through-dry-forest-leaves-1222" ID="{9B9926D0-BD24-4318-855A-76D33F6D8ED1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<RandomSequenceContainer Name="Random_Footstep" ID="{5F85986C-2E78-425B-A44E-B33230C064D1}" ShortID="551577852">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>12</Value>
+									</ValueList>
+								</Property>
+								<Property Name="MakeUpGain" Type="Real64">
+									<ValueList>
+										<Value>-1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-15</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Footstep_grass_01" ID="{D12D7F69-5E8E-4492-B8FD-E0CE31067BE8}" ShortID="253103901">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Single Footstep - Grass Gravel Dirt Medium Impact Thud - 01    [007303]" ID="{D6B222AA-3FE8-4EAD-B613-5623D287B965}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0123076923076923"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.0082051282051282"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.0112820512820513"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.178461538461539"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Single Footstep - Grass Gravel Dirt Medium Impact Thud - 01    [007303].wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="257642921"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Single Footstep - Grass Gravel Dirt Medium Impact Thud - 01    [007303]" ID="{D6B222AA-3FE8-4EAD-B613-5623D287B965}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Footstep_grass_02" ID="{0E7CCE65-10CC-4B3D-B5A1-7E26555F6482}" ShortID="288333135">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Single Footstep - Grass Gravel Dirt Medium Impact Thud - 03    [007305]" ID="{27F91797-59CD-4442-AEEA-1C0F34E6E4C2}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0184615384615385"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.0215384615384615"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.0153846153846154"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.18051282051282"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Single Footstep - Grass Gravel Dirt Medium Impact Thud - 03    [007305].wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="532864313"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Single Footstep - Grass Gravel Dirt Medium Impact Thud - 03    [007305]" ID="{27F91797-59CD-4442-AEEA-1C0F34E6E4C2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Footstep_grass_03" ID="{27C491D2-FBF0-4E2C-A53D-19C44AD8D326}" ShortID="644185766">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Single Footstep - Grass Gravel Dirt Medium Impact Thud - 05    [007307]" ID="{A7DE93BA-98AC-497E-9606-3B84BC644059}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0174358974358974"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.0164102564102564"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.00717948717948718"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.17948717948718"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Single Footstep - Grass Gravel Dirt Medium Impact Thud - 05    [007307].wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="479781397"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Single Footstep - Grass Gravel Dirt Medium Impact Thud - 05    [007307]" ID="{A7DE93BA-98AC-497E-9606-3B84BC644059}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Footstep_grass_04" ID="{30B80284-36E2-426E-B44C-002544E791F0}" ShortID="778684651">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Single Footstep - Grass Gravel Dirt Medium Impact Thud - 07    [007309]" ID="{F15FED56-3168-4D64-B3B2-9C206EA6A5EF}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0133333333333333"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.0164102564102564"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.0102564102564103"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.176410256410257"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Single Footstep - Grass Gravel Dirt Medium Impact Thud - 07    [007309].wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="837251483"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Single Footstep - Grass Gravel Dirt Medium Impact Thud - 07    [007309]" ID="{F15FED56-3168-4D64-B3B2-9C206EA6A5EF}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</RandomSequenceContainer>
 				<RandomSequenceContainer Name="Amb" ID="{4612F7F0-ED88-42E5-8B7D-EF738500D597}" ShortID="805815054">
@@ -110,6 +256,9 @@
 					</ReferenceList>
 					<ChildrenList>
 						<Sound Name="BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2" ID="{F12515EE-EEB0-42E8-9619-E2D8BD14D3F3}" ShortID="167224089">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>

@@ -15,8 +15,28 @@ MonoBehaviour:
   m_GroupName: WwiseData_Windows
   m_GUID: f2ef53d6f52f8eb4198c55fa731b5f65
   m_SerializeEntries:
+  - m_GUID: 2a81de6711c0932499e14a607941977b
+    m_Address: Assets/WwiseData/Bank/Windows/Media/257642921.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fc431c0989139a4d80badabf9a8c857
+    m_Address: Assets/WwiseData/Bank/Windows/Media/479781397.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 54ed15e65ba90d341b383a4a1fe1c00d
     m_Address: Assets/WwiseData/Bank/Windows/UI.bnk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65c954e426dab7746be30c0505f585c2
+    m_Address: Assets/WwiseData/Bank/Windows/Media/532864313.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cc443b5b075bbb41bbf1c2bd7bae0c2
+    m_Address: Assets/WwiseData/Bank/Windows/Event/Play_Footstep_Event.bnk
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -27,6 +47,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a03d16446ef808f4fa53e83775dd71e2
     m_Address: Assets/WwiseData/Bank/Windows/Amb.bnk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6066c48603bee04b84e016683376e27
+    m_Address: Assets/WwiseData/Bank/Windows/Media/837251483.wem
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
