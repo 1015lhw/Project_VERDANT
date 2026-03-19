@@ -42,6 +42,16 @@ public class TaskRewardPopupUI : MonoBehaviour
     [Min(0f)]
     [SerializeField] private float popupDelay = 0f;
 
+    [Header("Audio")]
+    [Tooltip("奖励弹窗出现时播放的音效。采摘和 Map 小游戏完成后弹出 RewardPopupTemplate 时会播放。")]
+    [SerializeField] private AudioClip popupSfx;
+
+    [Tooltip("用于播放奖励弹窗音效的 AudioSource。留空时会自动复用或挂载当前物体上的 AudioSource。")]
+    [SerializeField] private AudioSource popupAudioSource;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float popupSfxVolume = 1f;
+
     [Header("Content")]
     [SerializeField] private string amountPrefix = "+";
 
@@ -57,6 +67,8 @@ public class TaskRewardPopupUI : MonoBehaviour
         {
             popupTemplate.SetActive(false);
         }
+
+        EnsureAudioSource();
     }
 
     private void OnEnable()
@@ -177,8 +189,37 @@ public class TaskRewardPopupUI : MonoBehaviour
         }
 
         entry.SetContent(itemName, amount, itemIcon, amountPrefix);
+        PlayPopupSfx();
 
         StartCoroutine(AnimateAndDestroy(rect, canvasGroup, popupObject));
+    }
+
+    private void EnsureAudioSource()
+    {
+        if (popupAudioSource != null)
+        {
+            return;
+        }
+
+        popupAudioSource = GetComponent<AudioSource>();
+        if (popupAudioSource == null)
+        {
+            popupAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        popupAudioSource.playOnAwake = false;
+        popupAudioSource.loop = false;
+    }
+
+    private void PlayPopupSfx()
+    {
+        if (popupSfx == null)
+        {
+            return;
+        }
+
+        EnsureAudioSource();
+        popupAudioSource.PlayOneShot(popupSfx, popupSfxVolume);
     }
 
     private IEnumerator AnimateAndDestroy(RectTransform rect, CanvasGroup canvasGroup, GameObject popupObject)
