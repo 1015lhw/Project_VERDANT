@@ -259,7 +259,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5585307469116332521}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8331781049818283201}
+        m_TargetAssemblyTypeName: ButtonClickPlayer, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8331781049818283201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,10 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15818078881d0645b104e60abfe72d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIButtonWwiseClick
-  clickEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
 --- !u!114 &912672550566117265
 MonoBehaviour:
   m_ObjectHideFlags: 0

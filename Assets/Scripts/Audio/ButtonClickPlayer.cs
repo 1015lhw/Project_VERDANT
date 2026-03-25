@@ -2,27 +2,16 @@ using UnityEngine;
 
 public class ButtonClickPlayer : MonoBehaviour
 {
-    public AK.Wwise.Event clickEvent;
-    public AK.Wwise.Bank sfxBank;
+    string clickEventName = "Play_Click_Event";
 
-    void Start()
-    {
-        if (sfxBank != null)
-        {
-            sfxBank.Load();
-            Debug.Log("SFX bank loaded");
-        }
-        else
-        {
-            Debug.LogError("sfxBank is null");
-        }
-    }
+
 
     public void PlayClick()
     {
-        if (clickEvent != null)
+        if (clickEventName != null)
         {
-            clickEvent.Post(gameObject);
+            AkUnitySoundEngine.PostEvent(clickEventName, gameObject);
+            Debug.Log("Click audio played");
         }
         else
         {

@@ -19,8 +19,8 @@
 											<SegmentShape>Log2</SegmentShape>
 										</Point>
 										<Point>
-											<XPos>20.78709</XPos>
-											<YPos>-19.91046</YPos>
+											<XPos>20.9889</XPos>
+											<YPos>-22.48379</YPos>
 											<Flags>0</Flags>
 											<SegmentShape>Log2</SegmentShape>
 										</Point>
@@ -104,8 +104,8 @@
 											<SegmentShape>InvertedSCurve</SegmentShape>
 										</Point>
 										<Point>
-											<XPos>9.05433</XPos>
-											<YPos>10.20527</YPos>
+											<XPos>7.24347</XPos>
+											<YPos>9.68713</YPos>
 											<Flags>0</Flags>
 											<SegmentShape>Log2</SegmentShape>
 										</Point>

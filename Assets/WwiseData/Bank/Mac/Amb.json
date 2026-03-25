@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{EDF6073A-776C-C22B-CA12-C7E1F27B2915}",
+    "Hash": "{4AEB2515-B428-BC2F-6A79-C738BF680743}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
@@ -61,6 +61,6 @@
     ]
    }
   ],
-  "FileHash": "{755077FF-91BD-46FB-01E6-9DB2AC5202F9}"
+  "FileHash": "{B081CC4D-FD22-2D49-1BAB-A97C3B8FD1EE}"
  }
 }

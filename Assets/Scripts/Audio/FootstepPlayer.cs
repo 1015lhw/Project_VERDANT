@@ -20,22 +20,14 @@ public class FootstepPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         lastPosition = rb.position;
 
-        if (sfxBank != null)
-        {
-            sfxBank.Load();
-            Debug.Log("SFX bank loaded");
-        }
-        else
-        {
-            Debug.LogError("sfxBank is null");
-        }
+        
     }
 
     void FixedUpdate()
     {
         float distanceMoved = Vector3.Distance(rb.position, lastPosition);
         bool isMoving = distanceMoved > movementThreshold;
-        Debug.Log($"[Footstep Debug] distance: {distanceMoved:F5} | threshold: {movementThreshold} | isMoving: {isMoving} | stepTimer: {stepTimer:F2}");
+       
 
         if (isMoving)
         {
@@ -47,11 +39,11 @@ public class FootstepPlayer : MonoBehaviour
                 if (footstepEvent != null)
                 {
                     footstepEvent.Post(gameObject);
-                    Debug.Log("Footstep played");
+                    
                 }
                 else
                 {
-                    Debug.LogError("footstepEvent is null");
+                   
                 }
 
                 stepTimer = 0f;
@@ -64,7 +56,7 @@ public class FootstepPlayer : MonoBehaviour
             if (stopTimer >= stopGraceTime)
             {
                 //stopfootstepEvent.Post(gameObject);
-                Debug.Log("Footstep stoped");
+               
                 stepTimer = 0f;
             }
         }
