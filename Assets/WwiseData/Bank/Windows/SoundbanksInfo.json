@@ -55,7 +55,7 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{1DC8BE34-5545-5019-58C7-372C2CCA92AC}",
+    "Hash": "{EDF6073A-776C-C22B-CA12-C7E1F27B2915}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
@@ -66,7 +66,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav",
-      "CachePath": "AE/{AE9BD1CE-5782-2FF0-AF87-4EF54CBED44D}.wem"
+      "CachePath": "A8/{A85E1526-84ED-9FDF-B449-DFB2F16C2459}.wem"
+     },
+     {
+      "Id": "689453801",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FIRECrkl_Fireplace Wood Burns Low Fire Interior_PSE_EMB_dhwBq.wav",
+      "CachePath": "09/{0973644E-3F54-F7D6-7280-6E95B1391DF6}.wem"
      }
     ],
     "Events": [
@@ -79,6 +87,19 @@
       "MediaRefs": [
        {
         "Id": "400838026"
+       }
+      ]
+     },
+     {
+      "Id": "3679851939",
+      "Name": "Play_Bonfire",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Bonfire",
+      "GUID": "{4B6D89A3-065F-4100-B8F8-95B638552081}",
+      "MaxAttenuation": "100",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "689453801"
        }
       ]
      }
@@ -127,7 +148,7 @@
     "Type": "User",
     "GUID": "{EB97643E-7E49-4895-8084-63C7446E1F96}",
     "Language": "SFX",
-    "Hash": "{B09A5512-AC6F-D120-54EC-454F9A35C7A5}",
+    "Hash": "{118322CF-58C1-0A74-7561-DD2D7BA2952B}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -143,9 +164,9 @@
     ],
     "Events": [
      {
-      "Id": "3486478797",
-      "Name": "Play_UI_Event",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Event",
+      "Id": "975614739",
+      "Name": "Play_Click_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Click_Event",
       "GUID": "{1C03F633-E673-4B64-9A5C-2E9789D7B614}",
       "DurationType": "OneShot",
       "DurationMin": "0.16",
@@ -163,7 +184,7 @@
     "Type": "Event",
     "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
     "Language": "SFX",
-    "Hash": "{D24AB4E6-B496-007E-D847-D50E0E787884}",
+    "Hash": "{571C41B9-FD36-E5CA-01E0-89661440E3BE}",
     "ObjectPath": "Play_Footstep_Event",
     "ShortName": "Play_Footstep_Event",
     "Path": "Event/Play_Footstep_Event.bnk",
@@ -175,7 +196,7 @@
       "Location": "Loose",
       "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 01    [007303].wav",
       "Path": "Media/257642921.wem",
-      "CachePath": "BF/{BF3E0779-3D70-EBEF-BC16-2A8324F516B4}.wem"
+      "CachePath": "70/{70BE5138-2D66-5667-E57F-2E650F600149}.wem"
      },
      {
       "Id": "479781397",
@@ -184,7 +205,7 @@
       "Location": "Loose",
       "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 05    [007307].wav",
       "Path": "Media/479781397.wem",
-      "CachePath": "2E/{2E02538D-1595-88B9-3ECA-49AEB53FC49B}.wem"
+      "CachePath": "6F/{6FD0B160-3323-CB58-93AC-8D19192A3659}.wem"
      },
      {
       "Id": "532864313",
@@ -193,7 +214,7 @@
       "Location": "Loose",
       "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 03    [007305].wav",
       "Path": "Media/532864313.wem",
-      "CachePath": "5D/{5D7F7EF1-DC69-93D5-1DC0-21469815A8E0}.wem"
+      "CachePath": "05/{0504AFA7-033D-9364-7CBD-3E08901D193A}.wem"
      },
      {
       "Id": "837251483",
@@ -202,7 +223,7 @@
       "Location": "Loose",
       "ShortName": "Single Footstep - Grass Gravel Dirt Medium Impact Thud - 07    [007309].wav",
       "Path": "Media/837251483.wem",
-      "CachePath": "E0/{E0ECD6E4-9A46-5618-1F38-6DD4F6A17298}.wem"
+      "CachePath": "06/{064177CF-E1B3-5BAF-AEAF-A11CD7B67664}.wem"
      }
     ],
     "Events": [
@@ -232,6 +253,6 @@
     ]
    }
   ],
-  "FileHash": "{8D637D09-CDA8-8C30-EB8C-29564538613D}"
+  "FileHash": "{31C65447-F9FF-EC9A-4096-E8C44DD80BDC}"
  }
 }

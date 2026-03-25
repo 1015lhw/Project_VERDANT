@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{EB97643E-7E49-4895-8084-63C7446E1F96}",
     "Language": "SFX",
-    "Hash": "{B09A5512-AC6F-D120-54EC-454F9A35C7A5}",
+    "Hash": "{118322CF-58C1-0A74-7561-DD2D7BA2952B}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -26,9 +26,9 @@
     ],
     "Events": [
      {
-      "Id": "3486478797",
-      "Name": "Play_UI_Event",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Event",
+      "Id": "975614739",
+      "Name": "Play_Click_Event",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Click_Event",
       "GUID": "{1C03F633-E673-4B64-9A5C-2E9789D7B614}",
       "DurationType": "OneShot",
       "DurationMin": "0.16",
@@ -42,6 +42,6 @@
     ]
    }
   ],
-  "FileHash": "{FD82D46B-A9A9-A75C-194E-782173FBF79F}"
+  "FileHash": "{80A99BD4-DC4A-AF00-C090-D2C5AE66A2AD}"
  }
 }

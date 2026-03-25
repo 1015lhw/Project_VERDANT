@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{1DC8BE34-5545-5019-58C7-372C2CCA92AC}",
+    "Hash": "{EDF6073A-776C-C22B-CA12-C7E1F27B2915}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
@@ -21,7 +21,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav",
-      "CachePath": "AE/{AE9BD1CE-5782-2FF0-AF87-4EF54CBED44D}.wem"
+      "CachePath": "A8/{A85E1526-84ED-9FDF-B449-DFB2F16C2459}.wem"
+     },
+     {
+      "Id": "689453801",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FIRECrkl_Fireplace Wood Burns Low Fire Interior_PSE_EMB_dhwBq.wav",
+      "CachePath": "09/{0973644E-3F54-F7D6-7280-6E95B1391DF6}.wem"
      }
     ],
     "Events": [
@@ -36,10 +44,23 @@
         "Id": "400838026"
        }
       ]
+     },
+     {
+      "Id": "3679851939",
+      "Name": "Play_Bonfire",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Bonfire",
+      "GUID": "{4B6D89A3-065F-4100-B8F8-95B638552081}",
+      "MaxAttenuation": "100",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "689453801"
+       }
+      ]
      }
     ]
    }
   ],
-  "FileHash": "{F040D555-7453-78E9-1485-85C8BF69677D}"
+  "FileHash": "{01A71059-E4F4-3ACF-1879-34AFBBA3E86C}"
  }
 }

@@ -5,7 +5,7 @@
 			<ChildrenList>
 				<SoundBank Name="UI" ID="{EB97643E-7E49-4895-8084-63C7446E1F96}">
 					<ObjectInclusionList>
-						<ObjectRef Name="Play_UI_Event" ID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Click_Event" ID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
@@ -21,6 +21,7 @@
 				<SoundBank Name="Amb" ID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}">
 					<ObjectInclusionList>
 						<ObjectRef Name="BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2" ID="{F12515EE-EEB0-42E8-9619-E2D8BD14D3F3}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Bonfire" ID="{5EBA26F4-CD67-4D5A-A801-2BE1053780A4}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

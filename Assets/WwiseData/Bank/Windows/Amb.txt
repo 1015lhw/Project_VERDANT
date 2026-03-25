@@ -1,6 +1,8 @@
 Event	ID	Name			Wwise Object Path	Notes
 	2959533290	Play_Amb			\Default Work Unit\Play_Amb	
+	3679851939	Play_Bonfire			\Default Work Unit\Play_Bonfire	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	400838026	BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2	.cache\AE\{AE9BD1CE-5782-2FF0-AF87-4EF54CBED44D}.wem		\Containers\Default Work Unit\Amb\BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2		22534240
+	400838026	BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2	.cache\A8\{A85E1526-84ED-9FDF-B449-DFB2F16C2459}.wem		\Containers\Default Work Unit\Amb\BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2		22534288
+	689453801	Bonfire	.cache\09\{0973644E-3F54-F7D6-7280-6E95B1391DF6}.wem		\Containers\Default Work Unit\Amb\Bonfire		51291024
 

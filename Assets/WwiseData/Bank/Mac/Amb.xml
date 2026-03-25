@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{1DC8BE34-5545-5019-58C7-372C2CCA92AC}">
+		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{EDF6073A-776C-C22B-CA12-C7E1F27B2915}">
 			<ObjectPath>\SoundBanks\Default Work Unit\Amb</ObjectPath>
 			<ShortName>Amb</ShortName>
 			<Path>Amb.bnk</Path>
 			<Media>
 				<File Id="400838026" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav</ShortName>
-					<CachePath>AE/{AE9BD1CE-5782-2FF0-AF87-4EF54CBED44D}.wem</CachePath>
+					<CachePath>A8/{A85E1526-84ED-9FDF-B449-DFB2F16C2459}.wem</CachePath>
+				</File>
+				<File Id="689453801" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FIRECrkl_Fireplace Wood Burns Low Fire Interior_PSE_EMB_dhwBq.wav</ShortName>
+					<CachePath>09/{0973644E-3F54-F7D6-7280-6E95B1391DF6}.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -17,8 +21,13 @@
 						<MediaRef Id="400838026"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="3679851939" Name="Play_Bonfire" ObjectPath="\Events\Default Work Unit\Play_Bonfire" GUID="{4B6D89A3-065F-4100-B8F8-95B638552081}" MaxAttenuation="100" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="689453801"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{A7C4AD24-8AA7-33F7-C7BB-0F6D82C60DB2}</FileHash>
+	<FileHash>{D60EA411-4553-1AEF-0E57-A3EF39BE3DBA}</FileHash>
 </SoundBanksInfo>
