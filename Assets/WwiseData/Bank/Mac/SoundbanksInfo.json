@@ -55,18 +55,26 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{4AEB2515-B428-BC2F-6A79-C738BF680743}",
+    "Hash": "{6B08F044-AC06-4736-C65B-344733BCB5AF}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
     "Media": [
+     {
+      "Id": "111688204",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "_Water_Flow_06.wav",
+      "CachePath": "D1/{D1A8070A-911C-18F8-4E00-8B47E9B72425}.wem"
+     },
      {
       "Id": "400838026",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav",
-      "CachePath": "A8/{A85E1526-84ED-9FDF-B449-DFB2F16C2459}.wem"
+      "CachePath": "F0/{F0942AB5-F733-E2F4-984F-861E9CE88F4C}.wem"
      },
      {
       "Id": "689453801",
@@ -74,7 +82,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FIRECrkl_Fireplace Wood Burns Low Fire Interior_PSE_EMB_dhwBq.wav",
-      "CachePath": "09/{0973644E-3F54-F7D6-7280-6E95B1391DF6}.wem"
+      "CachePath": "17/{176410BC-7571-A1B3-947A-2B227BDE2D61}.wem"
+     },
+     {
+      "Id": "1003430248",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "自然沙沙声  乡村玉米地药草微风.wav",
+      "CachePath": "E8/{E8CB468A-9991-EA4E-D279-C6808F212D61}.wem"
      }
     ],
     "Events": [
@@ -100,6 +116,32 @@
       "MediaRefs": [
        {
         "Id": "689453801"
+       }
+      ]
+     },
+     {
+      "Id": "135230898",
+      "Name": "Play_Creek",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Creek",
+      "GUID": "{1D679383-D9EB-4598-9F0B-D897402DDD97}",
+      "MaxAttenuation": "100",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "111688204"
+       }
+      ]
+     },
+     {
+      "Id": "3439690150",
+      "Name": "Play_Leaves",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Leaves",
+      "GUID": "{1D41AFD7-067C-4F90-9818-93463E88FB13}",
+      "MaxAttenuation": "100",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "1003430248"
        }
       ]
      }
@@ -184,7 +226,7 @@
     "Type": "Event",
     "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
     "Language": "SFX",
-    "Hash": "{571C41B9-FD36-E5CA-01E0-89661440E3BE}",
+    "Hash": "{5EB61EA3-FF19-8124-0EE5-8066074949B2}",
     "ObjectPath": "Play_Footstep_Event",
     "ShortName": "Play_Footstep_Event",
     "Path": "Event/Play_Footstep_Event.bnk",
@@ -253,6 +295,6 @@
     ]
    }
   ],
-  "FileHash": "{30C69E83-682E-8A8C-2C24-642CF4AD37F5}"
+  "FileHash": "{A9D4202D-062E-8CD3-5C64-3F057A4420E3}"
  }
 }

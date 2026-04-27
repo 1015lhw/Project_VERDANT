@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{4AEB2515-B428-BC2F-6A79-C738BF680743}">
+		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{6B08F044-AC06-4736-C65B-344733BCB5AF}">
 			<ObjectPath>\SoundBanks\Default Work Unit\Amb</ObjectPath>
 			<ShortName>Amb</ShortName>
 			<Path>Amb.bnk</Path>
 			<Media>
+				<File Id="111688204" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>_Water_Flow_06.wav</ShortName>
+					<CachePath>D1/{D1A8070A-911C-18F8-4E00-8B47E9B72425}.wem</CachePath>
+				</File>
 				<File Id="400838026" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav</ShortName>
-					<CachePath>A8/{A85E1526-84ED-9FDF-B449-DFB2F16C2459}.wem</CachePath>
+					<CachePath>F0/{F0942AB5-F733-E2F4-984F-861E9CE88F4C}.wem</CachePath>
 				</File>
 				<File Id="689453801" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>FIRECrkl_Fireplace Wood Burns Low Fire Interior_PSE_EMB_dhwBq.wav</ShortName>
-					<CachePath>09/{0973644E-3F54-F7D6-7280-6E95B1391DF6}.wem</CachePath>
+					<CachePath>17/{176410BC-7571-A1B3-947A-2B227BDE2D61}.wem</CachePath>
+				</File>
+				<File Id="1003430248" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>自然沙沙声  乡村玉米地药草微风.wav</ShortName>
+					<CachePath>E8/{E8CB468A-9991-EA4E-D279-C6808F212D61}.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -26,8 +34,18 @@
 						<MediaRef Id="689453801"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="135230898" Name="Play_Creek" ObjectPath="\Events\Default Work Unit\Play_Creek" GUID="{1D679383-D9EB-4598-9F0B-D897402DDD97}" MaxAttenuation="100" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="111688204"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3439690150" Name="Play_Leaves" ObjectPath="\Events\Default Work Unit\Play_Leaves" GUID="{1D41AFD7-067C-4F90-9818-93463E88FB13}" MaxAttenuation="100" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="1003430248"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{ED2DFF29-746F-9D5A-AB1B-238830251674}</FileHash>
+	<FileHash>{B2DC7ED0-DFBA-E9BD-48A4-05A43B073BFA}</FileHash>
 </SoundBanksInfo>

@@ -61,6 +61,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_Leaves" ID="{1D41AFD7-067C-4F90-9818-93463E88FB13}">
+					<ChildrenList>
+						<Action Name="" ID="{B68F386E-FE36-44B9-BD87-E46A1CE1D4F1}" ShortID="809023426">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Leaves" ID="{6E5BCB24-3B6C-4B33-B99B-BD9999C87E40}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Creek" ID="{1D679383-D9EB-4598-9F0B-D897402DDD97}">
+					<ChildrenList>
+						<Action Name="" ID="{AEC31DCD-0EB1-4221-A137-1AD13D44C54E}" ShortID="418556274">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Creek" ID="{E868A624-AE8C-4C0E-91AB-327658D40181}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

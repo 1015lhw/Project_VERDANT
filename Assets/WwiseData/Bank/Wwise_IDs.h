@@ -16,7 +16,9 @@ namespace AK
         static const AkUniqueID PLAY_AMB = 2959533290U;
         static const AkUniqueID PLAY_BONFIRE = 3679851939U;
         static const AkUniqueID PLAY_CLICK_EVENT = 975614739U;
+        static const AkUniqueID PLAY_CREEK = 135230898U;
         static const AkUniqueID PLAY_FOOTSTEP_EVENT = 2024329721U;
+        static const AkUniqueID PLAY_LEAVES = 3439690150U;
         static const AkUniqueID STOP_EVENT = 2904546416U;
     } // namespace EVENTS
 

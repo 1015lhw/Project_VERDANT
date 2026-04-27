@@ -21,6 +21,8 @@
 				<SoundBank Name="Amb" ID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}">
 					<ObjectInclusionList>
 						<ObjectRef Name="BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2" ID="{F12515EE-EEB0-42E8-9619-E2D8BD14D3F3}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Leaves" ID="{6E5BCB24-3B6C-4B33-B99B-BD9999C87E40}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Creek" ID="{E868A624-AE8C-4C0E-91AB-327658D40181}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Bonfire" ID="{5EBA26F4-CD67-4D5A-A801-2BE1053780A4}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>

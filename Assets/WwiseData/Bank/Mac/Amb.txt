@@ -1,8 +1,12 @@
 Event	ID	Name			Wwise Object Path	Notes
+	135230898	Play_Creek			\Default Work Unit\Play_Creek	
 	2959533290	Play_Amb			\Default Work Unit\Play_Amb	
+	3439690150	Play_Leaves			\Default Work Unit\Play_Leaves	
 	3679851939	Play_Bonfire			\Default Work Unit\Play_Bonfire	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	400838026	BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2	.cache\A8\{A85E1526-84ED-9FDF-B449-DFB2F16C2459}.wem		\Containers\Default Work Unit\Amb\BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2		22534288
-	689453801	Bonfire	.cache\09\{0973644E-3F54-F7D6-7280-6E95B1391DF6}.wem		\Containers\Default Work Unit\Amb\Bonfire		51291024
+	111688204	Creek	.cache\D1\{D1A8070A-911C-18F8-4E00-8B47E9B72425}.wem		\Containers\Default Work Unit\Amb\Creek		21168144
+	400838026	BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2	.cache\F0\{F0942AB5-F733-E2F4-984F-861E9CE88F4C}.wem		\Containers\Default Work Unit\Amb\BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2		22534288
+	689453801	Bonfire	.cache\17\{176410BC-7571-A1B3-947A-2B227BDE2D61}.wem		\Containers\Default Work Unit\Amb\Bonfire		51291024
+	1003430248	Leaves	.cache\E8\{E8CB468A-9991-EA4E-D279-C6808F212D61}.wem		\Containers\Default Work Unit\Amb\Leaves		16233976
 

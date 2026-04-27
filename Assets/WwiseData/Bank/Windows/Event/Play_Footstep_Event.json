@@ -10,7 +10,7 @@
     "Type": "Event",
     "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
     "Language": "SFX",
-    "Hash": "{571C41B9-FD36-E5CA-01E0-89661440E3BE}",
+    "Hash": "{5EB61EA3-FF19-8124-0EE5-8066074949B2}",
     "ObjectPath": "Play_Footstep_Event",
     "ShortName": "Play_Footstep_Event",
     "Path": "Event/Play_Footstep_Event.bnk",
@@ -79,6 +79,6 @@
     ]
    }
   ],
-  "FileHash": "{865D710A-7E84-8D46-DB80-30DA9D3ECBDB}"
+  "FileHash": "{BEB825EA-9B63-A634-928C-5E76B414E81C}"
  }
 }
