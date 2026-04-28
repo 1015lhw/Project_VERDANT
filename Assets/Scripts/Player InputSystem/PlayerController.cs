@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
 
-        UpdateVisualState(moveInput.x);
+        UpdateVisualState(move.x);
     }
 
     void UpdateVisualState(float horizontalInput)
