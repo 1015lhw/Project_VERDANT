@@ -8,10 +8,17 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 15f;
     [Min(1f)] public float fallGravityMultiplier = 3f;
 
+    [Header("Visual")]
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private SpriteRenderer playerSpriteRenderer;
+    [SerializeField] private string idleStateName = "Idle";
+    [SerializeField] private string runStateName = "Run";
+
     private Rigidbody rb;
     private Vector2 moveInput;
 
     private PlayerInputActions inputActions;
+    private bool isRunning;
 
     void Awake()
     {
@@ -42,20 +49,15 @@ public class PlayerController : MonoBehaviour
     {
         ApplyExtraFallGravity();
 
-        if (OpeningLock.IsLocked)
+        if (OpeningLock.IsLocked || !GameStateManager.IsNormal)
         {
             moveInput = Vector2.zero;
+            UpdateVisualState(0f);
             return;
         }
 
-        if (!GameStateManager.IsNormal)
-        {
-            moveInput = Vector2.zero;
-            return;
-        }
-
-        // 固定相机 → 用世界坐标
-        Vector3 move = new Vector3(-moveInput.x, 0f, -moveInput.y);
+        // 角色在3D场景中移动，仅视觉对象负责2D动画与翻转
+        Vector3 move = new Vector3(moveInput.x, 0f, -moveInput.y);
 
         if (move.sqrMagnitude > 0.01f)
         {
@@ -63,6 +65,40 @@ public class PlayerController : MonoBehaviour
 
             Quaternion targetRotation = Quaternion.LookRotation(move);
             rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+        }
+
+        UpdateVisualState(moveInput.x);
+    }
+
+    void UpdateVisualState(float horizontalInput)
+    {
+        if (playerAnimator == null || playerSpriteRenderer == null)
+        {
+            return;
+        }
+
+        if (horizontalInput > 0f)
+        {
+            playerSpriteRenderer.flipX = false;
+            if (!isRunning)
+            {
+                playerAnimator.Play(runStateName);
+                isRunning = true;
+            }
+        }
+        else if (horizontalInput < 0f)
+        {
+            playerSpriteRenderer.flipX = true;
+            if (!isRunning)
+            {
+                playerAnimator.Play(runStateName);
+                isRunning = true;
+            }
+        }
+        else if (isRunning)
+        {
+            playerAnimator.Play(idleStateName);
+            isRunning = false;
         }
     }
 
