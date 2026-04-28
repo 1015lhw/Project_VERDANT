@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // 角色在3D场景中移动，仅视觉对象负责2D动画与翻转
-        Vector3 move = new Vector3(moveInput.x, 0f, -moveInput.y);
+        Vector3 move = new Vector3(-moveInput.x, 0f, -moveInput.y);
 
         if (move.sqrMagnitude > 0.01f)
         {
