@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // 角色在3D场景中移动，仅视觉对象负责2D动画与翻转
-        Vector3 move = new Vector3(moveInput.x, 0f, -moveInput.y);
+        Vector3 move = new Vector3(-moveInput.x, 0f, -moveInput.y);
 
         if (move.sqrMagnitude > 0.01f)
         {
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
 
-        UpdateVisualState(moveInput.x);
+        UpdateVisualState(move.x);
     }
 
     void UpdateVisualState(float horizontalInput)
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput > 0f)
         {
-            playerSpriteRenderer.flipX = true;
+            playerSpriteRenderer.flipX = false;
             if (!isRunning)
             {
                 playerAnimator.Play(runStateName);
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (horizontalInput < 0f)
         {
-            playerSpriteRenderer.flipX = false;
+            playerSpriteRenderer.flipX = true;
             if (!isRunning)
             {
                 playerAnimator.Play(runStateName);
