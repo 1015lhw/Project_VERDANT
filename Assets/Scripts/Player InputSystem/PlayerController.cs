@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput > 0f)
         {
-            playerSpriteRenderer.flipX = false;
+            playerSpriteRenderer.flipX = true;
             if (!isRunning)
             {
                 playerAnimator.Play(runStateName);
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (horizontalInput < 0f)
         {
-            playerSpriteRenderer.flipX = true;
+            playerSpriteRenderer.flipX = false;
             if (!isRunning)
             {
                 playerAnimator.Play(runStateName);
