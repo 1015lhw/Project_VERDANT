@@ -20,6 +20,14 @@ public class DialogueManager : MonoBehaviour
         public Sprite portrait;
     }
 
+    [Serializable]
+    public class TagPortraitBinding
+    {
+        [Tooltip("完整 Ink tag（不带#），例如 SierraMAD / MarcusQUIET / TylerTALKBLOOD")]
+        public string tag;
+        public Sprite portrait;
+    }
+
     enum Speaker
     {
         Npc,
@@ -43,6 +51,8 @@ public class DialogueManager : MonoBehaviour
     public Sprite playerPortraitSprite;
     [Tooltip("可选：按 Ink speaker 标签切换 NPC 立绘。")]
     public List<SpeakerPortraitBinding> npcSpeakerPortraits = new List<SpeakerPortraitBinding>();
+    [Tooltip("可选：按完整 Ink tag 切换立绘（优先级高于 speaker）。")]
+    public List<TagPortraitBinding> tagPortraits = new List<TagPortraitBinding>();
     [Range(0f, 1f)]
     public float dimBrightness = 0.5f;
 
@@ -255,9 +265,57 @@ public class DialogueManager : MonoBehaviour
         return null;
     }
 
+    string TryGetRawTagFromCurrentTags()
+    {
+        if (story == null || story.currentTags == null)
+        {
+            return null;
+        }
+
+        for (int i = 0; i < story.currentTags.Count; i++)
+        {
+            string tag = story.currentTags[i];
+            if (string.IsNullOrWhiteSpace(tag))
+            {
+                continue;
+            }
+
+            string normalized = tag.Trim();
+            if (normalized.StartsWith("#"))
+            {
+                normalized = normalized.Substring(1).Trim();
+            }
+
+            if (!string.IsNullOrEmpty(normalized))
+            {
+                return normalized;
+            }
+        }
+
+        return null;
+    }
+
     Speaker ResolveSpeakerFromCurrentTags()
     {
         string id = TryGetSpeakerIdFromCurrentTags();
+        if (string.IsNullOrEmpty(id))
+        {
+            string rawTag = TryGetRawTagFromCurrentTags();
+            if (!string.IsNullOrEmpty(rawTag))
+            {
+                string lower = rawTag.ToLowerInvariant();
+                if (lower.StartsWith("tyler") || lower.StartsWith("player") || lower.StartsWith("you"))
+                {
+                    return Speaker.Player;
+                }
+                if (lower.StartsWith("narration") || lower.StartsWith("narrator") || lower.StartsWith("旁白"))
+                {
+                    return Speaker.Narration;
+                }
+                return Speaker.Npc;
+            }
+        }
+
         if (string.IsNullOrEmpty(id))
         {
             return Speaker.Npc;
@@ -280,6 +338,27 @@ public class DialogueManager : MonoBehaviour
         if (npcPortrait == null || npcSpeakerPortraits == null)
         {
             return;
+        }
+
+        string rawTag = TryGetRawTagFromCurrentTags();
+        if (!string.IsNullOrEmpty(rawTag) && tagPortraits != null)
+        {
+            string lowerRaw = rawTag.ToLowerInvariant();
+            for (int i = 0; i < tagPortraits.Count; i++)
+            {
+                TagPortraitBinding binding = tagPortraits[i];
+                if (binding == null || binding.portrait == null || string.IsNullOrWhiteSpace(binding.tag))
+                {
+                    continue;
+                }
+
+                if (binding.tag.Trim().ToLowerInvariant() == lowerRaw)
+                {
+                    npcPortrait.sprite = binding.portrait;
+                    npcPortrait.gameObject.SetActive(true);
+                    return;
+                }
+            }
         }
 
         string id = TryGetSpeakerIdFromCurrentTags();
