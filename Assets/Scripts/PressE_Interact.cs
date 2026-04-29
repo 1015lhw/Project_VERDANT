@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PressE_Interact : MonoBehaviour
 {
@@ -43,12 +44,31 @@ public class PressE_Interact : MonoBehaviour
     void ResetFirstTalkIfNeeded()
     {
         if (!resetFirstTalkOnSessionStart) return;
-        if (string.IsNullOrWhiteSpace(firstTalkSaveKey)) return;
-        if (sessionResetKeys.Contains(firstTalkSaveKey)) return;
+        string saveKey = GetEffectiveFirstTalkSaveKey();
+        if (sessionResetKeys.Contains(saveKey)) return;
 
-        PlayerPrefs.DeleteKey(firstTalkSaveKey);
-        sessionResetKeys.Add(firstTalkSaveKey);
+        PlayerPrefs.DeleteKey(saveKey);
+        sessionResetKeys.Add(saveKey);
         PlayerPrefs.Save();
+    }
+
+    string GetEffectiveFirstTalkSaveKey()
+    {
+        if (!string.IsNullOrWhiteSpace(firstTalkSaveKey))
+        {
+            return firstTalkSaveKey.Trim();
+        }
+
+        string sceneName = SceneManager.GetActiveScene().name;
+        string objectPath = gameObject.name;
+        Transform current = transform.parent;
+        while (current != null)
+        {
+            objectPath = current.name + "/" + objectPath;
+            current = current.parent;
+        }
+
+        return $"FirstTalk::{sceneName}::{objectPath}";
     }
     TextAsset GetDialogueToPlay()
     {
@@ -59,17 +79,17 @@ public class PressE_Interact : MonoBehaviour
 
     bool HasPlayedFirstTalk()
     {
-        if (string.IsNullOrWhiteSpace(firstTalkSaveKey)) return false;
-        return PlayerPrefs.GetInt(firstTalkSaveKey, 0) == 1;
+        string saveKey = GetEffectiveFirstTalkSaveKey();
+        return PlayerPrefs.GetInt(saveKey, 0) == 1;
     }
 
     void MarkFirstTalkAsPlayed()
     {
         if (firstTimeInkJSON == null) return;
-        if (string.IsNullOrWhiteSpace(firstTalkSaveKey)) return;
+
         if (HasPlayedFirstTalk()) return;
 
-        PlayerPrefs.SetInt(firstTalkSaveKey, 1);
+        PlayerPrefs.SetInt(GetEffectiveFirstTalkSaveKey(), 1);
         PlayerPrefs.Save();
     }
 
