@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PressE_Interact : MonoBehaviour
@@ -8,12 +9,16 @@ public class PressE_Interact : MonoBehaviour
     public TextAsset firstTimeInkJSON;
     [Tooltip("Unique id used to remember first-time dialogue completion.")]
     public string firstTalkSaveKey;
+    [Tooltip("If enabled, clear the first-talk flag once when the game process starts so first talk can be re-tested after restart.")]
+    public bool resetFirstTalkOnSessionStart = true;
     public Sprite portrait;
 
     private bool playerInRange;
+    private static readonly HashSet<string> sessionResetKeys = new HashSet<string>();
 
     void Start()
     {
+        ResetFirstTalkIfNeeded();
         PressEPromptCoordinator.SetRequest(pressEUI, this, false);
     }
 
@@ -34,6 +39,17 @@ public class PressE_Interact : MonoBehaviour
         }
     }
 
+
+    void ResetFirstTalkIfNeeded()
+    {
+        if (!resetFirstTalkOnSessionStart) return;
+        if (string.IsNullOrWhiteSpace(firstTalkSaveKey)) return;
+        if (sessionResetKeys.Contains(firstTalkSaveKey)) return;
+
+        PlayerPrefs.DeleteKey(firstTalkSaveKey);
+        sessionResetKeys.Add(firstTalkSaveKey);
+        PlayerPrefs.Save();
+    }
     TextAsset GetDialogueToPlay()
     {
         if (firstTimeInkJSON == null) return inkJSON;
