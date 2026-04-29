@@ -4,6 +4,10 @@ public class PressE_Interact : MonoBehaviour
 {
     public GameObject pressEUI;
     public TextAsset inkJSON;
+    [Header("Optional first-time dialogue")]
+    public TextAsset firstTimeInkJSON;
+    [Tooltip("Unique id used to remember first-time dialogue completion.")]
+    public string firstTalkSaveKey;
     public Sprite portrait;
 
     private bool playerInRange;
@@ -25,9 +29,32 @@ public class PressE_Interact : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PressEPromptCoordinator.SetRequest(pressEUI, this, false);
-
-            DialogueManager.Instance.StartDialogue(inkJSON, portrait);
+            DialogueManager.Instance.StartDialogue(GetDialogueToPlay(), portrait);
+            MarkFirstTalkAsPlayed();
         }
+    }
+
+    TextAsset GetDialogueToPlay()
+    {
+        if (firstTimeInkJSON == null) return inkJSON;
+        if (HasPlayedFirstTalk()) return inkJSON;
+        return firstTimeInkJSON;
+    }
+
+    bool HasPlayedFirstTalk()
+    {
+        if (string.IsNullOrWhiteSpace(firstTalkSaveKey)) return false;
+        return PlayerPrefs.GetInt(firstTalkSaveKey, 0) == 1;
+    }
+
+    void MarkFirstTalkAsPlayed()
+    {
+        if (firstTimeInkJSON == null) return;
+        if (string.IsNullOrWhiteSpace(firstTalkSaveKey)) return;
+        if (HasPlayedFirstTalk()) return;
+
+        PlayerPrefs.SetInt(firstTalkSaveKey, 1);
+        PlayerPrefs.Save();
     }
 
     void LateUpdate()

@@ -100,7 +100,7 @@ VAR map = 1
     
        ...  #SierraSCARED
        
-    "We're are safer than you think. Marcus is like a <i>chubby Bear Grylls</i>." 
+    "We're are safer than you think. Marcus is like a <i>chubby Bear Grylls</i>." #TylerTALKBLOOD
     
    ...  #SierraNERVOUS  
 
@@ -115,7 +115,7 @@ VAR map = 1
                 !!! #SierraMAD
                 ... #SierraNERVOUS
                 "Do you think..."  #SierraCRY
-                "we'll..."
+                "we'll..." #SierraCRY
                 
                 ->DONE
                 
@@ -125,7 +125,7 @@ VAR map = 1
 
 
 === BarelyKnow ===
-"I barely know what I'm doing.."
+"I barely know what I'm doing.." #TylerTALKBLOOD
           
             "Well at least you can admit to it" #SierraTALK
             

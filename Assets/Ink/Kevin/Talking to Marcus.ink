@@ -40,9 +40,9 @@ VAR map = 1
 
 { 
 - Mrep < 11:
-    <i> Marcus gives you the silent treatment.
+    <i> Marcus gives you the silent treatment. #narration
 - Mrep < 19:
-    "Hello..."
+    "Hello..." #MarcusQUIET
 - Mrep > 19:
     +["Hey Tyler, I have something for you..."]
     -> MarcWolfrep
@@ -53,7 +53,7 @@ VAR map = 1
 
     "I um... found this..." #TylerTALKBLOOD
     
-    <i> Marcus' eyes sparked.
+    <i> Marcus' eyes sparked. #narration
 
     "I was reading about that the other day!" #MarcusHAPPY
     
@@ -63,15 +63,15 @@ VAR map = 1
 
     "Well, your forest secret is all over my hand. It looks like I killed someone." #TylerTALKBLOOD
         ** "Anyway, we don't have time when we need to survive."
-            <i> You throw away the mushroom and wipe your hands. 
-            "oh..."
+            <i> You throw away the mushroom and wipe your hands. #narration
+            "oh..." #MarcusQUIET
             ~ Mrep -= 3
             ~ mushroom -= 1
         ** Sounds interesting, go on...
-    #Marcus
+    #MarcusQUIET
     "You're holding a Hydnellum peckii, or more commonly a bleeding tooth mushroom. It's not dangerous to your health at all but it is one of many things i can tick off my fungi bucket list!"
-    #Tyler
-    <i>He knows so much...
+    #TylerTALK
+    <i>He knows so much... #narration
     
     ~ mushroom -= 1
     ~ MarcHasMush += 1
@@ -115,4 +115,3 @@ VAR map = 1
     -> DONE
     
 -> END
-

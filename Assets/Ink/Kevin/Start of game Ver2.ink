@@ -10,13 +10,12 @@ Ideally, this is a seperate scene where it's just some words and then it gets in
 
 */
 
-<i> It's probably... safer here... // what was the danger?
-<i> What was that noise I heard? //what noise?
-<i> Why did I did do this... //why is there regret?
+<i> It's probably... safer here... // what was the danger? #narration
+<i> What was that noise I heard? //what noise? #narration
+<i> Why did I did do this... //why is there regret? #narration
 
 "Tyler..." //This is Sierra 
 
 //Scene switch to game.
 
-"TYLER, EXPLAIN YOURSELF." #Sierra MAD
-
+"TYLER, EXPLAIN YOURSELF." #SierraMAD
