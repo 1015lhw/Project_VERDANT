@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PressE_Interact : MonoBehaviour
 {
@@ -8,12 +10,16 @@ public class PressE_Interact : MonoBehaviour
     public TextAsset firstTimeInkJSON;
     [Tooltip("Unique id used to remember first-time dialogue completion.")]
     public string firstTalkSaveKey;
+    [Tooltip("If enabled, clear the first-talk flag once when the game process starts so first talk can be re-tested after restart.")]
+    public bool resetFirstTalkOnSessionStart = true;
     public Sprite portrait;
 
     private bool playerInRange;
+    private static readonly HashSet<string> sessionResetKeys = new HashSet<string>();
 
     void Start()
     {
+        ResetFirstTalkIfNeeded();
         PressEPromptCoordinator.SetRequest(pressEUI, this, false);
     }
 
@@ -34,6 +40,36 @@ public class PressE_Interact : MonoBehaviour
         }
     }
 
+
+    void ResetFirstTalkIfNeeded()
+    {
+        if (!resetFirstTalkOnSessionStart) return;
+        string saveKey = GetEffectiveFirstTalkSaveKey();
+        if (sessionResetKeys.Contains(saveKey)) return;
+
+        PlayerPrefs.DeleteKey(saveKey);
+        sessionResetKeys.Add(saveKey);
+        PlayerPrefs.Save();
+    }
+
+    string GetEffectiveFirstTalkSaveKey()
+    {
+        if (!string.IsNullOrWhiteSpace(firstTalkSaveKey))
+        {
+            return firstTalkSaveKey.Trim();
+        }
+
+        string sceneName = SceneManager.GetActiveScene().name;
+        string objectPath = gameObject.name;
+        Transform current = transform.parent;
+        while (current != null)
+        {
+            objectPath = current.name + "/" + objectPath;
+            current = current.parent;
+        }
+
+        return $"FirstTalk::{sceneName}::{objectPath}";
+    }
     TextAsset GetDialogueToPlay()
     {
         if (firstTimeInkJSON == null) return inkJSON;
@@ -43,17 +79,17 @@ public class PressE_Interact : MonoBehaviour
 
     bool HasPlayedFirstTalk()
     {
-        if (string.IsNullOrWhiteSpace(firstTalkSaveKey)) return false;
-        return PlayerPrefs.GetInt(firstTalkSaveKey, 0) == 1;
+        string saveKey = GetEffectiveFirstTalkSaveKey();
+        return PlayerPrefs.GetInt(saveKey, 0) == 1;
     }
 
     void MarkFirstTalkAsPlayed()
     {
         if (firstTimeInkJSON == null) return;
-        if (string.IsNullOrWhiteSpace(firstTalkSaveKey)) return;
+
         if (HasPlayedFirstTalk()) return;
 
-        PlayerPrefs.SetInt(firstTalkSaveKey, 1);
+        PlayerPrefs.SetInt(GetEffectiveFirstTalkSaveKey(), 1);
         PlayerPrefs.Save();
     }
 
