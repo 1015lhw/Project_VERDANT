@@ -19,12 +19,12 @@ Ideally, this is a seperate scene where it's just some words
 
 */
 
-<i> It'll probably not find us here... //what is out there?
-<i> I'm soaked... // what happened?
-<i> How long were we running for? //why were you running?
+<i> It'll probably not find us here... //what is out there? #narration
+<i> I'm soaked... // what happened? #narration
+<i> How long were we running for? //why were you running? #narration
 
 "Tyler..." //This is Sierra 
 
 //Scene switch to game.
 
-"TYLER, EXPLAIN YOURSELF." #Sierra MAD
+"TYLER, EXPLAIN YOURSELF." #SierraMAD
