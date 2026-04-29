@@ -96,69 +96,38 @@ public class OpeningSequenceManager : MonoBehaviour
             return;
         }
 
-        if (slides == null || slides.Length == 0)
-        {
-            Debug.LogError("OpeningSequenceManager: slides 未配置，无法播放开场。");
-            return;
-        }
-
-        if (comicImage == null || subtitleText == null)
-        {
-            Debug.LogError("OpeningSequenceManager: comicImage / subtitleText 有未配置项。");
-            return;
-        }
-
-        if (HasAnyVoiceClip() && audioSource == null)
-        {
-            Debug.LogError("OpeningSequenceManager: slides 中含有 voice，但 audioSource 未配置。");
-            return;
-        }
-
-        if (comicVisualGroup == null)
-        {
-            comicVisualGroup = comicImage.GetComponent<CanvasGroup>();
-            if (comicVisualGroup == null)
-            {
-                comicVisualGroup = comicImage.gameObject.AddComponent<CanvasGroup>();
-            }
-        }
-
-        if (subComicContainer == null)
-        {
-            subComicContainer = comicImage.rectTransform;
-        }
-
-        if (usePreplacedSubComics && (preplacedSubComicSlots == null || preplacedSubComicSlots.Length == 0))
-        {
-            Debug.LogWarning("OpeningSequenceManager: usePreplacedSubComics 已启用，但 preplacedSubComicSlots 为空。将不会显示子漫画。如需运行时创建，请关闭 usePreplacedSubComics。");
-        }
-
-        ResetPreplacedSubComicSlots();
-
         skipHoldTimer = 0f;
         UpdateSkipUI(0f);
 
+        // 新流程：开头不再播放漫画，直接进入强制对话。
         if (openingCanvasRoot != null)
         {
-            openingCanvasRoot.SetActive(true);
+            openingCanvasRoot.SetActive(false);
+        }
+
+        if (skipHintRoot != null)
+        {
+            skipHintRoot.SetActive(false);
         }
 
         SetBagVisible(false);
         SetNoticeVisible(false, true);
 
-        if (skipHintRoot != null)
-        {
-            skipHintRoot.SetActive(allowHoldEscToSkip);
-        }
-
-        OpeningLock.IsLocked = true;
-
         if (gameWorldRoot != null)
         {
-            gameWorldRoot.SetActive(false);
+            gameWorldRoot.SetActive(true);
         }
 
-        sequenceCoroutine = StartCoroutine(PlaySequence());
+        ClearSubComics();
+        OpeningLock.IsLocked = true;
+
+        if (TryStartForcedDialogue())
+        {
+            return;
+        }
+
+        OpeningLock.IsLocked = false;
+        SetBagVisible(true);
     }
 
     void OnDisable()
@@ -663,19 +632,6 @@ public class OpeningSequenceManager : MonoBehaviour
         {
             skipHintText.text = "Hold ESC to skip";
         }
-    }
-
-    bool HasAnyVoiceClip()
-    {
-        for (int i = 0; i < slides.Length; i++)
-        {
-            if (slides[i] != null && slides[i].voice != null)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
 }
