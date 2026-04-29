@@ -216,7 +216,7 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(line))
         {
             Speaker speaker = ResolveSpeakerFromCurrentTags();
-            TrySwapNpcPortraitFromCurrentTags();
+            TrySwapPortraitFromCurrentTags(speaker);
             ApplySpeakerState(speaker);
         }
 
@@ -333,9 +333,9 @@ public class DialogueManager : MonoBehaviour
         return Speaker.Npc;
     }
 
-    void TrySwapNpcPortraitFromCurrentTags()
+    void TrySwapPortraitFromCurrentTags(Speaker speaker)
     {
-        if (npcPortrait == null || npcSpeakerPortraits == null)
+        if (npcSpeakerPortraits == null)
         {
             return;
         }
@@ -352,12 +352,23 @@ public class DialogueManager : MonoBehaviour
                     continue;
                 }
 
-                if (binding.tag.Trim().ToLowerInvariant() == lowerRaw)
+                if (binding.tag.Trim().ToLowerInvariant() != lowerRaw)
+                {
+                    continue;
+                }
+
+                if (speaker == Speaker.Player && playerPortrait != null)
+                {
+                    playerPortrait.sprite = binding.portrait;
+                    playerPortrait.gameObject.SetActive(true);
+                }
+                else if (speaker == Speaker.Npc && npcPortrait != null)
                 {
                     npcPortrait.sprite = binding.portrait;
                     npcPortrait.gameObject.SetActive(true);
-                    return;
                 }
+
+                return;
             }
         }
 
@@ -366,6 +377,12 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
+
+        if (npcPortrait == null)
+        {
+            return;
+        }
+
         for (int i = 0; i < npcSpeakerPortraits.Count; i++)
         {
             SpeakerPortraitBinding binding = npcSpeakerPortraits[i];
