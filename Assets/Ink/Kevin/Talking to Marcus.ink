@@ -55,8 +55,7 @@ VAR gotWolfRepellent = 0
 
 {
 - MarcHasMush && gaveBlanketToMarcus && !gotWolfRepellent:
-    +["Hey Tyler, I have something for you..."]
-        -> MarcWolfrep
+    -> MarcWolfrep
 - Mrep <= 0:
     <i> Marcus gives you the silent treatment. #narration
 - else:
