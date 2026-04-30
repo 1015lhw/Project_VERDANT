@@ -13,7 +13,10 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CLOSE_BACKPACK = 4202216648U;
+        static const AkUniqueID OPEN_BACKPACK = 1345726974U;
         static const AkUniqueID PLAY_AMB = 2959533290U;
+        static const AkUniqueID PLAY_BIRD_FLY = 3450594569U;
         static const AkUniqueID PLAY_BONFIRE = 3679851939U;
         static const AkUniqueID PLAY_CLICK_EVENT = 975614739U;
         static const AkUniqueID PLAY_CREEK = 135230898U;

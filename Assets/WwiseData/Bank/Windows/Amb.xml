@@ -1,32 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{6B08F044-AC06-4736-C65B-344733BCB5AF}">
+		<SoundBank Id="1117531639" Type="User" GUID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}" Language="SFX" Hash="{90A58D4D-13E0-287A-04B0-2B1CC9F2809E}">
 			<ObjectPath>\SoundBanks\Default Work Unit\Amb</ObjectPath>
 			<ShortName>Amb</ShortName>
 			<Path>Amb.bnk</Path>
 			<Media>
+				<File Id="20510519" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
+					<CachePath>60/{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem</CachePath>
+				</File>
+				<File Id="108398071" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav</ShortName>
+					<CachePath>92/{92C358BC-555E-46B3-4072-414F7F9958BD}.wem</CachePath>
+				</File>
 				<File Id="111688204" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>_Water_Flow_06.wav</ShortName>
-					<CachePath>D1/{D1A8070A-911C-18F8-4E00-8B47E9B72425}.wem</CachePath>
+					<CachePath>53/{53D5DB6D-8474-C9D8-2482-9C3DE69AF36F}.wem</CachePath>
 				</File>
-				<File Id="400838026" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav</ShortName>
-					<CachePath>F0/{F0942AB5-F733-E2F4-984F-861E9CE88F4C}.wem</CachePath>
+				<File Id="207586963" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav</ShortName>
+					<CachePath>A6/{A690DFDE-949F-B116-8362-36D6E51EB66C}.wem</CachePath>
+				</File>
+				<File Id="365606980" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav</ShortName>
+					<CachePath>0B/{0B0A077B-C4AC-A31E-F3D0-76D87121A5A4}.wem</CachePath>
+				</File>
+				<File Id="484338727" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
+					<CachePath>EB/{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem</CachePath>
+				</File>
+				<File Id="516223753" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>QP14 1754 Quietudes Coniferous Forests day wind V1.wav</ShortName>
+					<CachePath>F0/{F052C329-A8A6-937A-D48B-10538A38E677}.wem</CachePath>
 				</File>
 				<File Id="689453801" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>FIRECrkl_Fireplace Wood Burns Low Fire Interior_PSE_EMB_dhwBq.wav</ShortName>
 					<CachePath>17/{176410BC-7571-A1B3-947A-2B227BDE2D61}.wem</CachePath>
 				</File>
+				<File Id="740117575" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
+					<CachePath>27/{27A87542-7282-928D-45FB-1D89B8E13466}.wem</CachePath>
+				</File>
 				<File Id="1003430248" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>自然沙沙声  乡村玉米地药草微风.wav</ShortName>
 					<CachePath>E8/{E8CB468A-9991-EA4E-D279-C6808F212D61}.wem</CachePath>
+				</File>
+				<File Id="1026443751" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Salmon Run final.wav</ShortName>
+					<CachePath>76/{7676BF38-1D95-1A26-CCE7-9BBFE90E554F}.wem</CachePath>
+				</File>
+				<File Id="1070369520" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav</ShortName>
+					<CachePath>F3/{F35773F8-D467-F753-1C6D-0D95BA978F9A}.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
 				<Event Id="2959533290" Name="Play_Amb" ObjectPath="\Events\Default Work Unit\Play_Amb" GUID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}" DurationType="Infinite">
 					<MediaRefs>
-						<MediaRef Id="400838026"/>
+						<MediaRef Id="108398071"/>
+						<MediaRef Id="207586963"/>
+						<MediaRef Id="365606980"/>
+						<MediaRef Id="516223753"/>
+						<MediaRef Id="1026443751"/>
+						<MediaRef Id="1070369520"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3679851939" Name="Play_Bonfire" ObjectPath="\Events\Default Work Unit\Play_Bonfire" GUID="{4B6D89A3-065F-4100-B8F8-95B638552081}" MaxAttenuation="100" DurationType="Infinite">
@@ -47,5 +84,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{B2DC7ED0-DFBA-E9BD-48A4-05A43B073BFA}</FileHash>
+	<FileHash>{81696F49-ACFE-AC94-D94F-B70459329275}</FileHash>
 </SoundBanksInfo>

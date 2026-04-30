@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e87613586fd10d4291bb99f3d26578c
+    m_Address: Assets/WwiseData/Bank/Windows/Media/484338727.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 95d65f02b10221844800b92a490ea30a
     m_Address: Assets/WwiseData/Bank/Windows/SFX.bnk
     m_ReadOnly: 0
@@ -50,8 +55,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4341ee15bc47f843b2877abe3046cee
+    m_Address: Assets/WwiseData/Bank/Windows/Event/Play_Bird_Fly.bnk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7e787f4590fe6942934aebcf7b67368
+    m_Address: Assets/WwiseData/Bank/Windows/Media/740117575.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6066c48603bee04b84e016683376e27
     m_Address: Assets/WwiseData/Bank/Windows/Media/837251483.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f797e96a814c8c544b0bf8a1d07f3b9e
+    m_Address: Assets/WwiseData/Bank/Windows/Media/20510519.wem
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

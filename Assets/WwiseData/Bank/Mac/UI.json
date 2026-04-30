@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{EB97643E-7E49-4895-8084-63C7446E1F96}",
     "Language": "SFX",
-    "Hash": "{118322CF-58C1-0A74-7561-DD2D7BA2952B}",
+    "Hash": "{244FD7DA-9140-D0E2-BD0D-3A379B27AD1A}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -21,18 +21,62 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "UI Click-D3EG_02-01.wav",
-      "CachePath": "90/{90628CAD-C8C6-2FEA-BA9D-DA6B65CDC291}.wem"
+      "CachePath": "B9/{B9688076-B403-970B-E9B4-22A6D62B364C}.wem"
+     },
+     {
+      "Id": "794226655",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 登山包单招.wav",
+      "CachePath": "C4/{C4B43333-681D-E7E1-F02C-617024A1A8C8}.wem"
+     },
+     {
+      "Id": "968355106",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 登山包单招.wav",
+      "CachePath": "63/{63DFE4D1-D1E1-0FEA-6758-B9325298B7FD}.wem"
      }
     ],
     "Events": [
+     {
+      "Id": "4202216648",
+      "Name": "Close_Backpack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Close_Backpack",
+      "GUID": "{63E167D8-A132-4876-8F39-BA1AFDE4DF07}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.9649836",
+      "DurationMax": "0.9649836",
+      "MediaRefs": [
+       {
+        "Id": "968355106"
+       }
+      ]
+     },
+     {
+      "Id": "1345726974",
+      "Name": "Open_Backpack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Open_Backpack",
+      "GUID": "{F535854E-7C39-4FB7-AD53-D909C99207C6}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.7169462",
+      "DurationMax": "0.7169462",
+      "MediaRefs": [
+       {
+        "Id": "794226655"
+       }
+      ]
+     },
      {
       "Id": "975614739",
       "Name": "Play_Click_Event",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Click_Event",
       "GUID": "{1C03F633-E673-4B64-9A5C-2E9789D7B614}",
       "DurationType": "OneShot",
-      "DurationMin": "0.16",
-      "DurationMax": "0.16",
+      "DurationMin": "0.10311475",
+      "DurationMax": "0.10311475",
       "MediaRefs": [
        {
         "Id": "515158065"
@@ -42,6 +86,6 @@
     ]
    }
   ],
-  "FileHash": "{6DC1B06D-6501-103B-04E6-35CC636AF67D}"
+  "FileHash": "{8E47762C-D9FE-55C3-B134-449257921D24}"
  }
 }

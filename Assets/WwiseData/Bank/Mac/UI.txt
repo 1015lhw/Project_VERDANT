@@ -1,6 +1,10 @@
 Event	ID	Name			Wwise Object Path	Notes
 	975614739	Play_Click_Event			\Default Work Unit\Play_Click_Event	
+	1345726974	Open_Backpack			\Default Work Unit\Open_Backpack	
+	4202216648	Close_Backpack			\Default Work Unit\Close_Backpack	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	515158065	UIclick_1	.cache\90\{90628CAD-C8C6-2FEA-BA9D-DA6B65CDC291}.wem		\Containers\Default Work Unit\UI Click\UIclick_1		15456
+	515158065	UIclick_1	.cache\B9\{B9688076-B403-970B-E9B4-22A6D62B364C}.wem		\Containers\Default Work Unit\UI Click\UIclick_1		9996
+	794226655	Backpack_Open	.cache\C4\{C4B43333-681D-E7E1-F02C-617024A1A8C8}.wem		\Containers\Default Work Unit\UI Click\Backpack_Open		137748
+	968355106	Backpack_Close	.cache\63\{63DFE4D1-D1E1-0FEA-6758-B9325298B7FD}.wem		\Containers\Default Work Unit\UI Click\Backpack_Close		185372
 

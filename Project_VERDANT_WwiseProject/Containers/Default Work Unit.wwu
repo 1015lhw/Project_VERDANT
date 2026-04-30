@@ -32,9 +32,10 @@
 							<ChildrenList>
 								<AudioFileSource Name="UI Click-D3EG_02-01" ID="{934CD42C-30F4-49F9-938A-25FF82AC4112}">
 									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.0230680523824802"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.0258362186683778"/>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.00372378871820138"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.005180479501436"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.0568852499280064"/>
 									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>UI Click-D3EG_02-01.wav</AudioFile>
@@ -52,6 +53,62 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="UI Click-D3EG_02-01" ID="{934CD42C-30F4-49F9-938A-25FF82AC4112}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Backpack_Close" ID="{F5148B11-1F3A-4F44-BFAA-F56463733A78}" ShortID="481910238">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="模拟的声音 登山包单招" ID="{D3AA9C57-3AF0-40F8-BE73-BE74FEC9365C}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.253498757583391"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="3.36931789671782"/>
+										<Property Name="TrimEnd" Type="Real64" Value="4.33430147726022"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>模拟的声音 登山包单招.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="968355106"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="模拟的声音 登山包单招" ID="{D3AA9C57-3AF0-40F8-BE73-BE74FEC9365C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Backpack_Open" ID="{AD2F4710-592C-49C3-8EED-406C378B1160}" ShortID="565854250">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="模拟的声音 登山包单招" ID="{C2C27096-A4A4-4345-B5C3-AD6E09F745C7}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.253498757583391"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.177449130308374"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.894395293068218"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>模拟的声音 登山包单招.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="794226655"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="模拟的声音 登山包单招" ID="{C2C27096-A4A4-4345-B5C3-AD6E09F745C7}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -99,6 +156,11 @@
 						</Sound>
 						<RandomSequenceContainer Name="Random_Footstep" ID="{5F85986C-2E78-425B-A44E-B33230C064D1}" ShortID="551577852">
 							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
 										<Value>12</Value>
@@ -255,44 +317,21 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<Sound Name="BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2" ID="{F12515EE-EEB0-42E8-9619-E2D8BD14D3F3}" ShortID="167224089">
-							<PropertyList>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2" ID="{3A0E7F13-3C9C-4AA5-AE57-5F90FC083AB5}">
-									<PropertyList>
-										<Property Name="CrossfadeDuration" Type="Real64" Value="1664.341"/>
-										<Property Name="FadeInDuration" Type="Real64" Value="3.45287712296236"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="3.06922410929987"/>
-										<Property Name="LoopBegin" Type="Real64" Value="1.04816068209135"/>
-										<Property Name="LoopEnd" Type="Real64" Value="126.696419816775"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="400838026"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2" ID="{3A0E7F13-3C9C-4AA5-AE57-5F90FC083AB5}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="Bonfire" ID="{5EBA26F4-CD67-4D5A-A801-2BE1053780A4}" ShortID="476881370">
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="1"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>6</Value>
+									</ValueList>
+								</Property>
 								<Property Name="OverridePositioning" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>2</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
@@ -333,18 +372,18 @@
 								<Property Name="OverridePositioning" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>3</Value>
+										<Value>9</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
 									<Custom>
-										<Attenuation Name="Leaves" ID="{186E65B4-5F93-4090-B230-0C01A3682551}" ShortID="395311747">
+										<Attenuation Name="Leaves" ID="{4054F43D-738D-4F8B-87F3-19CA6A07FCE4}" ShortID="230339224">
 											<CurveUsageInfoList>
 												<VolumeDryUsage>
 													<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-														<Curve Name="VolumeDry" ID="{94BC8B2E-EC72-46D6-BF4F-F9B047387BBF}">
+														<Curve Name="VolumeDry" ID="{431CD6FF-D9F8-41F4-B372-E679F7209738}">
 															<PropertyList>
 																<Property Name="Flags" Type="int32" Value="3"/>
 															</PropertyList>
@@ -356,10 +395,10 @@
 																	<SegmentShape>Log3</SegmentShape>
 																</Point>
 																<Point>
-																	<XPos>14.21371</XPos>
-																	<YPos>-23.00453</YPos>
+																	<XPos>23.58871</XPos>
+																	<YPos>-30.66061</YPos>
 																	<Flags>0</Flags>
-																	<SegmentShape>Log3</SegmentShape>
+																	<SegmentShape>Exp2</SegmentShape>
 																</Point>
 																<Point>
 																	<XPos>100</XPos>
@@ -378,7 +417,7 @@
 												</VolumeWetUserUsage>
 												<LowPassFilterUsage>
 													<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-														<Curve Name="LowPassFilter" ID="{38FDF335-4D3D-4020-A608-2EE1B566EDD8}">
+														<Curve Name="LowPassFilter" ID="{AF35BFE6-75A1-41C5-BEEC-59E3971EE28D}">
 															<PropertyList>
 																<Property Name="Flags" Type="int32" Value="65537"/>
 															</PropertyList>
@@ -406,7 +445,7 @@
 												</LowPassFilterUsage>
 												<HighPassFilterUsage>
 													<CurveUsageInfo Platform="Linked" CurveToUse="None">
-														<Curve Name="HighPassFilter" ID="{2080A9B4-4AA8-4451-BA65-4D25C6D525F5}">
+														<Curve Name="HighPassFilter" ID="{99AD207B-2B1B-49BF-94C8-05F8F8ACC59A}">
 															<PropertyList>
 																<Property Name="Flags" Type="int32" Value="65537"/>
 															</PropertyList>
@@ -430,7 +469,7 @@
 												</DualShelfUsage>
 												<SpreadUsage>
 													<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-														<Curve Name="Spread" ID="{D7BE9BA9-62DF-4AB0-930B-1BAABC9DB14A}">
+														<Curve Name="Spread" ID="{E14151E5-DF3E-495B-8C9C-907C10039F05}">
 															<PropertyList>
 																<Property Name="Flags" Type="int32" Value="1"/>
 															</PropertyList>
@@ -538,11 +577,17 @@
 						</Sound>
 						<Sound Name="Creek" ID="{E868A624-AE8C-4C0E-91AB-327658D40181}" ShortID="380681054">
 							<PropertyList>
+								<Property Name="IgnoreParentMaxSoundInstance" Type="bool" Value="True"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>13</Value>
+									</ValueList>
+								</Property>
 								<Property Name="OverridePositioning" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-2</Value>
+										<Value>-5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -565,10 +610,10 @@
 																	<SegmentShape>Log3</SegmentShape>
 																</Point>
 																<Point>
-																	<XPos>16.73387</XPos>
-																	<YPos>-24.80072</YPos>
+																	<XPos>47.88306</XPos>
+																	<YPos>-29.06694</YPos>
 																	<Flags>0</Flags>
-																	<SegmentShape>Log1</SegmentShape>
+																	<SegmentShape>Exp3</SegmentShape>
 																</Point>
 																<Point>
 																	<XPos>100</XPos>
@@ -596,12 +641,7 @@
 																	<XPos>0</XPos>
 																	<YPos>0</YPos>
 																	<Flags>5</Flags>
-																	<SegmentShape>Log3</SegmentShape>
-																</Point>
-																<Point>
-																	<XPos>58.29146</XPos>
-																	<YPos>100</YPos>
-																	<Flags>0</Flags>
+																	<SegmentShape>Log1</SegmentShape>
 																</Point>
 																<Point>
 																	<XPos>100</XPos>
@@ -619,7 +659,25 @@
 													<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
 												</DualShelfUsage>
 												<SpreadUsage>
-													<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+													<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+														<Curve Name="Spread" ID="{2F4DE2DB-68DD-437C-A6A9-915D081D9F45}">
+															<PropertyList>
+																<Property Name="Flags" Type="int32" Value="1"/>
+															</PropertyList>
+															<PointList>
+																<Point>
+																	<XPos>0</XPos>
+																	<YPos>47.92746</YPos>
+																	<Flags>5</Flags>
+																</Point>
+																<Point>
+																	<XPos>100</XPos>
+																	<YPos>77.7202</YPos>
+																	<Flags>37</Flags>
+																</Point>
+															</PointList>
+														</Curve>
+													</CurveUsageInfo>
 												</SpreadUsage>
 												<FocusUsage>
 													<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
@@ -686,9 +744,9 @@
 							<ChildrenList>
 								<AudioFileSource Name="_Water_Flow_06" ID="{9F244201-5C87-4D6E-BF5A-F7508AE89677}">
 									<PropertyList>
-										<Property Name="CrossfadeDuration" Type="Real64" Value="9687.5"/>
-										<Property Name="LoopBegin" Type="Real64" Value="4.91803278688525"/>
-										<Property Name="LoopEnd" Type="Real64" Value="113.237704918033"/>
+										<Property Name="CrossfadeDuration" Type="Real64" Value="2187.5"/>
+										<Property Name="LoopBegin" Type="Real64" Value="7.99180327868853"/>
+										<Property Name="LoopEnd" Type="Real64" Value="112.131147540984"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 									</PropertyList>
 									<Language>SFX</Language>
@@ -702,6 +760,345 @@
 								<ActiveSource Name="_Water_Flow_06" ID="{9F244201-5C87-4D6E-BF5A-F7508AE89677}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<RandomSequenceContainer Name="Random_Bird_Fly" ID="{71042E10-BA2A-4606-A7EC-923BAA951C2D}" ShortID="87157578">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Bird_Fly" ID="{A7C64B8A-8186-4564-831A-F96CBFA36AE4}" ShortID="858719418">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="模拟的声音 仿真植物抖动风" ID="{52164CA4-D5DE-47D9-89FD-44E100D7242B}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.237751351028192"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.66425945719735"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.475502702056384"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.44739827236321"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>模拟的声音 仿真植物抖动风.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="484338727"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="模拟的声音 仿真植物抖动风" ID="{52164CA4-D5DE-47D9-89FD-44E100D7242B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Bird_Fly_01" ID="{9BD02ED4-14A3-4220-8F92-13D289D51133}" ShortID="484232345">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="模拟的声音 仿真植物抖动风" ID="{49134D42-47CE-48F0-860D-4A24ADDC8E3D}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.594378377570481"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="2.13976215925373"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="14.5028324127197"/>
+												<Property Name="TrimEnd" Type="Real64" Value="17.7719171718118"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>模拟的声音 仿真植物抖动风.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="20510519"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="模拟的声音 仿真植物抖动风" ID="{49134D42-47CE-48F0-860D-4A24ADDC8E3D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Bird_Fly_02" ID="{1A8E7021-B836-411D-BA78-DDAFC9B0F6A9}" ShortID="970091460">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="模拟的声音 仿真植物抖动风" ID="{534DD150-B0E4-4EAB-BB3D-39213039C37C}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.653816215327529"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.54538378168325"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="3.56627026542289"/>
+												<Property Name="TrimEnd" Type="Real64" Value="6.6570415112438"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>模拟的声音 仿真植物抖动风.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="740117575"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="模拟的声音 仿真植物抖动风" ID="{534DD150-B0E4-4EAB-BB3D-39213039C37C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<BlendContainer Name="Background" ID="{689D82EE-0CFA-4792-B545-B318E6DA13B1}" ShortID="634504565">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="White_Noise" ID="{E32B601D-FE42-45D8-AD4B-8EEE56C0904F}" ShortID="352724022">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>9</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="QP14 1754 Quietudes Coniferous Forests day wind V1" ID="{D7E29C5A-F028-4045-955F-FA57B0623D74}">
+											<PropertyList>
+												<Property Name="CrossfadeDuration" Type="Real64" Value="2031.972"/>
+												<Property Name="LoopBegin" Type="Real64" Value="1.41443712203229"/>
+												<Property Name="LoopEnd" Type="Real64" Value="58.4224044127751"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>QP14 1754 Quietudes Coniferous Forests day wind V1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="516223753"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="QP14 1754 Quietudes Coniferous Forests day wind V1" ID="{D7E29C5A-F028-4045-955F-FA57B0623D74}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<RandomSequenceContainer Name="Random_Birds_Sound" ID="{8FB32F64-0824-4FBA-89B0-AB3FA4F6244F}" ShortID="166479564">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="1"/>
+										<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="9"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Bird" ID="{34514A24-B820-41EE-844C-72F819E8C596}" ShortID="116213581">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="QP14 1758 Quietudes Canyons morning birdsong echoes V1" ID="{290BB547-5D24-4F0F-A4C1-DD80221F1FCE}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.04547540477065"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.27780327249746"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="5.22737757316964"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="108398071"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<PositioningInfo>
+												<Position Name="" ID="{1E445B8C-7403-4125-B129-3869557D6772}"/>
+											</PositioningInfo>
+											<ActiveSourceList>
+												<ActiveSource Name="QP14 1758 Quietudes Canyons morning birdsong echoes V1" ID="{290BB547-5D24-4F0F-A4C1-DD80221F1FCE}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Bird_01" ID="{F7E9E9A5-6FB6-4DA8-A075-AC5EDA8F7663}" ShortID="62049348">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="QP14 1758 Quietudes Canyons morning birdsong echoes V1" ID="{ECE292AF-4524-42C4-8C10-AEBA8C7820E0}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.04547540477065"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.27780327249746"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="25.3237375822224"/>
+														<Property Name="TrimEnd" Type="Real64" Value="34.1521971051576"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="207586963"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="QP14 1758 Quietudes Canyons morning birdsong echoes V1" ID="{ECE292AF-4524-42C4-8C10-AEBA8C7820E0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Bird_02" ID="{B9D928A0-3193-4E8F-B515-ADB66BB316AD}" ShortID="360304353">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="QP14 1758 Quietudes Canyons morning birdsong echoes V1" ID="{70FEF755-898A-4524-BCB5-F09D80111D4B}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.04547540477065"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.27780327249746"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="66.794261971458"/>
+														<Property Name="TrimEnd" Type="Real64" Value="71.9054756107644"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="365606980"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="QP14 1758 Quietudes Canyons morning birdsong echoes V1" ID="{70FEF755-898A-4524-BCB5-F09D80111D4B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Bird_03" ID="{9EC69405-F5AE-48E5-BF18-1462B508CE14}" ShortID="959030345">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="QP14 1758 Quietudes Canyons morning birdsong echoes V1" ID="{5594D0B7-B472-4AF7-9029-ACBAB466200B}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.04547540477065"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.27780327249746"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="96.299901172763"/>
+														<Property Name="TrimEnd" Type="Real64" Value="105.825344298879"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1070369520"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="QP14 1758 Quietudes Canyons morning birdsong echoes V1" ID="{5594D0B7-B472-4AF7-9029-ACBAB466200B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<Sound Name="Salmon Run final" ID="{DE443868-A859-41AA-96E0-F57C8E5993CA}" ShortID="932051752">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>4</Value>
+											</ValueList>
+										</Property>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-4</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{715A9799-6677-41BF-986C-054E45968CD2}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{7B78AF83-753D-4467-98E7-119675A6E3CB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Salmon Run final" ID="{7FAE29FE-AA7F-4826-A9AF-5576F7EECBB2}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="6.24673974709433"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="2.38845931506546"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Salmon Run final.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1026443751"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Salmon Run final" ID="{7FAE29FE-AA7F-4826-A9AF-5576F7EECBB2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</BlendContainer>
 					</ChildrenList>
 				</RandomSequenceContainer>
 			</ChildrenList>

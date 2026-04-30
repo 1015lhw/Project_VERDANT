@@ -1,0 +1,72 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Mac",
+  "BasePlatform": "Mac",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "3450594569",
+    "Type": "Event",
+    "GUID": "{BDA2C256-5416-4BDF-8A64-8E23BC154F32}",
+    "Language": "SFX",
+    "Hash": "{D74A8ACD-AD5E-84F9-C7DC-E972923658FE}",
+    "ObjectPath": "Play_Bird_Fly",
+    "ShortName": "Play_Bird_Fly",
+    "Path": "Event/Play_Bird_Fly.bnk",
+    "Media": [
+     {
+      "Id": "20510519",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "Path": "Media/20510519.wem",
+      "CachePath": "60/{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem"
+     },
+     {
+      "Id": "484338727",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "Path": "Media/484338727.wem",
+      "CachePath": "EB/{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem"
+     },
+     {
+      "Id": "740117575",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "Path": "Media/740117575.wem",
+      "CachePath": "27/{27A87542-7282-928D-45FB-1D89B8E13466}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "3450594569",
+      "Name": "Play_Bird_Fly",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Bird_Fly",
+      "GUID": "{BDA2C256-5416-4BDF-8A64-8E23BC154F32}",
+      "DurationType": "OneShot",
+      "DurationMin": "2.9718955",
+      "DurationMax": "3.2690847",
+      "MediaRefs": [
+       {
+        "Id": "20510519"
+       },
+       {
+        "Id": "484338727"
+       },
+       {
+        "Id": "740117575"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{DE4CBECF-6CA8-DBAC-20D7-18883B87DA62}"
+ }
+}

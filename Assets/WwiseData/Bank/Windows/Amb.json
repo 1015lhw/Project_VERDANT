@@ -10,26 +10,66 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{6B08F044-AC06-4736-C65B-344733BCB5AF}",
+    "Hash": "{90A58D4D-13E0-287A-04B0-2B1CC9F2809E}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
     "Media": [
+     {
+      "Id": "20510519",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "CachePath": "60/{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem"
+     },
+     {
+      "Id": "108398071",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav",
+      "CachePath": "92/{92C358BC-555E-46B3-4072-414F7F9958BD}.wem"
+     },
      {
       "Id": "111688204",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "_Water_Flow_06.wav",
-      "CachePath": "D1/{D1A8070A-911C-18F8-4E00-8B47E9B72425}.wem"
+      "CachePath": "53/{53D5DB6D-8474-C9D8-2482-9C3DE69AF36F}.wem"
      },
      {
-      "Id": "400838026",
+      "Id": "207586963",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
-      "ShortName": "BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav",
-      "CachePath": "F0/{F0942AB5-F733-E2F4-984F-861E9CE88F4C}.wem"
+      "ShortName": "QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav",
+      "CachePath": "A6/{A690DFDE-949F-B116-8362-36D6E51EB66C}.wem"
+     },
+     {
+      "Id": "365606980",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav",
+      "CachePath": "0B/{0B0A077B-C4AC-A31E-F3D0-76D87121A5A4}.wem"
+     },
+     {
+      "Id": "484338727",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "CachePath": "EB/{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem"
+     },
+     {
+      "Id": "516223753",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1754 Quietudes Coniferous Forests day wind V1.wav",
+      "CachePath": "F0/{F052C329-A8A6-937A-D48B-10538A38E677}.wem"
      },
      {
       "Id": "689453801",
@@ -40,12 +80,36 @@
       "CachePath": "17/{176410BC-7571-A1B3-947A-2B227BDE2D61}.wem"
      },
      {
+      "Id": "740117575",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "CachePath": "27/{27A87542-7282-928D-45FB-1D89B8E13466}.wem"
+     },
+     {
       "Id": "1003430248",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "自然沙沙声  乡村玉米地药草微风.wav",
       "CachePath": "E8/{E8CB468A-9991-EA4E-D279-C6808F212D61}.wem"
+     },
+     {
+      "Id": "1026443751",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Salmon Run final.wav",
+      "CachePath": "76/{7676BF38-1D95-1A26-CCE7-9BBFE90E554F}.wem"
+     },
+     {
+      "Id": "1070369520",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav",
+      "CachePath": "F3/{F35773F8-D467-F753-1C6D-0D95BA978F9A}.wem"
      }
     ],
     "Events": [
@@ -57,7 +121,22 @@
       "DurationType": "Infinite",
       "MediaRefs": [
        {
-        "Id": "400838026"
+        "Id": "108398071"
+       },
+       {
+        "Id": "207586963"
+       },
+       {
+        "Id": "365606980"
+       },
+       {
+        "Id": "516223753"
+       },
+       {
+        "Id": "1026443751"
+       },
+       {
+        "Id": "1070369520"
        }
       ]
      },
@@ -103,6 +182,6 @@
     ]
    }
   ],
-  "FileHash": "{90FB2DC4-240E-B76C-199E-18BE3F84586F}"
+  "FileHash": "{902E2C3D-7137-9DE8-980E-3A0D10D9D5EA}"
  }
 }

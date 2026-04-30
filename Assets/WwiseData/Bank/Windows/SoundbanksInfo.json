@@ -55,26 +55,66 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{6B08F044-AC06-4736-C65B-344733BCB5AF}",
+    "Hash": "{90A58D4D-13E0-287A-04B0-2B1CC9F2809E}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
     "Media": [
+     {
+      "Id": "20510519",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "CachePath": "60/{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem"
+     },
+     {
+      "Id": "108398071",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav",
+      "CachePath": "92/{92C358BC-555E-46B3-4072-414F7F9958BD}.wem"
+     },
      {
       "Id": "111688204",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "_Water_Flow_06.wav",
-      "CachePath": "D1/{D1A8070A-911C-18F8-4E00-8B47E9B72425}.wem"
+      "CachePath": "53/{53D5DB6D-8474-C9D8-2482-9C3DE69AF36F}.wem"
      },
      {
-      "Id": "400838026",
+      "Id": "207586963",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
-      "ShortName": "BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2.wav",
-      "CachePath": "F0/{F0942AB5-F733-E2F4-984F-861E9CE88F4C}.wem"
+      "ShortName": "QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav",
+      "CachePath": "A6/{A690DFDE-949F-B116-8362-36D6E51EB66C}.wem"
+     },
+     {
+      "Id": "365606980",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav",
+      "CachePath": "0B/{0B0A077B-C4AC-A31E-F3D0-76D87121A5A4}.wem"
+     },
+     {
+      "Id": "484338727",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "CachePath": "EB/{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem"
+     },
+     {
+      "Id": "516223753",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1754 Quietudes Coniferous Forests day wind V1.wav",
+      "CachePath": "F0/{F052C329-A8A6-937A-D48B-10538A38E677}.wem"
      },
      {
       "Id": "689453801",
@@ -85,12 +125,36 @@
       "CachePath": "17/{176410BC-7571-A1B3-947A-2B227BDE2D61}.wem"
      },
      {
+      "Id": "740117575",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "CachePath": "27/{27A87542-7282-928D-45FB-1D89B8E13466}.wem"
+     },
+     {
       "Id": "1003430248",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "自然沙沙声  乡村玉米地药草微风.wav",
       "CachePath": "E8/{E8CB468A-9991-EA4E-D279-C6808F212D61}.wem"
+     },
+     {
+      "Id": "1026443751",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Salmon Run final.wav",
+      "CachePath": "76/{7676BF38-1D95-1A26-CCE7-9BBFE90E554F}.wem"
+     },
+     {
+      "Id": "1070369520",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1758 Quietudes Canyons morning birdsong echoes V1.wav",
+      "CachePath": "F3/{F35773F8-D467-F753-1C6D-0D95BA978F9A}.wem"
      }
     ],
     "Events": [
@@ -102,7 +166,22 @@
       "DurationType": "Infinite",
       "MediaRefs": [
        {
-        "Id": "400838026"
+        "Id": "108398071"
+       },
+       {
+        "Id": "207586963"
+       },
+       {
+        "Id": "365606980"
+       },
+       {
+        "Id": "516223753"
+       },
+       {
+        "Id": "1026443751"
+       },
+       {
+        "Id": "1070369520"
        }
       ]
      },
@@ -190,7 +269,7 @@
     "Type": "User",
     "GUID": "{EB97643E-7E49-4895-8084-63C7446E1F96}",
     "Language": "SFX",
-    "Hash": "{118322CF-58C1-0A74-7561-DD2D7BA2952B}",
+    "Hash": "{244FD7DA-9140-D0E2-BD0D-3A379B27AD1A}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -201,18 +280,62 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "UI Click-D3EG_02-01.wav",
-      "CachePath": "90/{90628CAD-C8C6-2FEA-BA9D-DA6B65CDC291}.wem"
+      "CachePath": "B9/{B9688076-B403-970B-E9B4-22A6D62B364C}.wem"
+     },
+     {
+      "Id": "794226655",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 登山包单招.wav",
+      "CachePath": "C4/{C4B43333-681D-E7E1-F02C-617024A1A8C8}.wem"
+     },
+     {
+      "Id": "968355106",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "模拟的声音 登山包单招.wav",
+      "CachePath": "63/{63DFE4D1-D1E1-0FEA-6758-B9325298B7FD}.wem"
      }
     ],
     "Events": [
+     {
+      "Id": "4202216648",
+      "Name": "Close_Backpack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Close_Backpack",
+      "GUID": "{63E167D8-A132-4876-8F39-BA1AFDE4DF07}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.9649836",
+      "DurationMax": "0.9649836",
+      "MediaRefs": [
+       {
+        "Id": "968355106"
+       }
+      ]
+     },
+     {
+      "Id": "1345726974",
+      "Name": "Open_Backpack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Open_Backpack",
+      "GUID": "{F535854E-7C39-4FB7-AD53-D909C99207C6}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.7169462",
+      "DurationMax": "0.7169462",
+      "MediaRefs": [
+       {
+        "Id": "794226655"
+       }
+      ]
+     },
      {
       "Id": "975614739",
       "Name": "Play_Click_Event",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Click_Event",
       "GUID": "{1C03F633-E673-4B64-9A5C-2E9789D7B614}",
       "DurationType": "OneShot",
-      "DurationMin": "0.16",
-      "DurationMax": "0.16",
+      "DurationMin": "0.10311475",
+      "DurationMax": "0.10311475",
       "MediaRefs": [
        {
         "Id": "515158065"
@@ -226,7 +349,7 @@
     "Type": "Event",
     "GUID": "{AB37C689-09E7-4140-A9BE-88080288B488}",
     "Language": "SFX",
-    "Hash": "{5EB61EA3-FF19-8124-0EE5-8066074949B2}",
+    "Hash": "{B44145F4-A979-004E-331D-5A8C55EEACFB}",
     "ObjectPath": "Play_Footstep_Event",
     "ShortName": "Play_Footstep_Event",
     "Path": "Event/Play_Footstep_Event.bnk",
@@ -293,8 +416,69 @@
       ]
      }
     ]
+   },
+   {
+    "Id": "3450594569",
+    "Type": "Event",
+    "GUID": "{BDA2C256-5416-4BDF-8A64-8E23BC154F32}",
+    "Language": "SFX",
+    "Hash": "{D74A8ACD-AD5E-84F9-C7DC-E972923658FE}",
+    "ObjectPath": "Play_Bird_Fly",
+    "ShortName": "Play_Bird_Fly",
+    "Path": "Event/Play_Bird_Fly.bnk",
+    "Media": [
+     {
+      "Id": "20510519",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "Path": "Media/20510519.wem",
+      "CachePath": "60/{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem"
+     },
+     {
+      "Id": "484338727",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "Path": "Media/484338727.wem",
+      "CachePath": "EB/{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem"
+     },
+     {
+      "Id": "740117575",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "模拟的声音 仿真植物抖动风.wav",
+      "Path": "Media/740117575.wem",
+      "CachePath": "27/{27A87542-7282-928D-45FB-1D89B8E13466}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "3450594569",
+      "Name": "Play_Bird_Fly",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Bird_Fly",
+      "GUID": "{BDA2C256-5416-4BDF-8A64-8E23BC154F32}",
+      "DurationType": "OneShot",
+      "DurationMin": "2.9718955",
+      "DurationMax": "3.2690847",
+      "MediaRefs": [
+       {
+        "Id": "20510519"
+       },
+       {
+        "Id": "484338727"
+       },
+       {
+        "Id": "740117575"
+       }
+      ]
+     }
+    ]
    }
   ],
-  "FileHash": "{F6D6D5E1-A443-638E-A74D-E9718AAB0C21}"
+  "FileHash": "{077EA92E-A99F-876B-05A4-A806397C07A0}"
  }
 }

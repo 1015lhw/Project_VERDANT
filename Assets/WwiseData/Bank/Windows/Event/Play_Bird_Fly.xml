@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="172">
+	<SoundBanks>
+		<SoundBank Id="3450594569" Type="Event" GUID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}" Language="SFX" Hash="{D74A8ACD-AD5E-84F9-C7DC-E972923658FE}">
+			<ObjectPath>Play_Bird_Fly</ObjectPath>
+			<ShortName>Play_Bird_Fly</ShortName>
+			<Path>Event/Play_Bird_Fly.bnk</Path>
+			<Media>
+				<File Id="20510519" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
+					<Path>Media/20510519.wem</Path>
+					<CachePath>60/{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem</CachePath>
+				</File>
+				<File Id="484338727" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
+					<Path>Media/484338727.wem</Path>
+					<CachePath>EB/{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem</CachePath>
+				</File>
+				<File Id="740117575" Language="SFX" Streaming="false" Location="Loose">
+					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
+					<Path>Media/740117575.wem</Path>
+					<CachePath>27/{27A87542-7282-928D-45FB-1D89B8E13466}.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3450594569" Name="Play_Bird_Fly" ObjectPath="\Events\Default Work Unit\Play_Bird_Fly" GUID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}" DurationType="OneShot" DurationMin="2.9718955" DurationMax="3.2690847">
+					<MediaRefs>
+						<MediaRef Id="20510519"/>
+						<MediaRef Id="484338727"/>
+						<MediaRef Id="740117575"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{8E069198-6F28-CF10-EA29-F5B640A98CAD}</FileHash>
+</SoundBanksInfo>

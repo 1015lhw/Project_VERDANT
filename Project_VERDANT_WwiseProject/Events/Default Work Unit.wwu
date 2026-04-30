@@ -27,10 +27,10 @@
 				</Event>
 				<Event Name="Play_Amb" ID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}">
 					<ChildrenList>
-						<Action Name="" ID="{9F80AE98-5D08-4F75-B99D-868E355BCF72}" ShortID="81306304">
+						<Action Name="" ID="{9D8536CA-EDF8-447B-9CF1-7AD62AA64F50}" ShortID="490948772">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2" ID="{F12515EE-EEB0-42E8-9619-E2D8BD14D3F3}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+									<ObjectRef Name="Background" ID="{689D82EE-0CFA-4792-B545-B318E6DA13B1}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -73,11 +73,51 @@
 					</ChildrenList>
 				</Event>
 				<Event Name="Play_Creek" ID="{1D679383-D9EB-4598-9F0B-D897402DDD97}">
+					<PropertyList>
+						<Property Name="LimitScope" Type="int16">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ChildrenList>
 						<Action Name="" ID="{AEC31DCD-0EB1-4221-A137-1AD13D44C54E}" ShortID="418556274">
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Creek" ID="{E868A624-AE8C-4C0E-91AB-327658D40181}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Bird_Fly" ID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}">
+					<ChildrenList>
+						<Action Name="" ID="{959AE164-A6D3-4E89-B58A-F762FE0F3D22}" ShortID="132464633">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Random_Bird_Fly" ID="{71042E10-BA2A-4606-A7EC-923BAA951C2D}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Open_Backpack" ID="{F535854E-7C39-4FB7-AD53-D909C99207C6}">
+					<ChildrenList>
+						<Action Name="" ID="{3B41B311-ABA3-4918-82F6-EF6543B15BDB}" ShortID="940045130">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Backpack_Open" ID="{AD2F4710-592C-49C3-8EED-406C378B1160}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Close_Backpack" ID="{63E167D8-A132-4876-8F39-BA1AFDE4DF07}">
+					<ChildrenList>
+						<Action Name="" ID="{59992E30-E53F-4C78-A776-C14A3F17457D}" ShortID="405637897">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Backpack_Close" ID="{F5148B11-1F3A-4F44-BFAA-F56463733A78}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

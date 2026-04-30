@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e856f9964af11f4eab33f1176cd4957
+    m_Address: Assets/WwiseData/Bank/Mac/Media/740117575.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 21fda157831a1074f8fcfd718c94aecb
     m_Address: Assets/WwiseData/Bank/Mac/UI.bnk
     m_ReadOnly: 0
@@ -32,6 +37,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 283dbd4ebc785c641a2f83e0bafeb377
     m_Address: Assets/WwiseData/Bank/Mac/Media/837251483.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 403f3451ff993d44b99a40878565423d
+    m_Address: Assets/WwiseData/Bank/Mac/Media/484338727.wem
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -52,6 +62,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8d6045b70a5ae64a88420a94f467b01
     m_Address: Assets/WwiseData/Bank/Mac/Media/479781397.wem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4d9cbba50abe7e43814dae0798cffbc
+    m_Address: Assets/WwiseData/Bank/Mac/Event/Play_Bird_Fly.bnk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e059c8df7d4a8ef4798882b61309950e
+    m_Address: Assets/WwiseData/Bank/Mac/Media/20510519.wem
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

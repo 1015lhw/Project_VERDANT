@@ -5,7 +5,9 @@
 			<ChildrenList>
 				<SoundBank Name="UI" ID="{EB97643E-7E49-4895-8084-63C7446E1F96}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Close_Backpack" ID="{63E167D8-A132-4876-8F39-BA1AFDE4DF07}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Click_Event" ID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Open_Backpack" ID="{F535854E-7C39-4FB7-AD53-D909C99207C6}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
@@ -20,10 +22,13 @@
 				</SoundBank>
 				<SoundBank Name="Amb" ID="{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}">
 					<ObjectInclusionList>
-						<ObjectRef Name="BRS_Birds_Suburbs_Sourthern_Ontario_Lite_2" ID="{F12515EE-EEB0-42E8-9619-E2D8BD14D3F3}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Leaves" ID="{6E5BCB24-3B6C-4B33-B99B-BD9999C87E40}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Creek" ID="{E868A624-AE8C-4C0E-91AB-327658D40181}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Bird_Fly_02" ID="{1A8E7021-B836-411D-BA78-DDAFC9B0F6A9}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Bird_Fly_01" ID="{9BD02ED4-14A3-4220-8F92-13D289D51133}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Bird_Fly" ID="{A7C64B8A-8186-4564-831A-F96CBFA36AE4}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Creek" ID="{1D679383-D9EB-4598-9F0B-D897402DDD97}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Amb" ID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Bonfire" ID="{5EBA26F4-CD67-4D5A-A801-2BE1053780A4}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Leaves" ID="{1D41AFD7-067C-4F90-9818-93463E88FB13}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

@@ -7,6 +7,10 @@ public class InventoryToggle : MonoBehaviour
     public CanvasGroup dimCanvasGroup;  // 用 CanvasGroup 控制透明度
     public GameObject bagRedDot;        // 背包图标红点
 
+    [Header("Wwise Events")]//SFX
+    public AK.Wwise.Event inventoryOpenEvent;   // 开背包音效
+    public AK.Wwise.Event inventoryCloseEvent;  // 关背包音效
+
     public float slideSpeed = 10f;
     public float dimFadeTime = 0.15f;   
 
@@ -63,6 +67,8 @@ public class InventoryToggle : MonoBehaviour
 
         if (isOpen)
         {
+            inventoryOpenEvent.Post(gameObject);//SFX
+
             // 确保面板物体在 Inspector 里被激活，解决“必须手动勾选”的问题
             if (panel != null) panel.gameObject.SetActive(true);
 
@@ -87,10 +93,13 @@ public class InventoryToggle : MonoBehaviour
         }
         else
         {
+            inventoryCloseEvent.Post(gameObject);//SFX
+
             GameStateManager.ResetToNormal();
             if (dimCanvasGroup != null)
             {
                 StartCoroutine(FadeDim(0f));
+
             }
         }
     }
