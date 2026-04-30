@@ -425,10 +425,10 @@ public class DialogueManager : MonoBehaviour
         switch (speaker)
         {
             case Speaker.Player:
-                playerBrightness = 1f;
+                npcBrightness = 1f;
                 break;
             case Speaker.Npc:
-                npcBrightness = 1f;
+                playerBrightness = 1f;
                 break;
             case Speaker.Narration:
                 break;
