@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import json,sys;d=json.load\\(sys.stdin\\);import re;s=json.dumps\\(d\\);tags=re.findall\\(r'\\\\^\\([A-Za-z][A-Za-z]*:[^\\\\\"\\\\\\\\\\\\\\\\]*\\)',s\\);print\\('\\\\n'.join\\(sorted\\(set\\(tags\\)\\)\\)\\)\")",
+      "Bash(python -c \"import re; s=open\\('Assets/Ink/Kevin/Sierra MAIN.json','r',encoding='utf-8-sig'\\).read\\(\\); print\\('\\\\n'.join\\(sorted\\(set\\(re.findall\\(r'\\\\^\\([A-Za-z][A-Za-z0-9]*:[^\\\\\"]*\\)', s\\)\\)\\)\\)\\)\")"
+    ]
+  }
+}

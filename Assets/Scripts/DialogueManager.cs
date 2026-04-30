@@ -145,6 +145,14 @@ public class DialogueManager : MonoBehaviour
         }
 
         story = new Story(inkJSON.text);
+        try
+        {
+            PushEngineStateIntoStory(story);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[DialogueManager] PushEngineStateIntoStory failed: {e.Message}");
+        }
 
         isOpen = true;
         isForcedDialogue = forced;
@@ -212,6 +220,15 @@ public class DialogueManager : MonoBehaviour
 
         string line = story.Continue().Trim();
         dialogueText.text = line;
+
+        try
+        {
+            ProcessActionTags(story.currentTags);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[DialogueManager] ProcessActionTags failed: {e.Message}");
+        }
 
         if (!string.IsNullOrEmpty(line))
         {
@@ -489,4 +506,171 @@ public class DialogueManager : MonoBehaviour
     }
 
     public bool IsOpen => isOpen;
+
+    // ===== Engine <-> Ink bridge =====
+    // Push current engine state (reputation, inventory, story flags) into Ink variables
+    // so that .ink dialogue files can branch on real game state instead of hard-coded defaults.
+    void PushEngineStateIntoStory(Story s)
+    {
+        if (s == null) return;
+
+        if (ReputationManager.Instance != null)
+        {
+            TrySetInkVar(s, "Srep", ReputationManager.Instance.GetAffection(NpcId.Sie));
+            TrySetInkVar(s, "Mrep", ReputationManager.Instance.GetAffection(NpcId.Mar));
+        }
+
+        var inv = InventorySystem.Instance;
+        TrySetInkVar(s, "map",      inv != null && inv.Has("Map")      ? 1 : 0);
+        TrySetInkVar(s, "mushroom", inv != null && inv.Has("Mushroom") ? 1 : 0);
+        TrySetInkVar(s, "compass",  inv != null && inv.Has("Compass")  ? 1 : 0);
+        // blanket is a starter item — Ink defaults to 1, do not overwrite from inventory.
+        // gaveBlanketToSierra / gaveBlanketToMarcus flags below handle the "given once" gate.
+
+        TrySetInkVar(s, "gaveMapToSierra",     StoryFlags.Get("gaveMapToSierra")     ? 1 : 0);
+        TrySetInkVar(s, "gaveBlanketToSierra", StoryFlags.Get("gaveBlanketToSierra") ? 1 : 0);
+        TrySetInkVar(s, "gaveBlanketToMarcus", StoryFlags.Get("gaveBlanketToMarcus") ? 1 : 0);
+        TrySetInkVar(s, "MarcHasMush",         StoryFlags.Get("MarcHasMush")         ? 1 : 0);
+        TrySetInkVar(s, "gotWolfRepellent",    StoryFlags.Get("gotWolfRepellent")    ? 1 : 0);
+
+        Debug.Log($"[DialogueBridge] Srep={(ReputationManager.Instance != null ? ReputationManager.Instance.GetAffection(NpcId.Sie) : 0)} " +
+                  $"Mrep={(ReputationManager.Instance != null ? ReputationManager.Instance.GetAffection(NpcId.Mar) : 0)} " +
+                  $"map={(inv != null && inv.Has("Map") ? 1 : 0)} " +
+                  $"mushroom={(inv != null && inv.Has("Mushroom") ? 1 : 0)} " +
+                  $"compass={(inv != null && inv.Has("Compass") ? 1 : 0)} " +
+                  $"gaveMapToSierra={(StoryFlags.Get("gaveMapToSierra") ? 1 : 0)} " +
+                  $"gaveBlanketToSierra={(StoryFlags.Get("gaveBlanketToSierra") ? 1 : 0)} " +
+                  $"gaveBlanketToMarcus={(StoryFlags.Get("gaveBlanketToMarcus") ? 1 : 0)} " +
+                  $"MarcHasMush={(StoryFlags.Get("MarcHasMush") ? 1 : 0)} " +
+                  $"gotWolfRepellent={(StoryFlags.Get("gotWolfRepellent") ? 1 : 0)}");
+    }
+
+    static void TrySetInkVar(Story s, string name, int value)
+    {
+        try
+        {
+            if (s.variablesState.GlobalVariableExistsWithName(name))
+            {
+                s.variablesState[name] = value;
+            }
+        }
+        catch
+        {
+            // Different .ink files declare different variable sets; silently ignore mismatches.
+        }
+    }
+
+    void ProcessActionTags(IList<string> tags)
+    {
+        if (tags == null) return;
+
+        for (int i = 0; i < tags.Count; i++)
+        {
+            string raw = tags[i];
+            if (string.IsNullOrWhiteSpace(raw)) continue;
+
+            string t = raw.Trim();
+            if (t.StartsWith("#")) t = t.Substring(1).Trim();
+
+            string lower = t.ToLowerInvariant();
+
+            if (lower.StartsWith("grant:"))
+                HandleGrantTag(t.Substring("grant:".Length).Trim());
+            else if (lower.StartsWith("consume:"))
+                HandleConsumeTag(t.Substring("consume:".Length).Trim());
+            else if (lower.StartsWith("rep:"))
+                HandleRepTag(t.Substring("rep:".Length).Trim());
+            else if (lower.StartsWith("flag:"))
+                HandleFlagTag(t.Substring("flag:".Length).Trim());
+            // Other tags (SierraHAPPY, MarcusQUIET, speaker:..., etc.) are handled by portrait/speaker logic.
+        }
+    }
+
+    void HandleGrantTag(string itemId)
+    {
+        if (string.IsNullOrWhiteSpace(itemId)) return;
+        if (InventorySystem.Instance == null)
+        {
+            Debug.LogWarning($"[DialogueManager] grant:{itemId} ignored — InventorySystem.Instance is null.");
+            return;
+        }
+        if (InventorySystem.Instance.Has(itemId)) return;
+
+        int configuredAmount = DynamicInventoryUI.GetConfiguredAmountById(itemId);
+        if (configuredAmount > 0)
+            InventorySystem.Instance.AddTaskReward(itemId, configuredAmount);
+        else
+            InventorySystem.Instance.AddTaskReward(itemId);
+    }
+
+    void HandleConsumeTag(string itemId)
+    {
+        if (string.IsNullOrWhiteSpace(itemId)) return;
+        if (InventorySystem.Instance == null) return;
+        if (!InventorySystem.Instance.Has(itemId)) return;
+        InventorySystem.Instance.Remove(itemId, 1);
+    }
+
+    // Tag form: "Sie:+15", "Mar:-3", "sie:5"
+    void HandleRepTag(string body)
+    {
+        if (string.IsNullOrWhiteSpace(body)) return;
+        if (ReputationManager.Instance == null)
+        {
+            Debug.LogWarning($"[DialogueManager] rep:{body} ignored — ReputationManager.Instance is null.");
+            return;
+        }
+
+        int sep = body.IndexOf(':');
+        if (sep <= 0 || sep >= body.Length - 1)
+        {
+            Debug.LogWarning($"[DialogueManager] Malformed rep tag: rep:{body}");
+            return;
+        }
+
+        string npcKey = body.Substring(0, sep).Trim().ToLowerInvariant();
+        string deltaStr = body.Substring(sep + 1).Trim();
+
+        NpcId npc;
+        if (npcKey == "sie" || npcKey == "sierra") npc = NpcId.Sie;
+        else if (npcKey == "mar" || npcKey == "marcus") npc = NpcId.Mar;
+        else
+        {
+            Debug.LogWarning($"[DialogueManager] Unknown NPC in rep tag: rep:{body}");
+            return;
+        }
+
+        if (deltaStr.StartsWith("+")) deltaStr = deltaStr.Substring(1);
+
+        if (!int.TryParse(deltaStr, out int delta))
+        {
+            Debug.LogWarning($"[DialogueManager] Non-integer delta in rep tag: rep:{body}");
+            return;
+        }
+
+        ReputationManager.Instance.AddAffection(npc, delta, "Ink");
+    }
+
+    // Tag form: "gaveMapToSierra:set", "gaveMapToSierra:clear"
+    void HandleFlagTag(string body)
+    {
+        if (string.IsNullOrWhiteSpace(body)) return;
+
+        int sep = body.IndexOf(':');
+        if (sep <= 0 || sep >= body.Length - 1)
+        {
+            Debug.LogWarning($"[DialogueManager] Malformed flag tag: flag:{body}");
+            return;
+        }
+
+        string flagName = body.Substring(0, sep).Trim();
+        string action = body.Substring(sep + 1).Trim().ToLowerInvariant();
+
+        if (action == "set" || action == "true" || action == "1")
+            StoryFlags.Set(flagName, true);
+        else if (action == "clear" || action == "false" || action == "0" || action == "unset")
+            StoryFlags.Set(flagName, false);
+        else
+            Debug.LogWarning($"[DialogueManager] Unknown flag action: flag:{body}");
+    }
 }
