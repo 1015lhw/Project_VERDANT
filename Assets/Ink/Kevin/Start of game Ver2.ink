@@ -14,7 +14,7 @@ Ideally, this is a seperate scene where it's just some words and then it gets in
 <i> What was that noise I heard? //what noise? #narration
 <i> Why did I did do this... //why is there regret? #narration
 
-"Tyler..." //This is Sierra 
+"Tyler..." #SierraMAD //This is Sierra 
 
 //Scene switch to game.
 
