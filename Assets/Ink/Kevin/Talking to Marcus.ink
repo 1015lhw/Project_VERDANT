@@ -27,14 +27,14 @@ ENGINE BRIDGE:
 - Reputation / inventory / flag changes are emitted as tags:
     # rep:Mar:+5 / # rep:Sie:-3       -> ReputationManager.AddAffection
     # consume:Mushroom                -> InventorySystem.Remove
-    # grant:WolfRepellent             -> InventorySystem.AddTaskReward
+    # grant:Wolf Repellent             -> InventorySystem.AddTaskReward
     # flag:MarcHasMush:set            -> StoryFlags
 
 GAMEPLAY FLOW:
 1. Player gives Blood Mushroom -> "Sounds interesting, go on..." -> +5 Mar, mushroom stays
    (or "Anyway, we don't have time..." -> -3 Mar then +5 gather = +2, mushroom is consumed)
 2. Player gives Blanket -> +3 Mar, blanket consumed via flag
-3. Once MarcHasMush && gaveBlanketToMarcus, Marcus offers Wolf Repellent (grants WolfRepellent item).
+3. Once MarcHasMush && gaveBlanketToMarcus, Marcus offers Wolf Repellent (grants Wolf Repellent item).
 
 */
 
@@ -107,7 +107,7 @@ VAR gotWolfRepellent = 0
 
     "hm..."  #TylerTALK
     "I wouldn't mind that, Marcus"   #TylerTALK
-    "Thanks." #MarcusFLATTERED # rep:Mar:+3 # grant:WolfRepellent # flag:gotWolfRepellent:set
+    "Thanks." #MarcusFLATTERED # rep:Mar:+3 # grant:Wolf Repellent # flag:gotWolfRepellent:set
     -> DONE
 
 
