@@ -419,23 +419,41 @@ public class DialogueManager : MonoBehaviour
 
     void ApplySpeakerState(Speaker speaker)
     {
-        float npcBrightness = dimBrightness;
-        float playerBrightness = dimBrightness;
+        float leftBrightness = dimBrightness;
+        float rightBrightness = dimBrightness;
 
         switch (speaker)
         {
             case Speaker.Player:
-                playerBrightness = 1f;
+                rightBrightness = 1f;
                 break;
             case Speaker.Npc:
-                npcBrightness = 1f;
+                leftBrightness = 1f;
                 break;
             case Speaker.Narration:
                 break;
         }
 
-        SetPortraitBrightness(npcPortrait, npcBrightness);
-        SetPortraitBrightness(playerPortrait, playerBrightness);
+        var (leftPortrait, rightPortrait) = ResolvePortraitSides();
+        SetPortraitBrightness(leftPortrait, leftBrightness);
+        SetPortraitBrightness(rightPortrait, rightBrightness);
+    }
+
+    (Image leftPortrait, Image rightPortrait) ResolvePortraitSides()
+    {
+        if (npcPortrait == null) return (null, playerPortrait);
+        if (playerPortrait == null) return (npcPortrait, null);
+
+        float npcX = 0f;
+        float playerX = 0f;
+
+        RectTransform npcRt = npcPortrait.rectTransform;
+        RectTransform playerRt = playerPortrait.rectTransform;
+
+        if (npcRt != null) npcX = npcRt.anchoredPosition.x;
+        if (playerRt != null) playerX = playerRt.anchoredPosition.x;
+
+        return npcX <= playerX ? (npcPortrait, playerPortrait) : (playerPortrait, npcPortrait);
     }
 
     void SetPortraitBrightness(Image portrait, float brightness)
