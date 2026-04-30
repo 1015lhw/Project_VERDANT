@@ -5,16 +5,16 @@ Event	ID	Name			Wwise Object Path	Notes
 	3679851939	Play_Bonfire			\Default Work Unit\Play_Bonfire	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	20510519	Bird_Fly_01	.cache\60\{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem		\Containers\Default Work Unit\Amb\Random_Bird_Fly\Bird_Fly_01		627760
-	108398071	Bird	.cache\92\{92C358BC-555E-46B3-4072-414F7F9958BD}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird		1003752
-	111688204	Creek	.cache\53\{53D5DB6D-8474-C9D8-2482-9C3DE69AF36F}.wem		\Containers\Default Work Unit\Amb\Creek		21168144
-	207586963	Bird_01	.cache\A6\{A690DFDE-949F-B116-8362-36D6E51EB66C}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird_01		1695160
-	365606980	Bird_02	.cache\0B\{0B0A077B-C4AC-A31E-F3D0-76D87121A5A4}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird_02		981448
-	484338727	Bird_Fly	.cache\EB\{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem		\Containers\Default Work Unit\Amb\Random_Bird_Fly\Bird_Fly		570700
-	516223753	White_Noise	.cache\F0\{F052C329-A8A6-937A-D48B-10538A38E677}.wem		\Containers\Default Work Unit\Amb\Background\White_Noise		11524240
+	20510519	Bird_Fly_01	.cache\47\{477787B0-8B1E-F47A-965B-379289D6D002}.wem		\Containers\Default Work Unit\Amb\Random_Bird_Fly\Bird_Fly_01		627760
+	108398071	Bird	.cache\D9\{D97BB97D-AD9A-04A5-680D-461377A8EA42}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird		1003752
+	111688204	Creek	.cache\A5\{A5181D25-5B4C-F367-B203-3C24A610FAFB}.wem		\Containers\Default Work Unit\Amb\Creek		21168144
+	207586963	Bird_01	.cache\83\{835A0482-0A82-685F-A3A4-0D187619040D}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird_01		1695160
+	365606980	Bird_02	.cache\DE\{DE70C952-F06A-E5AB-F453-B7F8C2820705}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird_02		981448
+	484338727	Bird_Fly	.cache\5A\{5ADF5854-D357-36C4-59AF-5BC331BEFA79}.wem		\Containers\Default Work Unit\Amb\Random_Bird_Fly\Bird_Fly		570700
+	516223753	White_Noise	.cache\59\{5983F99A-7311-A2F7-2E8C-DB0897C85125}.wem		\Containers\Default Work Unit\Amb\Background\White_Noise		11524240
 	689453801	Bonfire	.cache\17\{176410BC-7571-A1B3-947A-2B227BDE2D61}.wem		\Containers\Default Work Unit\Amb\Bonfire		51291024
-	740117575	Bird_Fly_02	.cache\27\{27A87542-7282-928D-45FB-1D89B8E13466}.wem		\Containers\Default Work Unit\Amb\Random_Bird_Fly\Bird_Fly_02		593524
+	740117575	Bird_Fly_02	.cache\C7\{C7FAC3DF-80AD-BCB4-60C7-EDA426D352ED}.wem		\Containers\Default Work Unit\Amb\Random_Bird_Fly\Bird_Fly_02		593524
 	1003430248	Leaves	.cache\E8\{E8CB468A-9991-EA4E-D279-C6808F212D61}.wem		\Containers\Default Work Unit\Amb\Leaves		16233976
-	1026443751	Salmon Run final	.cache\76\{7676BF38-1D95-1A26-CCE7-9BBFE90E554F}.wem		\Containers\Default Work Unit\Amb\Background\Salmon Run final		31631872
-	1070369520	Bird_03	.cache\F3\{F35773F8-D467-F753-1C6D-0D95BA978F9A}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird_03		1828980
+	1026443751	Salmon Run final	.cache\54\{542FD819-DE78-67B5-DD44-442CAC980640}.wem		\Containers\Default Work Unit\Amb\Background\Salmon Run final		31631872
+	1070369520	Bird_03	.cache\38\{38B7CE12-D08B-3038-C842-E93B6B9027D7}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird_03		1828980
 

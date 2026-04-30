@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="3450594569" Type="Event" GUID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}" Language="SFX" Hash="{D74A8ACD-AD5E-84F9-C7DC-E972923658FE}">
+		<SoundBank Id="3450594569" Type="Event" GUID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}" Language="SFX" Hash="{4BC4A285-D2E0-31A3-70FE-039F3458D00B}">
 			<ObjectPath>Play_Bird_Fly</ObjectPath>
 			<ShortName>Play_Bird_Fly</ShortName>
 			<Path>Event/Play_Bird_Fly.bnk</Path>
@@ -9,17 +9,17 @@
 				<File Id="20510519" Language="SFX" Streaming="false" Location="Loose">
 					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
 					<Path>Media/20510519.wem</Path>
-					<CachePath>60/{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem</CachePath>
+					<CachePath>47/{477787B0-8B1E-F47A-965B-379289D6D002}.wem</CachePath>
 				</File>
 				<File Id="484338727" Language="SFX" Streaming="false" Location="Loose">
 					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
 					<Path>Media/484338727.wem</Path>
-					<CachePath>EB/{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem</CachePath>
+					<CachePath>5A/{5ADF5854-D357-36C4-59AF-5BC331BEFA79}.wem</CachePath>
 				</File>
 				<File Id="740117575" Language="SFX" Streaming="false" Location="Loose">
 					<ShortName>模拟的声音 仿真植物抖动风.wav</ShortName>
 					<Path>Media/740117575.wem</Path>
-					<CachePath>27/{27A87542-7282-928D-45FB-1D89B8E13466}.wem</CachePath>
+					<CachePath>C7/{C7FAC3DF-80AD-BCB4-60C7-EDA426D352ED}.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -33,5 +33,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{846BC372-A24E-8ADB-7C28-7261963B7185}</FileHash>
+	<FileHash>{9013E235-E72B-22B0-AFA3-73B027DFFCEA}</FileHash>
 </SoundBanksInfo>

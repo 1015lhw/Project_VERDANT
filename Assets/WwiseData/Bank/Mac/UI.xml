@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="1551306167" Type="User" GUID="{EB97643E-7E49-4895-8084-63C7446E1F96}" Language="SFX" Hash="{244FD7DA-9140-D0E2-BD0D-3A379B27AD1A}">
+		<SoundBank Id="1551306167" Type="User" GUID="{EB97643E-7E49-4895-8084-63C7446E1F96}" Language="SFX" Hash="{18DB33F7-B1C2-A826-1B66-351F8AA0E024}">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>UI.bnk</Path>
 			<Media>
 				<File Id="515158065" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>UI Click-D3EG_02-01.wav</ShortName>
-					<CachePath>B9/{B9688076-B403-970B-E9B4-22A6D62B364C}.wem</CachePath>
+					<CachePath>D1/{D16145E4-1CBB-1ACF-645F-E52369B2FE7D}.wem</CachePath>
 				</File>
 				<File Id="794226655" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>模拟的声音 登山包单招.wav</ShortName>
-					<CachePath>C4/{C4B43333-681D-E7E1-F02C-617024A1A8C8}.wem</CachePath>
+					<CachePath>F7/{F7591083-5206-CC76-033F-715C2655AC18}.wem</CachePath>
 				</File>
 				<File Id="968355106" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>模拟的声音 登山包单招.wav</ShortName>
-					<CachePath>63/{63DFE4D1-D1E1-0FEA-6758-B9325298B7FD}.wem</CachePath>
+					<CachePath>60/{60058ADC-4830-8779-C292-C85C9F6A0C19}.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -38,5 +38,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{A5F85DEE-6020-A2E4-57A9-11DAB6E4E273}</FileHash>
+	<FileHash>{236BC821-2963-1084-8A78-57160559483A}</FileHash>
 </SoundBanksInfo>

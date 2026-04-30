@@ -10,7 +10,7 @@
     "Type": "Event",
     "GUID": "{BDA2C256-5416-4BDF-8A64-8E23BC154F32}",
     "Language": "SFX",
-    "Hash": "{D74A8ACD-AD5E-84F9-C7DC-E972923658FE}",
+    "Hash": "{4BC4A285-D2E0-31A3-70FE-039F3458D00B}",
     "ObjectPath": "Play_Bird_Fly",
     "ShortName": "Play_Bird_Fly",
     "Path": "Event/Play_Bird_Fly.bnk",
@@ -22,7 +22,7 @@
       "Location": "Loose",
       "ShortName": "模拟的声音 仿真植物抖动风.wav",
       "Path": "Media/20510519.wem",
-      "CachePath": "60/{60075F65-5E9F-5EED-0A34-46B97E956BF3}.wem"
+      "CachePath": "47/{477787B0-8B1E-F47A-965B-379289D6D002}.wem"
      },
      {
       "Id": "484338727",
@@ -31,7 +31,7 @@
       "Location": "Loose",
       "ShortName": "模拟的声音 仿真植物抖动风.wav",
       "Path": "Media/484338727.wem",
-      "CachePath": "EB/{EB9D6FCE-CB88-0562-3948-A2F319B43D50}.wem"
+      "CachePath": "5A/{5ADF5854-D357-36C4-59AF-5BC331BEFA79}.wem"
      },
      {
       "Id": "740117575",
@@ -40,7 +40,7 @@
       "Location": "Loose",
       "ShortName": "模拟的声音 仿真植物抖动风.wav",
       "Path": "Media/740117575.wem",
-      "CachePath": "27/{27A87542-7282-928D-45FB-1D89B8E13466}.wem"
+      "CachePath": "C7/{C7FAC3DF-80AD-BCB4-60C7-EDA426D352ED}.wem"
      }
     ],
     "Events": [
@@ -67,6 +67,6 @@
     ]
    }
   ],
-  "FileHash": "{DE4CBECF-6CA8-DBAC-20D7-18883B87DA62}"
+  "FileHash": "{D0C92A0C-6FA2-50DD-C39E-132E48A3098B}"
  }
 }
