@@ -548,6 +548,7 @@ public class DialogueManager : MonoBehaviour
         TrySetInkVar(s, "gaveMapToSierra",     StoryFlags.Get("gaveMapToSierra")     ? 1 : 0);
         TrySetInkVar(s, "gaveBlanketToSierra", StoryFlags.Get("gaveBlanketToSierra") ? 1 : 0);
         TrySetInkVar(s, "gaveBlanketToMarcus", StoryFlags.Get("gaveBlanketToMarcus") ? 1 : 0);
+        TrySetInkVar(s, "toldSierraAboutMushroom", StoryFlags.Get("toldSierraAboutMushroom") ? 1 : 0);
         TrySetInkVar(s, "MarcHasMush",         StoryFlags.Get("MarcHasMush")         ? 1 : 0);
         TrySetInkVar(s, "gotWolfRepellent",    StoryFlags.Get("gotWolfRepellent")    ? 1 : 0);
 
@@ -559,6 +560,7 @@ public class DialogueManager : MonoBehaviour
                   $"gaveMapToSierra={(StoryFlags.Get("gaveMapToSierra") ? 1 : 0)} " +
                   $"gaveBlanketToSierra={(StoryFlags.Get("gaveBlanketToSierra") ? 1 : 0)} " +
                   $"gaveBlanketToMarcus={(StoryFlags.Get("gaveBlanketToMarcus") ? 1 : 0)} " +
+                  $"toldSierraAboutMushroom={(StoryFlags.Get("toldSierraAboutMushroom") ? 1 : 0)} " +
                   $"MarcHasMush={(StoryFlags.Get("MarcHasMush") ? 1 : 0)} " +
                   $"gotWolfRepellent={(StoryFlags.Get("gotWolfRepellent") ? 1 : 0)}");
     }
