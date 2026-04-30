@@ -55,6 +55,7 @@ VAR compass = 0
 VAR map = 0
 VAR gaveMapToSierra = 0
 VAR gaveBlanketToSierra = 0
+VAR toldSierraAboutMushroom = 0
 
 // Greeting / rep gate. Rep >= 18 with compass not yet given routes straight to Compass knot.
 {
@@ -98,7 +99,7 @@ VAR gaveBlanketToSierra = 0
     ->DONE
 
 //After you give marcus the mushroom, you can tell Sierra that Marcus is an excellent Forager and can help us out too.
-*{MarcHasMush}[Tell her about the the blood mushroom]
+*{MarcHasMush && !toldSierraAboutMushroom}[Tell her about the the blood mushroom]
 
     "Hey Sier-  " #TylerTALKBLOOD
 
@@ -127,7 +128,7 @@ VAR gaveBlanketToSierra = 0
                 !!! #SierraMAD
                 ... #SierraNERVOUS
                 "Do you think..."  #SierraCRY
-                "we'll..." #SierraCRY
+                "we'll..." #SierraCRY # flag:toldSierraAboutMushroom:set
 
                 ->DONE
 
@@ -145,7 +146,7 @@ VAR gaveBlanketToSierra = 0
 
             "..." #SierraNERVOUS
 
-            "Let's go and help out Marcus" #SierraTALK # rep:Sie:+4
+            "Let's go and help out Marcus" #SierraTALK # rep:Sie:+4 # flag:toldSierraAboutMushroom:set
 
             ->DONE
 
