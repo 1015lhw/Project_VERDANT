@@ -103,8 +103,8 @@ public class ForestFenceGearCheck : MonoBehaviour
         bool hasMap = inventory.Has(mapItemId);
         bool hasCompass = inventory.Has(compassItemId);
 
-        // 需求：没有指南针和地图时拦住玩家。
-        return hasMap || hasCompass;
+        // 需求：必须同时拥有地图和指南针才能通过。
+        return hasMap && hasCompass;
     }
 
     private void RefreshFenceState()
