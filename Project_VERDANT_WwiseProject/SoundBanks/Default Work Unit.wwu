@@ -5,8 +5,13 @@
 			<ChildrenList>
 				<SoundBank Name="UI" ID="{EB97643E-7E49-4895-8084-63C7446E1F96}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Task_Accomplish" ID="{FDA6121F-4680-4544-B296-354665EB87AC}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Close_Backpack" ID="{63E167D8-A132-4876-8F39-BA1AFDE4DF07}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Click_Event" ID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Task_Accept" ID="{EF935E36-EBBA-4DAA-A608-CE03019347F6}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Rock_Drop" ID="{4BD767A0-92A3-4EEF-913B-6D3487C06CB2}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Random_Bush" ID="{4413AC57-C0C4-4F1B-B7AB-5188F0AC0604}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Flipping_Page" ID="{21924CED-6079-4FAE-BC81-5FF9175DE86A}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Open_Backpack" ID="{F535854E-7C39-4FB7-AD53-D909C99207C6}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
@@ -24,6 +29,7 @@
 					<ObjectInclusionList>
 						<ObjectRef Name="Bird_Fly_02" ID="{1A8E7021-B836-411D-BA78-DDAFC9B0F6A9}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Bird_Fly_01" ID="{9BD02ED4-14A3-4220-8F92-13D289D51133}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Lake" ID="{CFC25A7D-A695-4257-B86D-C8AD2F7F74B3}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Bird_Fly" ID="{A7C64B8A-8186-4564-831A-F96CBFA36AE4}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Creek" ID="{1D679383-D9EB-4598-9F0B-D897402DDD97}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_Amb" ID="{D421C31B-AB3A-4D0B-901D-7B94208EBDDB}" WorkUnitID="{798117CA-FFA9-4B02-94FA-C357CF22DACC}" Origin="Manual" Filter="7"/>

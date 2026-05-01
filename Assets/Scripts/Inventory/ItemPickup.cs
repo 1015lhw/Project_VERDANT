@@ -17,6 +17,9 @@ public class ItemPickup : MonoBehaviour
     [Tooltip("拾取后是否销毁本物体。oneTime=true 且本项=true 时销毁;false 时仅 SetActive(false)。")]
     public bool destroyOnPickup = true;
 
+    [Header("Wwise Events")]
+    public AK.Wwise.Event pickupEvent;
+
     [Header("Press E UI")]
     [Tooltip("玩家进入碰撞体时显示的 \"按 E 拾取\" 提示 UI。沿用对话用的同一个 PressE Prompt 即可。")]
     public GameObject pressEUI;
@@ -74,6 +77,12 @@ public class ItemPickup : MonoBehaviour
         InventorySystem.Instance.AddTaskReward(itemId, finalAmount);
 
         consumed = true;
+
+        if (pickupEvent != null)
+        {
+            pickupEvent.Post(gameObject);
+        }
+
         PressEPromptCoordinator.SetRequest(pressEUI, this, false);
 
         if (oneTime)

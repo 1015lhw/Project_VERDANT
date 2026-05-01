@@ -1,4 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
+	40648359	Play_Lake			\Default Work Unit\Play_Lake	
 	135230898	Play_Creek			\Default Work Unit\Play_Creek	
 	2959533290	Play_Amb			\Default Work Unit\Play_Amb	
 	3439690150	Play_Leaves			\Default Work Unit\Play_Leaves	
@@ -12,9 +13,11 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	365606980	Bird_02	.cache\DE\{DE70C952-F06A-E5AB-F453-B7F8C2820705}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird_02		981448
 	484338727	Bird_Fly	.cache\5A\{5ADF5854-D357-36C4-59AF-5BC331BEFA79}.wem		\Containers\Default Work Unit\Amb\Random_Bird_Fly\Bird_Fly		570700
 	516223753	White_Noise	.cache\59\{5983F99A-7311-A2F7-2E8C-DB0897C85125}.wem		\Containers\Default Work Unit\Amb\Background\White_Noise		11524240
+	647569010	Noise	.cache\AD\{AD995428-C17C-8516-A735-592BA6C43660}.wem		\Containers\Default Work Unit\Amb\Lake\Noise		18520740
 	689453801	Bonfire	.cache\17\{176410BC-7571-A1B3-947A-2B227BDE2D61}.wem		\Containers\Default Work Unit\Amb\Bonfire		51291024
 	740117575	Bird_Fly_02	.cache\C7\{C7FAC3DF-80AD-BCB4-60C7-EDA426D352ED}.wem		\Containers\Default Work Unit\Amb\Random_Bird_Fly\Bird_Fly_02		593524
 	1003430248	Leaves	.cache\E8\{E8CB468A-9991-EA4E-D279-C6808F212D61}.wem		\Containers\Default Work Unit\Amb\Leaves		16233976
 	1026443751	Salmon Run final	.cache\54\{542FD819-DE78-67B5-DD44-442CAC980640}.wem		\Containers\Default Work Unit\Amb\Background\Salmon Run final		31631872
+	1067090444	Wave	.cache\64\{6498C1BF-D22F-20CF-D2FB-E41E9A1DEA2F}.wem		\Containers\Default Work Unit\Amb\Lake\Wave		30556532
 	1070369520	Bird_03	.cache\38\{38B7CE12-D08B-3038-C842-E93B6B9027D7}.wem		\Containers\Default Work Unit\Amb\Background\Random_Birds_Sound\Bird_03		1828980
 

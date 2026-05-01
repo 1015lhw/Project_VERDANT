@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="3450594569" Type="Event" GUID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}" Language="SFX" Hash="{4BC4A285-D2E0-31A3-70FE-039F3458D00B}">
+		<SoundBank Id="3450594569" Type="Event" GUID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}" Language="SFX" Hash="{7AE4B85F-B7C7-7FA2-DAE4-C1F0DAC2E250}">
 			<ObjectPath>Play_Bird_Fly</ObjectPath>
 			<ShortName>Play_Bird_Fly</ShortName>
 			<Path>Event/Play_Bird_Fly.bnk</Path>
@@ -33,5 +33,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{9013E235-E72B-22B0-AFA3-73B027DFFCEA}</FileHash>
+	<FileHash>{6875A7C8-F3E1-340A-3324-2DC88AD3F3AB}</FileHash>
 </SoundBanksInfo>

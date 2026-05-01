@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="3450594569" Type="Event" GUID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}" Language="SFX" Hash="{4BC4A285-D2E0-31A3-70FE-039F3458D00B}">
+		<SoundBank Id="3450594569" Type="Event" GUID="{BDA2C256-5416-4BDF-8A64-8E23BC154F32}" Language="SFX" Hash="{7AE4B85F-B7C7-7FA2-DAE4-C1F0DAC2E250}">
 			<ObjectPath>Play_Bird_Fly</ObjectPath>
 			<ShortName>Play_Bird_Fly</ShortName>
 			<Path>Event/Play_Bird_Fly.bnk</Path>
@@ -33,5 +33,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{2203A496-3BAB-34EF-373F-6DB146370C27}</FileHash>
+	<FileHash>{2A7C6AC3-96D2-5A93-C833-4E212E2ABAF6}</FileHash>
 </SoundBanksInfo>

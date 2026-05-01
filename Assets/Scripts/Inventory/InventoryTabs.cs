@@ -25,6 +25,9 @@ public class InventoryTabs : MonoBehaviour
     [Tooltip("未选中状态下的 Y 轴坐标")]
     public float lowY = 0f;
 
+    [Header("Wwise Events")]
+    public AK.Wwise.Event flippingPageEvent;
+
     private InventoryTab selectedTab = InventoryTab.Reputation;
 
     void Start()
@@ -52,6 +55,11 @@ public class InventoryTabs : MonoBehaviour
         if (selectedTab == targetTab) return;
 
         selectedTab = targetTab;
+
+        if (flippingPageEvent != null)
+        {
+            flippingPageEvent.Post(gameObject);
+        }
         ApplyTabVisualState();
         ApplyPageVisibility();
     }

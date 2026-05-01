@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{FAA558D4-36A4-A2EE-BCA3-7C51ED356232}",
+    "Hash": "{2C69F15D-213B-FC84-6C86-52034F3396C0}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
@@ -72,6 +72,14 @@
       "CachePath": "59/{5983F99A-7311-A2F7-2E8C-DB0897C85125}.wem"
      },
      {
+      "Id": "647569010",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1782 Quietudes Ocean Shores pebbled beach V2.wav",
+      "CachePath": "AD/{AD995428-C17C-8516-A735-592BA6C43660}.wem"
+     },
+     {
       "Id": "689453801",
       "Language": "SFX",
       "Streaming": "false",
@@ -102,6 +110,14 @@
       "Location": "Memory",
       "ShortName": "Salmon Run final.wav",
       "CachePath": "54/{542FD819-DE78-67B5-DD44-442CAC980640}.wem"
+     },
+     {
+      "Id": "1067090444",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "_Water_Waves_03.wav",
+      "CachePath": "64/{6498C1BF-D22F-20CF-D2FB-E41E9A1DEA2F}.wem"
      },
      {
       "Id": "1070369520",
@@ -167,6 +183,21 @@
       ]
      },
      {
+      "Id": "40648359",
+      "Name": "Play_Lake",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Lake",
+      "GUID": "{CFC25A7D-A695-4257-B86D-C8AD2F7F74B3}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "647569010"
+       },
+       {
+        "Id": "1067090444"
+       }
+      ]
+     },
+     {
       "Id": "3439690150",
       "Name": "Play_Leaves",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Leaves",
@@ -182,6 +213,6 @@
     ]
    }
   ],
-  "FileHash": "{EFE20ED3-AA81-5BE0-4C3B-8E0B658D53F0}"
+  "FileHash": "{B61F7F75-F0AF-E2AE-170B-0D059DD7A287}"
  }
 }

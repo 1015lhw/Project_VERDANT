@@ -55,7 +55,7 @@
     "Type": "User",
     "GUID": "{37B9AF57-1CD9-40DF-8AC3-6C75D7C5C93D}",
     "Language": "SFX",
-    "Hash": "{FAA558D4-36A4-A2EE-BCA3-7C51ED356232}",
+    "Hash": "{2C69F15D-213B-FC84-6C86-52034F3396C0}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Amb",
     "ShortName": "Amb",
     "Path": "Amb.bnk",
@@ -117,6 +117,14 @@
       "CachePath": "59/{5983F99A-7311-A2F7-2E8C-DB0897C85125}.wem"
      },
      {
+      "Id": "647569010",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "QP14 1782 Quietudes Ocean Shores pebbled beach V2.wav",
+      "CachePath": "AD/{AD995428-C17C-8516-A735-592BA6C43660}.wem"
+     },
+     {
       "Id": "689453801",
       "Language": "SFX",
       "Streaming": "false",
@@ -147,6 +155,14 @@
       "Location": "Memory",
       "ShortName": "Salmon Run final.wav",
       "CachePath": "54/{542FD819-DE78-67B5-DD44-442CAC980640}.wem"
+     },
+     {
+      "Id": "1067090444",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "_Water_Waves_03.wav",
+      "CachePath": "64/{6498C1BF-D22F-20CF-D2FB-E41E9A1DEA2F}.wem"
      },
      {
       "Id": "1070369520",
@@ -212,6 +228,21 @@
       ]
      },
      {
+      "Id": "40648359",
+      "Name": "Play_Lake",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Lake",
+      "GUID": "{CFC25A7D-A695-4257-B86D-C8AD2F7F74B3}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "647569010"
+       },
+       {
+        "Id": "1067090444"
+       }
+      ]
+     },
+     {
       "Id": "3439690150",
       "Name": "Play_Leaves",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Leaves",
@@ -269,7 +300,7 @@
     "Type": "User",
     "GUID": "{EB97643E-7E49-4895-8084-63C7446E1F96}",
     "Language": "SFX",
-    "Hash": "{02C5B7BA-D8E5-DEA2-F042-6AC691F71E30}",
+    "Hash": "{EFE6AA2C-EB7C-5A7A-0076-933B788A06AA}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -315,12 +346,28 @@
       "CachePath": "FA/{FA019B2A-FE31-8A74-014A-278C741E4570}.wem"
      },
      {
-      "Id": "515158065",
+      "Id": "449238698",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
-      "ShortName": "UI Click-D3EG_02-01.wav",
-      "CachePath": "D1/{D16145E4-1CBB-1ACF-645F-E52369B2FE7D}.wem"
+      "ShortName": "BNP_Booklet_FlippingPages_1.wav",
+      "CachePath": "45/{45168927-1412-7382-647D-93769F2034BA}.wem"
+     },
+     {
+      "Id": "566958766",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BNP_Booklet_FlippingPages_2.wav",
+      "CachePath": "D1/{D1FA184E-908A-0C00-9607-D3DEF152EDCB}.wem"
+     },
+     {
+      "Id": "608736302",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BNP_Bookshelf_Drop_26.wav",
+      "CachePath": "AC/{ACCF99B6-2CD8-D4FE-53DA-22480D6E1019}.wem"
      },
      {
       "Id": "711528305",
@@ -339,12 +386,28 @@
       "CachePath": "48/{4827313E-40DA-650A-F4AA-984E79FACFB3}.wem"
      },
      {
+      "Id": "760792305",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BNP_Booklet_FlippingPages_1.wav",
+      "CachePath": "18/{183FF2D4-48D9-B387-A590-A3EA961BC2F0}.wem"
+     },
+     {
       "Id": "794226655",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "模拟的声音 登山包单招.wav",
       "CachePath": "F7/{F7591083-5206-CC76-033F-715C2655AC18}.wem"
+     },
+     {
+      "Id": "924421915",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BNP_Booklet_FlippingPages_2.wav",
+      "CachePath": "D1/{D1DB7F2D-52FE-D19C-0A81-898F240CA90E}.wem"
      },
      {
       "Id": "927660224",
@@ -395,6 +458,29 @@
       ]
      },
      {
+      "Id": "2524978870",
+      "Name": "Flipping_Page",
+      "ObjectPath": "\\Events\\Default Work Unit\\Flipping_Page",
+      "GUID": "{21924CED-6079-4FAE-BC81-5FF9175DE86A}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.7897666",
+      "DurationMax": "1.0365688",
+      "MediaRefs": [
+       {
+        "Id": "449238698"
+       },
+       {
+        "Id": "566958766"
+       },
+       {
+        "Id": "760792305"
+       },
+       {
+        "Id": "924421915"
+       }
+      ]
+     },
+     {
       "Id": "1345726974",
       "Name": "Open_Backpack",
       "ObjectPath": "\\Events\\Default Work Unit\\Open_Backpack",
@@ -437,11 +523,11 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Click_Event",
       "GUID": "{1C03F633-E673-4B64-9A5C-2E9789D7B614}",
       "DurationType": "OneShot",
-      "DurationMin": "0.10311475",
-      "DurationMax": "0.10311475",
+      "DurationMin": "0.25666726",
+      "DurationMax": "0.25666726",
       "MediaRefs": [
        {
-        "Id": "515158065"
+        "Id": "608736302"
        }
       ]
      },
@@ -576,7 +662,7 @@
     "Type": "Event",
     "GUID": "{BDA2C256-5416-4BDF-8A64-8E23BC154F32}",
     "Language": "SFX",
-    "Hash": "{4BC4A285-D2E0-31A3-70FE-039F3458D00B}",
+    "Hash": "{7AE4B85F-B7C7-7FA2-DAE4-C1F0DAC2E250}",
     "ObjectPath": "Play_Bird_Fly",
     "ShortName": "Play_Bird_Fly",
     "Path": "Event/Play_Bird_Fly.bnk",
@@ -633,6 +719,6 @@
     ]
    }
   ],
-  "FileHash": "{79912AA4-C466-5668-DC0D-D70FE93520D5}"
+  "FileHash": "{2F59EE1E-A305-DD3D-1007-B5667681EBB5}"
  }
 }

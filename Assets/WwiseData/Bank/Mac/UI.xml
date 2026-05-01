@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="172">
 	<SoundBanks>
-		<SoundBank Id="1551306167" Type="User" GUID="{EB97643E-7E49-4895-8084-63C7446E1F96}" Language="SFX" Hash="{02C5B7BA-D8E5-DEA2-F042-6AC691F71E30}">
+		<SoundBank Id="1551306167" Type="User" GUID="{EB97643E-7E49-4895-8084-63C7446E1F96}" Language="SFX" Hash="{EFE6AA2C-EB7C-5A7A-0076-933B788A06AA}">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>UI.bnk</Path>
@@ -26,9 +26,17 @@
 					<ShortName>PM_RI_Source_21 Rocks Impact Hit Single Stone.wav</ShortName>
 					<CachePath>FA/{FA019B2A-FE31-8A74-014A-278C741E4570}.wem</CachePath>
 				</File>
-				<File Id="515158065" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>UI Click-D3EG_02-01.wav</ShortName>
-					<CachePath>D1/{D16145E4-1CBB-1ACF-645F-E52369B2FE7D}.wem</CachePath>
+				<File Id="449238698" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BNP_Booklet_FlippingPages_1.wav</ShortName>
+					<CachePath>45/{45168927-1412-7382-647D-93769F2034BA}.wem</CachePath>
+				</File>
+				<File Id="566958766" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BNP_Booklet_FlippingPages_2.wav</ShortName>
+					<CachePath>D1/{D1FA184E-908A-0C00-9607-D3DEF152EDCB}.wem</CachePath>
+				</File>
+				<File Id="608736302" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BNP_Bookshelf_Drop_26.wav</ShortName>
+					<CachePath>AC/{ACCF99B6-2CD8-D4FE-53DA-22480D6E1019}.wem</CachePath>
 				</File>
 				<File Id="711528305" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Vegetation, Foliage, Leaf, Wide, Wet, Handling, Rummage 01, VADI.wav</ShortName>
@@ -38,9 +46,17 @@
 					<ShortName>PM_RI_Source_64 Rocks Impact Hit Single Stone.wav</ShortName>
 					<CachePath>48/{4827313E-40DA-650A-F4AA-984E79FACFB3}.wem</CachePath>
 				</File>
+				<File Id="760792305" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BNP_Booklet_FlippingPages_1.wav</ShortName>
+					<CachePath>18/{183FF2D4-48D9-B387-A590-A3EA961BC2F0}.wem</CachePath>
+				</File>
 				<File Id="794226655" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>模拟的声音 登山包单招.wav</ShortName>
 					<CachePath>F7/{F7591083-5206-CC76-033F-715C2655AC18}.wem</CachePath>
+				</File>
+				<File Id="924421915" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BNP_Booklet_FlippingPages_2.wav</ShortName>
+					<CachePath>D1/{D1DB7F2D-52FE-D19C-0A81-898F240CA90E}.wem</CachePath>
 				</File>
 				<File Id="927660224" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Vegetation, Foliage, Leaf, Wide, Wet, Handling, Rummage 01, VADI.wav</ShortName>
@@ -65,6 +81,14 @@
 						<MediaRef Id="968355106"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2524978870" Name="Flipping_Page" ObjectPath="\Events\Default Work Unit\Flipping_Page" GUID="{21924CED-6079-4FAE-BC81-5FF9175DE86A}" DurationType="OneShot" DurationMin="0.7897666" DurationMax="1.0365688">
+					<MediaRefs>
+						<MediaRef Id="449238698"/>
+						<MediaRef Id="566958766"/>
+						<MediaRef Id="760792305"/>
+						<MediaRef Id="924421915"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1345726974" Name="Open_Backpack" ObjectPath="\Events\Default Work Unit\Open_Backpack" GUID="{F535854E-7C39-4FB7-AD53-D909C99207C6}" DurationType="OneShot" DurationMin="0.7169462" DurationMax="0.7169462">
 					<MediaRefs>
 						<MediaRef Id="794226655"/>
@@ -78,9 +102,9 @@
 						<MediaRef Id="927660224"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="975614739" Name="Play_Click_Event" ObjectPath="\Events\Default Work Unit\Play_Click_Event" GUID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" DurationType="OneShot" DurationMin="0.10311475" DurationMax="0.10311475">
+				<Event Id="975614739" Name="Play_Click_Event" ObjectPath="\Events\Default Work Unit\Play_Click_Event" GUID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" DurationType="OneShot" DurationMin="0.25666726" DurationMax="0.25666726">
 					<MediaRefs>
-						<MediaRef Id="515158065"/>
+						<MediaRef Id="608736302"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2703129694" Name="Rock_Drop" ObjectPath="\Events\Default Work Unit\Rock_Drop" GUID="{4BD767A0-92A3-4EEF-913B-6D3487C06CB2}" DurationType="OneShot" DurationMin="0.93084127" DurationMax="1.3011805">
@@ -104,5 +128,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{C5DD7699-807D-70E8-9C21-46AB6C7708EA}</FileHash>
+	<FileHash>{92C2F65B-B064-43F4-5B52-46EB75EEE254}</FileHash>
 </SoundBanksInfo>

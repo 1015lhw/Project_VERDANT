@@ -14,6 +14,7 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID CLOSE_BACKPACK = 4202216648U;
+        static const AkUniqueID FLIPPING_PAGE = 2524978870U;
         static const AkUniqueID OPEN_BACKPACK = 1345726974U;
         static const AkUniqueID PLAY_AMB = 2959533290U;
         static const AkUniqueID PLAY_BIRD_FLY = 3450594569U;
@@ -22,6 +23,7 @@ namespace AK
         static const AkUniqueID PLAY_CLICK_EVENT = 975614739U;
         static const AkUniqueID PLAY_CREEK = 135230898U;
         static const AkUniqueID PLAY_FOOTSTEP_EVENT = 2024329721U;
+        static const AkUniqueID PLAY_LAKE = 40648359U;
         static const AkUniqueID PLAY_LEAVES = 3439690150U;
         static const AkUniqueID ROCK_DROP = 2703129694U;
         static const AkUniqueID STOP_EVENT = 2904546416U;

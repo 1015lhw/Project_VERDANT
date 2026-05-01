@@ -5,10 +5,10 @@
 			<ChildrenList>
 				<Event Name="Play_Click_Event" ID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}">
 					<ChildrenList>
-						<Action Name="" ID="{549A561C-388C-419A-A658-574DA7B3D3F1}" ShortID="5598172">
+						<Action Name="" ID="{F94233A5-974E-428D-A05F-6050536E2D34}" ShortID="199361560">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="UIclick_1" ID="{94EE32D4-959E-4EF6-9F90-9BA14711769E}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+									<ObjectRef Name="Click" ID="{3A403E45-3E2F-4348-AAB8-D1E358516468}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -118,6 +118,72 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Backpack_Close" ID="{F5148B11-1F3A-4F44-BFAA-F56463733A78}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Bush" ID="{1582A6DE-53AA-4A4F-A450-17AEBD8C15BD}">
+					<ChildrenList>
+						<Action Name="" ID="{D2BA1982-F927-42AF-AA6D-F326E8A5F608}" ShortID="334980779">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Random_Bush" ID="{4413AC57-C0C4-4F1B-B7AB-5188F0AC0604}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Task_Accept" ID="{EF935E36-EBBA-4DAA-A608-CE03019347F6}">
+					<ChildrenList>
+						<Action Name="" ID="{EB473225-A1D2-40EF-B96B-814C18FAA092}" ShortID="3818885">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Task_Accept" ID="{5B47408E-C304-4963-B637-9FD5525AAEE6}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Task_Accomplish" ID="{FDA6121F-4680-4544-B296-354665EB87AC}">
+					<ChildrenList>
+						<Action Name="" ID="{5954C339-7692-46CC-AEAE-0A87DB72F39F}" ShortID="686532730">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Task_Accomplish" ID="{B7B3E5D8-B50C-4664-8BAD-2C4232C1D23D}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Rock_Drop" ID="{4BD767A0-92A3-4EEF-913B-6D3487C06CB2}">
+					<ChildrenList>
+						<Action Name="" ID="{6312E2A3-86FE-42F9-85C0-E9EADB838922}" ShortID="336959610">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Random_Rock_Drop" ID="{1C35F53D-BCC7-4F06-BF28-5F7CA42BCEE8}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Flipping_Page" ID="{21924CED-6079-4FAE-BC81-5FF9175DE86A}">
+					<ChildrenList>
+						<Action Name="" ID="{4C70808E-C2B0-4EB8-8A18-1C4BAD65C63B}" ShortID="771884435">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Random_Flipping_Pages" ID="{FD34502B-9DA8-44DF-B539-3A18B23878C1}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Lake" ID="{CFC25A7D-A695-4257-B86D-C8AD2F7F74B3}">
+					<ChildrenList>
+						<Action Name="" ID="{A1672CEB-678E-4537-A027-BD874104EBFB}" ShortID="418573288">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Lake" ID="{84D8159F-B62B-436D-A06F-18E12F024121}" WorkUnitID="{BAE552F6-C8DF-4FE2-95E6-D5036D4B08D1}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

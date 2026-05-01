@@ -10,7 +10,7 @@
     "Type": "Event",
     "GUID": "{BDA2C256-5416-4BDF-8A64-8E23BC154F32}",
     "Language": "SFX",
-    "Hash": "{4BC4A285-D2E0-31A3-70FE-039F3458D00B}",
+    "Hash": "{7AE4B85F-B7C7-7FA2-DAE4-C1F0DAC2E250}",
     "ObjectPath": "Play_Bird_Fly",
     "ShortName": "Play_Bird_Fly",
     "Path": "Event/Play_Bird_Fly.bnk",
@@ -67,6 +67,6 @@
     ]
    }
   ],
-  "FileHash": "{53E4A848-9B16-747C-977A-E5DE8E75E6FF}"
+  "FileHash": "{FD628D15-127C-EE43-FCED-501D43D381FA}"
  }
 }
