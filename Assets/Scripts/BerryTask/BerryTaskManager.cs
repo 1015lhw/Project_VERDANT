@@ -11,7 +11,12 @@ public class BerryTaskManager : MonoBehaviour
     public Button closeButton;
 
     [Header("Settings")]
-    public float closeDelay = 0.5f;
+    public float completeSoundDelay = 0.3f;
+    public float closeDelay = 1.2f;
+
+    [Header("Wwise Events")]
+    public AK.Wwise.Event berryPickEvent;
+    public AK.Wwise.Event taskCompleteEvent;
 
     [Header("Task State")]
     public bool taskCompleted = false;
@@ -85,6 +90,12 @@ public class BerryTaskManager : MonoBehaviour
         if (taskCompleted) return;
 
         berry.gameObject.SetActive(false);
+
+        if (berryPickEvent != null)
+        {
+            berryPickEvent.Post(gameObject);
+        }
+
         clickedCount++;
         UpdateUI();
 
@@ -95,13 +106,26 @@ public class BerryTaskManager : MonoBehaviour
             ApplyShrubState();
 
             TaskUICommon.GrantReward(rewardItemID);
-            StartCoroutine(DelayedClose());
+            StartCoroutine(DelayedCompleteFeedback());
         }
     }
 
     IEnumerator DelayedClose()
     {
         yield return new WaitForSecondsRealtime(closeDelay);
+        SlideAndClose();
+    }
+    IEnumerator DelayedCompleteFeedback()
+    {
+        yield return new WaitForSecondsRealtime(completeSoundDelay);
+
+        if (taskCompleteEvent != null)
+        {
+            taskCompleteEvent.Post(gameObject);
+        }
+
+        yield return new WaitForSecondsRealtime(closeDelay);
+
         SlideAndClose();
     }
 

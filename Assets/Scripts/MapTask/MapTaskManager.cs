@@ -18,7 +18,8 @@ public class MapTaskManager : MonoBehaviour
     [Header("Settings")]
     [FormerlySerializedAs("totalRocks")]
     public int totalTargets = 5;
-    public float closeDelay = 0.1f;
+    public float completeSoundDelay = 0.3f;
+    public float closeDelay = 1.2f;
 
     [Header("Task State")]
     [FormerlySerializedAs("isCompleted")]
@@ -26,6 +27,10 @@ public class MapTaskManager : MonoBehaviour
 
     [Header("Reward")]
     public string rewardItemID = "Map";
+
+    [Header("Wwise Events")]
+    public AK.Wwise.Event rockDropEvent;
+    public AK.Wwise.Event taskCompleteEvent;
 
     private TaskWindowSlide slide;
     private UIDragRock[] rocks;
@@ -98,6 +103,11 @@ public class MapTaskManager : MonoBehaviour
 
         clearedCount = Mathf.Min(clearedCount + 1, totalTargets);
 
+        if (rockDropEvent != null)
+        {
+            rockDropEvent.Post(gameObject);
+        }
+
         if (clearedCount >= totalTargets)
         {
             CompleteTask();
@@ -133,6 +143,7 @@ public class MapTaskManager : MonoBehaviour
         }
 
         taskCompleted = true;
+
         RefreshUI();
 
         TaskUICommon.GrantReward(rewardItemID);
@@ -141,6 +152,16 @@ public class MapTaskManager : MonoBehaviour
 
     private IEnumerator DelayedClose()
     {
+        if (completeSoundDelay > 0f)
+        {
+            yield return new WaitForSecondsRealtime(completeSoundDelay);
+        }
+
+        if (taskCompleteEvent != null)
+        {
+            taskCompleteEvent.Post(gameObject);
+        }
+
         if (closeDelay > 0f)
         {
             yield return new WaitForSecondsRealtime(closeDelay);

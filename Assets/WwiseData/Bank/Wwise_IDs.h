@@ -18,11 +18,15 @@ namespace AK
         static const AkUniqueID PLAY_AMB = 2959533290U;
         static const AkUniqueID PLAY_BIRD_FLY = 3450594569U;
         static const AkUniqueID PLAY_BONFIRE = 3679851939U;
+        static const AkUniqueID PLAY_BUSH = 1691497952U;
         static const AkUniqueID PLAY_CLICK_EVENT = 975614739U;
         static const AkUniqueID PLAY_CREEK = 135230898U;
         static const AkUniqueID PLAY_FOOTSTEP_EVENT = 2024329721U;
         static const AkUniqueID PLAY_LEAVES = 3439690150U;
+        static const AkUniqueID ROCK_DROP = 2703129694U;
         static const AkUniqueID STOP_EVENT = 2904546416U;
+        static const AkUniqueID TASK_ACCEPT = 1448859157U;
+        static const AkUniqueID TASK_ACCOMPLISH = 2168691576U;
     } // namespace EVENTS
 
     namespace BANKS

@@ -123,22 +123,62 @@
 				<Bus Id="2246998526" Name="Main Audio Bus" ObjectPath="\Busses\Default Work Unit\Main Audio Bus" GUID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="1551306167" Type="User" GUID="{EB97643E-7E49-4895-8084-63C7446E1F96}" Language="SFX" Hash="{18DB33F7-B1C2-A826-1B66-351F8AA0E024}">
+		<SoundBank Id="1551306167" Type="User" GUID="{EB97643E-7E49-4895-8084-63C7446E1F96}" Language="SFX" Hash="{02C5B7BA-D8E5-DEA2-F042-6AC691F71E30}">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>UI.bnk</Path>
 			<Media>
+				<File Id="10896401" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Vegetation, Foliage, Leaf, Wide, Wet, Handling, Rummage 01, VADI.wav</ShortName>
+					<CachePath>1B/{1B4DCAFC-67DB-7878-77BD-3C7FAF7AE6FE}.wem</CachePath>
+				</File>
+				<File Id="34413266" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Magic_Game_Notification_Tone_Hit.wav</ShortName>
+					<CachePath>57/{57FCC223-9336-A772-8429-BD8214DEDF4B}.wem</CachePath>
+				</File>
+				<File Id="139551812" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Vegetation, Foliage, Leaf, Wide, Wet, Handling, Rummage 01, VADI.wav</ShortName>
+					<CachePath>FF/{FF8196CF-E432-09BE-D479-D97857BFAFF2}.wem</CachePath>
+				</File>
+				<File Id="227348489" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>PM_RI_Source_66 Rocks Impact Hit Single Stone.wav</ShortName>
+					<CachePath>C0/{C09BBD16-CCF5-444F-D156-0FA36622D831}.wem</CachePath>
+				</File>
+				<File Id="282832637" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>PM_RI_Source_21 Rocks Impact Hit Single Stone.wav</ShortName>
+					<CachePath>FA/{FA019B2A-FE31-8A74-014A-278C741E4570}.wem</CachePath>
+				</File>
 				<File Id="515158065" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>UI Click-D3EG_02-01.wav</ShortName>
 					<CachePath>D1/{D16145E4-1CBB-1ACF-645F-E52369B2FE7D}.wem</CachePath>
+				</File>
+				<File Id="711528305" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Vegetation, Foliage, Leaf, Wide, Wet, Handling, Rummage 01, VADI.wav</ShortName>
+					<CachePath>AE/{AE9D89E6-2C8D-B3A7-D36D-18AF3C303DE3}.wem</CachePath>
+				</File>
+				<File Id="760668353" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>PM_RI_Source_64 Rocks Impact Hit Single Stone.wav</ShortName>
+					<CachePath>48/{4827313E-40DA-650A-F4AA-984E79FACFB3}.wem</CachePath>
 				</File>
 				<File Id="794226655" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>模拟的声音 登山包单招.wav</ShortName>
 					<CachePath>F7/{F7591083-5206-CC76-033F-715C2655AC18}.wem</CachePath>
 				</File>
+				<File Id="927660224" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Vegetation, Foliage, Leaf, Wide, Wet, Handling, Rummage 01, VADI.wav</ShortName>
+					<CachePath>28/{289E8EEF-F615-9E3F-CBB2-75B1A9BCC4A2}.wem</CachePath>
+				</File>
 				<File Id="968355106" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>模拟的声音 登山包单招.wav</ShortName>
 					<CachePath>60/{60058ADC-4830-8779-C292-C85C9F6A0C19}.wem</CachePath>
+				</File>
+				<File Id="1062257350" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>PM_RI_Source_63 Rocks Impact Hit Single Stone.wav</ShortName>
+					<CachePath>E6/{E68713C7-A738-1D63-B7F0-8870B773AF7C}.wem</CachePath>
+				</File>
+				<File Id="1072902368" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Magic_Game_Notification_Tone_Hit_3.wav</ShortName>
+					<CachePath>5A/{5A393F8B-1887-BD8D-53FD-86492B948A07}.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -152,9 +192,35 @@
 						<MediaRef Id="794226655"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1691497952" Name="Play_Bush" ObjectPath="\Events\Default Work Unit\Play_Bush" GUID="{1582A6DE-53AA-4A4F-A450-17AEBD8C15BD}" DurationType="OneShot" DurationMin="0.7759493" DurationMax="0.9714174">
+					<MediaRefs>
+						<MediaRef Id="10896401"/>
+						<MediaRef Id="139551812"/>
+						<MediaRef Id="711528305"/>
+						<MediaRef Id="927660224"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="975614739" Name="Play_Click_Event" ObjectPath="\Events\Default Work Unit\Play_Click_Event" GUID="{1C03F633-E673-4B64-9A5C-2E9789D7B614}" DurationType="OneShot" DurationMin="0.10311475" DurationMax="0.10311475">
 					<MediaRefs>
 						<MediaRef Id="515158065"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2703129694" Name="Rock_Drop" ObjectPath="\Events\Default Work Unit\Rock_Drop" GUID="{4BD767A0-92A3-4EEF-913B-6D3487C06CB2}" DurationType="OneShot" DurationMin="0.93084127" DurationMax="1.3011805">
+					<MediaRefs>
+						<MediaRef Id="227348489"/>
+						<MediaRef Id="282832637"/>
+						<MediaRef Id="760668353"/>
+						<MediaRef Id="1062257350"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1448859157" Name="Task_Accept" ObjectPath="\Events\Default Work Unit\Task_Accept" GUID="{EF935E36-EBBA-4DAA-A608-CE03019347F6}" DurationType="OneShot" DurationMin="1.6363021" DurationMax="1.6363021">
+					<MediaRefs>
+						<MediaRef Id="1072902368"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2168691576" Name="Task_Accomplish" ObjectPath="\Events\Default Work Unit\Task_Accomplish" GUID="{FDA6121F-4680-4544-B296-354665EB87AC}" DurationType="OneShot" DurationMin="2.2954514" DurationMax="2.2954514">
+					<MediaRefs>
+						<MediaRef Id="34413266"/>
 					</MediaRefs>
 				</Event>
 			</Events>
@@ -228,5 +294,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{63FED5F2-89B6-0457-F4EF-267785C172CD}</FileHash>
+	<FileHash>{B97AF2EB-2B76-0020-DE2B-82C1EB00044B}</FileHash>
 </SoundBanksInfo>

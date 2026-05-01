@@ -1,10 +1,24 @@
 Event	ID	Name			Wwise Object Path	Notes
 	975614739	Play_Click_Event			\Default Work Unit\Play_Click_Event	
 	1345726974	Open_Backpack			\Default Work Unit\Open_Backpack	
+	1448859157	Task_Accept			\Default Work Unit\Task_Accept	
+	1691497952	Play_Bush			\Default Work Unit\Play_Bush	
+	2168691576	Task_Accomplish			\Default Work Unit\Task_Accomplish	
+	2703129694	Rock_Drop			\Default Work Unit\Rock_Drop	
 	4202216648	Close_Backpack			\Default Work Unit\Close_Backpack	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	10896401	Bush_02	.cache\1B\{1B4DCAFC-67DB-7878-77BD-3C7FAF7AE6FE}.wem		\Containers\Default Work Unit\UI Click\Random_Bush\Bush_02		156468
+	34413266	Task_Accomplish	.cache\57\{57FCC223-9336-A772-8429-BD8214DEDF4B}.wem		\Containers\Default Work Unit\UI Click\Task_Accomplish		428276
+	139551812	Bush_01	.cache\FF\{FF8196CF-E432-09BE-D479-D97857BFAFF2}.wem		\Containers\Default Work Unit\UI Click\Random_Bush\Bush_01		149076
+	227348489	Rock_Drop 02	.cache\C0\{C09BBD16-CCF5-444F-D156-0FA36622D831}.wem		\Containers\Default Work Unit\UI Click\Random_Rock_Drop\Rock_Drop 02		192056
+	282832637	Rock_Drop 03	.cache\FA\{FA019B2A-FE31-8A74-014A-278C741E4570}.wem		\Containers\Default Work Unit\UI Click\Random_Rock_Drop\Rock_Drop 03		261736
 	515158065	UIclick_1	.cache\D1\{D16145E4-1CBB-1ACF-645F-E52369B2FE7D}.wem		\Containers\Default Work Unit\UI Click\UIclick_1		9996
+	711528305	Bush_03	.cache\AE\{AE9D89E6-2C8D-B3A7-D36D-18AF3C303DE3}.wem		\Containers\Default Work Unit\UI Click\Random_Bush\Bush_03		186608
+	760668353	Rock_Drop 01	.cache\48\{4827313E-40DA-650A-F4AA-984E79FACFB3}.wem		\Containers\Default Work Unit\UI Click\Random_Rock_Drop\Rock_Drop 01		257368
 	794226655	Backpack_Open	.cache\F7\{F7591083-5206-CC76-033F-715C2655AC18}.wem		\Containers\Default Work Unit\UI Click\Backpack_Open		137748
+	927660224	Bush	.cache\28\{289E8EEF-F615-9E3F-CBB2-75B1A9BCC4A2}.wem		\Containers\Default Work Unit\UI Click\Random_Bush\Bush		184332
 	968355106	Backpack_Close	.cache\60\{60058ADC-4830-8779-C292-C85C9F6A0C19}.wem		\Containers\Default Work Unit\UI Click\Backpack_Close		185372
+	1062257350	Rock_Drop	.cache\E6\{E68713C7-A738-1D63-B7F0-8870B773AF7C}.wem		\Containers\Default Work Unit\UI Click\Random_Rock_Drop\Rock_Drop		187268
+	1072902368	Task_Accept	.cache\5A\{5A393F8B-1887-BD8D-53FD-86492B948A07}.wem		\Containers\Default Work Unit\UI Click\Task_Accept		314360
 
